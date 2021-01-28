@@ -67,18 +67,46 @@
     
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#mapreduce-implementation">MapReduce Implementation</a></li>
+    <li><a href="#-------------------map-reduce-------------------">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; MAP REDUCE &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</a></li>
+    <li><a href="#distributed-file-system-dfs">Distributed File System (DFS)</a></li>
+    <li><a href="#mapreduce-implementation-centralized">MapReduce Implementation (centralized)</a></li>
+    <li><a href="#mapreduce-implementation-parallel">MapReduce Implementation (Parallel)</a>
+      <ul>
+        <li><a href="#mapreduce-environment-duties">MapReduce environment duties:</a></li>
+        <li><a href="#data-flow">Data Flow</a></li>
+        <li><a href="#details-of-mapreduce-execution">Details of MapReduce Execution</a></li>
+        <li><a href="#dealing-with-failures">Dealing With Failures</a></li>
+        <li><a href="#refinements">Refinements</a></li>
+      </ul>
+    </li>
+    <li><a href="#algorithms-using-mapreduce">Algorithms Using MapReduce</a>
+      <ul>
+        <li><a href="#matrix-vector-multiplication-by-mapreduce">Matrix-Vector Multiplication by MapReduce</a></li>
+        <li><a href="#natural-join-by-mapreduce">Natural Join by MapReduce</a></li>
+      </ul>
+    </li>
+    <li><a href="#cost-measures-for-mapreduce-algorithms">Cost Measures for MapReduce Algorithms</a>
+      <ul>
+        <li><a href="#communication-cost">Communication Cost</a></li>
+        <li><a href="#elapsed-communication-cost">Elapsed Communication Cost</a></li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </li>
+    <li><a href="#------locality-sensitive-hashing------">&mdash;&ndash; LOCALITY SENSITIVE HASHING &mdash;&ndash;</a></li>
   </ul>
 </nav>
     
-    <h1 id="map-reduce">MAP REDUCE</h1>
+    <h2 id="-------------------map-reduce-------------------">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; MAP REDUCE &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</h2>
+<h2 id="distributed-file-system-dfs">Distributed File System (DFS)</h2>
 <p>Modern data-mining applications, often called “big-data” analysis, require us to manage immense amounts of data quickly. The key factor of making fast computation is parallelization and this is done via computer clusters. To exploit cluster computing, files must look and behave somewhat differently from the conventional file systems found on single computers. This new file system is called Distributed File System (DFS).</p>
 <ul>
 <li>DFS is suitable for enormous, possibly a terabyte in size. If you have only small files, there is no point using a DFS for them.</li>
 <li>Files are rarely updated. Rather, they are read as data for some calculation, and possibly additional data is appended to files from time to time.</li>
 </ul>
-<p>One problem in parallel computing is the machine failures. If you have a large computing clusters, you are likely to observe frequent machine failures. To overcome this challenge, Files are dived into <em>chunks</em> and each <em>chunk</em> is replicated in different nodes of the cluster. Moreover, the nodes holding copies of one chunk should be located on different racks, so we don’t lose all copies due to a rack failure. In addition to that in Big data computing, moving data around for different computations is computationally expensive. The way to handle this problem is bring	computation close	to the	data. <strong>MapReduce</strong> is the programming model introduced to handle these problems and <strong>DFS</strong> is the Storage Infrastructure - File system associated with this programming model.</p>
-<h2 id="mapreduce-implementation">MapReduce Implementation</h2>
+<p>One problem in parallel computing is the machine failures. If you have a large computing clusters, you are likely to observe frequent machine failures. To overcome this challenge, Files are dived into <em>chunks</em> and each <em>chunk</em> is replicated in different nodes (<em>chunk servers</em>) of the cluster. Moreover, the nodes holding copies of one chunk should be located on different racks, so we don’t lose all copies due to a rack failure. In the figure bellow, you can see the diagram of a distributed file system. Note that the chunk servers also serve as compute servers.</p>
+<p><img src="/dfsfigure.PNG" alt="DFS structure(chunks and chunk servers)"></p>
+<p>The two other components of DFS (which are not shown in figure) are <em>Master Node</em> and <em>Client library</em>. Master node stores meta data about where files are stored and Client library talks to master to find chunk servers. The other problem in big data computing is moving data around for different computations is computationally expensive. The way to handle this problem is bring	computation close	to the	data. <strong>MapReduce</strong> is the programming model introduced to handle these problems and <strong>DFS</strong> is the Storage Infrastructure - File system associated with this programming model.</p>
+<h2 id="mapreduce-implementation-centralized">MapReduce Implementation (centralized)</h2>
 <p>Implementation of MapReduce requires the programmer to write two functions, called <em>Map</em> and <em>Reduce</em>. In brief, a MapReduce
 computation executes as follows:</p>
 <ol>
@@ -92,8 +120,108 @@ computation executes as follows:</p>
 <p>The Reduce tasks work on one key at a time, and combine all the values associated with that key in some way.</p>
 </li>
 </ol>
-<p>In the diagram bellow, you can see a MapReduce implementation for the word count task.</p>
-<p><img src="/img/Capture.PNG" alt="Map reduce diagram"></p>
+<p>In the diagram bellow, you can see a MapReduce implementation for the word count task. Note that this scheme shows how MapReduce works in a centralized system.</p>
+<p><img src="/Capture.PNG" alt="Map reduce diagram centralized"></p>
+<h2 id="mapreduce-implementation-parallel">MapReduce Implementation (Parallel)</h2>
+<p>However we are more interested in MapReduce in a computer cluster. In a computer cluster Map and Reduce tasks are running in parallel on multiple nodes. As we mentioned before, same data chunks can appear in different nodes and different Map tasks maybe processing same data chunks. But for the reduce tasks, we want put all key-value pairs with same key to the same reduce task. Here we introduce the <em>Partitioning Function</em> which is just a hash function responsible from this operation. In the figure bellow, you can see the MapReduce reduce diagram in parallel.</p>
+<p><img src="/mapreduceparallel.PNG" alt="Map reduce diagram in computer cluster"></p>
+<h3 id="mapreduce-environment-duties">MapReduce environment duties:</h3>
+<ul>
+<li>Partitioning the input data.</li>
+<li>Scheduling the program&rsquo;s execution across a set of machines.</li>
+<li>Performing the <em>group by key</em> step.</li>
+<li>Handling machine failures.</li>
+<li>Managing required intermachine communication.</li>
+</ul>
+<h3 id="data-flow">Data Flow</h3>
+<ul>
+<li>Input and final output are stored on the  DFS.
+<ul>
+<li>Scheduler tries to schedule map tasks to each chunk server which contains corresponding data chunk.</li>
+</ul>
+</li>
+<li>Intermediate results are stored on local file system of Map and Reduce workers.</li>
+</ul>
+<h3 id="details-of-mapreduce-execution">Details of MapReduce Execution</h3>
+<p>The figure bellow offers an outline of how process, tasks and files interact. Taking advantage of a client library provided by a MapReduce system, the user program forks a <em>Master Controller</em> process and some number of <em>Map workers</em> and <em>Reduce workers</em>. Note that a worker handles either Map tasks or Reduce tasks.</p>
+<p>The Master has many responsibilities. One is to create some number of Map tasks and some number of Reduce tasks, these numbers being selected by the user program. These tasks will be assigned to Worker processes by the Master. It is reasonable to create one Map task for every chunk of the input file(s), but we may wish to create fewer Reduce tasks. The reason for limiting the number of Reduce tasks is that it is necessary for each Map task to create an intermediate file for each Reduce task, and if there are too many Reduce tasks the number of intermediate files explodes. The Master keeps track of the status of each Map and Reduce task (idle, executing at a particular Worker, or completed). A Worker process reports to the Master when it finishes a task, and a new task is scheduled by the Master for that Worker process.</p>
+<p>Each Map task is assigned one or more chunks of the input file(s) and executes on it the code written by the user. The Map task creates a file for each Reduce task on the local disk of the Worker that executes the Map task. The Master is informed of the location and sizes of each of these files, and the Reduce task for which each is destined. When a Reduce task is assigned by the Master to a Worker process, that task is given all the files that form its input. The Reduce task executes code written by the user and writes its output to a file that is part of the surrounding distributed file system.</p>
+<p><img src="/mapreducedetailed.PNG" alt="Map reduce execution"></p>
+<h3 id="dealing-with-failures">Dealing With Failures</h3>
+<ul>
+<li>Map worker failure.
+<ul>
+<li>Map tasks completed or in-progress at worker are rest to idle.</li>
+<li>Reduce workers are notified when task is rescheduled on another worker.</li>
+</ul>
+</li>
+<li>Reduce worker failure.
+<ul>
+<li>Only in-progress tasks are reset to idle.</li>
+<li>Idle Reduce tasks restarted on other worker(s).</li>
+</ul>
+</li>
+<li>Master failure.
+<ul>
+<li>Map reduce task is aborted and client notified.</li>
+</ul>
+</li>
+</ul>
+<h3 id="refinements">Refinements</h3>
+<h4 id="combiners">Combiners</h4>
+<ul>
+<li>Often a Map task will produce many key-value pairs with same key. We can save time by pre-aggregating values with same key in the mapper.
+<ul>
+<li>combine(k, list(v1)) -&gt; v2.</li>
+<li>Combiner	is	usually	same as	the	reduce	function.</li>
+<li>Works	only	if	reduce function	is	commutative	and	associative.</li>
+</ul>
+</li>
+</ul>
+<h4 id="partition-function">Partition Function</h4>
+<ul>
+<li>Want to control how keys get partitioned.</li>
+<li>System uses a default Partition function:
+<ul>
+<li>hash(key) mod R.</li>
+</ul>
+</li>
+<li>Sometimes useful to override the hash function.</li>
+</ul>
+<h2 id="algorithms-using-mapreduce">Algorithms Using MapReduce</h2>
+<p>The original purpose for which the Google implementation of MapReduce was created was to execute very large matrix-vector multiplications as are needed in the calculation of PageRank.</p>
+<h3 id="matrix-vector-multiplication-by-mapreduce">Matrix-Vector Multiplication by MapReduce</h3>
+<p>Suppose we have an n x n matrix M, whose element in row i and column j will be denoted m<sub>ij</sub> . Suppose we also have a vector v of length n, whose jth element is v<sub>j</sub> .</p>
+<h4 id="the-map-function">The Map function</h4>
+<p>Each Map task will operate on a chunk of the matrix M. From each matrix element m<sub>ij</sub> it produces the key-value pair (i,m<sub>ij</sub>v<sub>j</sub>). Thus, all terms of the sum that make up the component x<sub>i</sub> of the matrix-vector product will get the same key, i.</p>
+<h4 id="the-reduce-function">The Reduce function</h4>
+<p>The Reduce function simply sums all the values associated with a given key i. The result will be a pair (i, x<sub>i</sub>).</p>
+<p>Note that parallelization of matrix multiplication is very crucial at neural net computations.</p>
+<h3 id="natural-join-by-mapreduce">Natural Join by MapReduce</h3>
+<p>Natural join is a frequently used operation in relational database system and parallelization of this operation saves enormous computing time. In the figure bellow yo can see the illustration of Natural Join.</p>
+<p><img src="/join.PNG" alt="Natural Join"></p>
+<ul>
+<li>Use a hash function h from B-values to 1..k</li>
+<li>A map process turns:
+<ul>
+<li>each input tuple R(a,b) into key-value pair (b, (a,R)).</li>
+<li>each input tuple S(b,c) into key-value pair (b, (c,S)).</li>
+</ul>
+</li>
+<li>Map process send each key-value pair with key b to Reduce process h(b).</li>
+<li>Each reduce process matches all the pairs (b, (a,R)) with all (b, (c,S)) and outputs (a,b,c)</li>
+</ul>
+<h2 id="cost-measures-for-mapreduce-algorithms">Cost Measures for MapReduce Algorithms</h2>
+<h3 id="communication-cost">Communication Cost</h3>
+<p>input file size + 2x(sum of the sizes of all files passed from Map process to Reduce process) + the sum of the output sizes of the reduce process.</p>
+<h3 id="elapsed-communication-cost">Elapsed Communication Cost</h3>
+<p>sum of the largest input  + output for any map process + output for any map process</p>
+<h3 id="references">References</h3>
+<ul>
+<li><a href="http://web.stanford.edu/class/cs246/">http://web.stanford.edu/class/cs246/</a></li>
+<li><a href="http://www.mmds.org/#ver21">http://www.mmds.org/#ver21</a></li>
+</ul>
+<h2 id="------locality-sensitive-hashing------">&mdash;&ndash; LOCALITY SENSITIVE HASHING &mdash;&ndash;</h2>
 
   </div>
 </section>
@@ -165,7 +293,9 @@ hljs.initHighlightingOnLoad();
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="js/main.js"></script>
 <script src="js/custom.js"></script>
+
 </body>
+
 </html>
 
 
