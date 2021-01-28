@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Courses on Onur Copur</title>
+    <link>https://copuronur.github.io/courses/</link>
+    <description>Recent content in Courses on Onur Copur</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 02 Oct 2016 22:55:05 -0400</lastBuildDate><atom:link href="https://copuronur.github.io/courses/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Big Data computing</title>
+      <link>https://copuronur.github.io/courses/big-data-computing/</link>
+      <pubDate>Sun, 02 Oct 2016 22:55:05 -0400</pubDate>
+      
+      <guid>https://copuronur.github.io/courses/big-data-computing/</guid>
+      <description>MAP REDUCE Modern data-mining applications, often called “big-data” analysis, require us to manage immense amounts of data quickly. The key factor of making fast computation is parallelization and this is done via computer clusters. To exploit cluster computing, files must look and behave somewhat differently from the conventional file systems found on single computers. This new file system is called Distributed File System (DFS).
+ DFS is suitable for enormous, possibly a terabyte in size.</description>
+    </item>
+    
+    <item>
+      <title>Neural Nets</title>
+      <link>https://copuronur.github.io/courses/neuranets/</link>
+      <pubDate>Sun, 02 Oct 2016 22:55:05 -0400</pubDate>
+      
+      <guid>https://copuronur.github.io/courses/neuranets/</guid>
+      <description>Week 1 </description>
+    </item>
+    
+  </channel>
+</rss>

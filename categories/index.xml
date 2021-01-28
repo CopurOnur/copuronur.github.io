@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Onur Copur</title>
+    <link>https://copuronur.github.io/categories/</link>
+    <description>Recent content in Categories on Onur Copur</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 02 Oct 2016 22:55:05 -0400</lastBuildDate><atom:link href="https://copuronur.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>about</title>
+      <link>https://copuronur.github.io/categories/about/</link>
+      <pubDate>Sun, 02 Oct 2016 22:55:05 -0400</pubDate>
+      
+      <guid>https://copuronur.github.io/categories/about/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>course</title>
+      <link>https://copuronur.github.io/categories/course/</link>
+      <pubDate>Sun, 02 Oct 2016 22:55:05 -0400</pubDate>
+      
+      <guid>https://copuronur.github.io/categories/course/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://copuronur.github.io/categories/python/</link>
+      <pubDate>Sun, 02 Oct 2016 22:55:05 -0400</pubDate>
+      
+      <guid>https://copuronur.github.io/categories/python/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

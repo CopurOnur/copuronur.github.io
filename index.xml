@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Onur Copur</title>
+    <link>https://copuronur.github.io/</link>
+    <description>Recent content on Onur Copur</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 02 Oct 2016 22:55:05 -0400</lastBuildDate><atom:link href="https://copuronur.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://copuronur.github.io/about/</link>
+      <pubDate>Sun, 02 Oct 2016 22:55:05 -0400</pubDate>
+      
+      <guid>https://copuronur.github.io/about/</guid>
+      <description>I am an Industrial Engineer graduate and a Data Science Master’s student. Currently, my research interest is computer vision and natural language processing. I created this website to share my knowledge, Document my course material and put some of my interesting codes. All the posts will be mainly about machine learning, statistics and python.</description>
+    </item>
+    
+    <item>
+      <title>Big Data computing</title>
+      <link>https://copuronur.github.io/courses/big-data-computing/</link>
+      <pubDate>Sun, 02 Oct 2016 22:55:05 -0400</pubDate>
+      
+      <guid>https://copuronur.github.io/courses/big-data-computing/</guid>
+      <description>MAP REDUCE Modern data-mining applications, often called “big-data” analysis, require us to manage immense amounts of data quickly. The key factor of making fast computation is parallelization and this is done via computer clusters. To exploit cluster computing, files must look and behave somewhat differently from the conventional file systems found on single computers. This new file system is called Distributed File System (DFS).
+ DFS is suitable for enormous, possibly a terabyte in size.</description>
+    </item>
+    
+    <item>
+      <title>Neural Nets</title>
+      <link>https://copuronur.github.io/courses/neuranets/</link>
+      <pubDate>Sun, 02 Oct 2016 22:55:05 -0400</pubDate>
+      
+      <guid>https://copuronur.github.io/courses/neuranets/</guid>
+      <description>Week 1 </description>
+    </item>
+    
+    <item>
+      <title>Tensorflow basics</title>
+      <link>https://copuronur.github.io/python/first/</link>
+      <pubDate>Sun, 02 Oct 2016 22:55:05 -0400</pubDate>
+      
+      <guid>https://copuronur.github.io/python/first/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
