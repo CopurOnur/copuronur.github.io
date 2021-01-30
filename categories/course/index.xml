@@ -8,21 +8,21 @@
     <language>en-US</language>
     <lastBuildDate>Sun, 02 Oct 2016 22:55:05 -0400</lastBuildDate><atom:link href="https://copuronur.github.io/categories/course/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Big Data computing</title>
-      <link>https://copuronur.github.io/courses/big-data-computing/</link>
-      <pubDate>Sun, 02 Oct 2016 22:55:05 -0400</pubDate>
-      
-      <guid>https://copuronur.github.io/courses/big-data-computing/</guid>
-      <description>&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; MAP REDUCE &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; Distributed File System (DFS) Modern data-mining applications, often called “big-data” analysis, require us to manage immense amounts of data quickly. The key factor of making fast computation is parallelization and this is done via computer clusters. To exploit cluster computing, files must look and behave somewhat differently from the conventional file systems found on single computers. This new file system is called Distributed File System (DFS).</description>
-    </item>
-    
-    <item>
       <title>Neural Nets</title>
       <link>https://copuronur.github.io/courses/neuranets/</link>
       <pubDate>Sun, 02 Oct 2016 22:55:05 -0400</pubDate>
       
       <guid>https://copuronur.github.io/courses/neuranets/</guid>
       <description>Week 1 </description>
+    </item>
+    
+    <item>
+      <title>Big Data computing</title>
+      <link>https://copuronur.github.io/courses/big-data-computing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://copuronur.github.io/courses/big-data-computing/</guid>
+      <description>&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; MAP REDUCE &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; Distributed File System (DFS) Modern data-mining applications, often called “big-data” analysis, require us to manage immense amounts of data quickly. The key factor of making fast computation is parallelization and this is done via computer clusters. To exploit cluster computing, files must look and behave somewhat differently from the conventional file systems found on single computers. This new file system is called Distributed File System (DFS).</description>
     </item>
     
   </channel>

@@ -18,11 +18,6 @@
   </url>
   
   <url>
-    <loc>https://copuronur.github.io/courses/big-data-computing/</loc>
-    <lastmod>2016-10-02T22:55:05-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://copuronur.github.io/categories/</loc>
     <lastmod>2016-10-02T22:55:05-04:00</lastmod>
   </url>
@@ -75,6 +70,10 @@
   <url>
     <loc>https://copuronur.github.io/python/first/</loc>
     <lastmod>2016-10-02T22:55:05-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/courses/big-data-computing/</loc>
   </url>
   
 </urlset>

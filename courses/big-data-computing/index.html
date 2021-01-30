@@ -47,7 +47,7 @@
   
   <div class="col-md-12">
     <h6 class="text-left meta">
-        PUBLISHED ON OCT 2, 2016 
+       
       
       
       
@@ -92,7 +92,26 @@
         <li><a href="#references">References</a></li>
       </ul>
     </li>
-    <li><a href="#------locality-sensitive-hashing------">&mdash;&ndash; LOCALITY SENSITIVE HASHING &mdash;&ndash;</a></li>
+    <li><a href="#-----finding-simmilar-documnets-----">&mdash;- FINDING SIMMILAR DOCUMNETS &mdash;-</a></li>
+    <li><a href="#shingling-of-documents">Shingling of Documents</a>
+      <ul>
+        <li><a href="#k-shingles-or-k-gram">k-Shingles or k-gram</a></li>
+      </ul>
+    </li>
+    <li><a href="#similarity-preserving-summaries-of-sets">Similarity-Preserving Summaries of Sets</a>
+      <ul>
+        <li><a href="#signatures">Signatures</a></li>
+        <li><a href="#minhashing">Minhashing</a></li>
+        <li><a href="#minhashing-and-jaccard-similarity">Minhashing and Jaccard Similarity</a></li>
+        <li><a href="#computation-of-minhas-permutations">Computation of Minhas Permutations</a></li>
+      </ul>
+    </li>
+    <li><a href="#locality-sensitive-hashing-lsh">Locality Sensitive Hashing (LSH)</a>
+      <ul>
+        <li><a href="#lsh-for-minhash-signatures">LSH for Minhash Signatures</a></li>
+        <li><a href="#analysis-of-the-banding-technique">Analysis of the Banding Technique</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     
@@ -221,7 +240,42 @@ computation executes as follows:</p>
 <li><a href="http://web.stanford.edu/class/cs246/">http://web.stanford.edu/class/cs246/</a></li>
 <li><a href="http://www.mmds.org/#ver21">http://www.mmds.org/#ver21</a></li>
 </ul>
-<h2 id="------locality-sensitive-hashing------">&mdash;&ndash; LOCALITY SENSITIVE HASHING &mdash;&ndash;</h2>
+<h2 id="-----finding-simmilar-documnets-----">&mdash;- FINDING SIMMILAR DOCUMNETS &mdash;-</h2>
+<h2 id="shingling-of-documents">Shingling of Documents</h2>
+<p>The most effective way to represent documents as sets, for the purpose of identifying lexically similar documents is to construct from the document the set of short strings that appear within it.</p>
+<h3 id="k-shingles-or-k-gram">k-Shingles or k-gram</h3>
+<p>A document is a string of characters. Define a k-shingle for a document to be any substring of length k found within the document. Then, we may associate with each document the set of k-shingles that appear one or more times within that document. Instead of using substrings directly as shingles, we can pick a hash function that maps strings of length k to some number of buckets and treat the resulting bucket number as the shingle. The set representing a document is then the set of integers that are bucket numbers of one or more k-shingles that appear in the document. The result of hashing shingles also called <em>tokens</em>.</p>
+<h2 id="similarity-preserving-summaries-of-sets">Similarity-Preserving Summaries of Sets</h2>
+<h3 id="signatures">Signatures</h3>
+<p>Sets of shingles are large. Even if we hash them to four bytes each, the space needed to store a set is still roughly four times the space taken by the document. If we have millions of documents, it may well not be possible to store all the shingle-sets in main memory.</p>
+<p>Our goal in this section is to replace large sets by much smaller representations called “signatures.” The important property we need for signatures is
+that we can compare the signatures of two sets and estimate the Jaccard similarity of the underlying sets from the signatures alone.</p>
+<h3 id="minhashing">Minhashing</h3>
+<p>The signatures we desire to construct for sets are composed of the results of a large number of calculations, say several hundred, each of which is a “minhash” of the characteristic matrix. In this section, we shall learn how a minhash is computed in principle, and in later sections we shall see how a good approximation to the minhash is computed in practice.</p>
+<p>To minhash a set represented by a column of the characteristic matrix, pick a permutation of the rows. The minhash value of any column is the number of the first row, in the permuted order, in which the column has a 1. In the table bellow, you can see an example of minhash table with size 3. The input matrix is a matrix with binary input which has documents in the columns and shingles (tokens) in the rows and this input matrix I, has I<sub>ij</sub> =1, if document j contains token i. To calculate the minhash matrix, first we generate 3 different permutation of rows. Lets check the blue permutation. the first row in the blue permutation refers to the sixth row in the input matrix. In the sixth row we see that columns 1 and 3 has inputs 1, so we put the permutation row number (1 in this case) to the first and third columns of the signature vector. the second row in the blue permutation  refers to the fourth row in the input matrix. In the fourth row we see that columns 2 and 4 has inputs 1, so we put the permutation row number (2 in this case) to the second and fourth columns of the signature vector. As we filled all columns for the blue permutation, we can proceed to other permutations and fill the column values in the same manner.</p>
+<p><img src="/minhash.PNG" alt="Example of Minhashing"></p>
+<h3 id="minhashing-and-jaccard-similarity">Minhashing and Jaccard Similarity</h3>
+<p>There is a remarkable connection between minhashing and Jaccard similarity of the sets that are minhashed.</p>
+<p>The probability that the minhash function for a random permutation of rows produces the same value for two sets equals the Jaccard similarity of those sets.</p>
+<h3 id="computation-of-minhas-permutations">Computation of Minhas Permutations</h3>
+<p>It is not feasible to permute a large characteristic matrix explicitly. Even picking a random permutation of millions or billions of rows is time-consuming, and the necessary sorting of the rows would take even more time.</p>
+<p>Fortunately, it is possible to simulate the effect of a random permutation by a random hash function that maps row numbers to as many buckets as there are rows. A hash function that maps integers 0, 1, . . . , k −1 to bucket numbers 0 through k−1 typically will map some pairs of integers to the same bucket and leave other buckets unfilled. However, the difference is unimportant as long as k is large and there are not too many collisions. We can maintain the fiction that our hash function h “permutes” row r to position h(r) in the permuted order. Thus, instead of picking n random permutations of rows, we pick n randomly chosen hash functions h1, h2, . . . , hn on the rows. We construct the signature matrix by considering each row in their given order.</p>
+<h2 id="locality-sensitive-hashing-lsh">Locality Sensitive Hashing (LSH)</h2>
+<p>The general Idea of LSH is generating a small list of candidate pairs (pairs of elements whose similarity must be evaluated) from the collection of all elements. This is done via “hashing” items several times, in such a way that similar items are more likely to be hashed to the same bucket than dissimilar items are. We then consider any pair that hashed to the same bucket for any of the hashings to be a candidate pair. We check only the candidate pairs for similarity.</p>
+<h3 id="lsh-for-minhash-signatures">LSH for Minhash Signatures</h3>
+<p>Even though we can use minhashing to compress large documents into small signatures and preserve the expected similarity of any pair of documents, it still may be impossible to find the pairs with greatest similarity efficiently. The reason is that the number of pairs of documents may be too large, even if there are not too many documents. So we refer to the idea of LSH we mentioned above.</p>
+<p>If we have minhash signatures for the items, an effective way to choose the hashings is to divide the signature matrix into b bands consisting of r rows each. For each band, there is a hash function that takes vectors of r integers (the portion of one column within that band) and hashes them to some large number of buckets. We can use the same hash function for all the bands, but we use a separate bucket array for each band, so columns with the same vector in different bands will not hash to the same bucket. In the figure bellow, you can see hash table for a single band in a signature matrix.</p>
+<p><img src="/lsh.PNG" alt="Example of LSH for minhash"></p>
+<h3 id="analysis-of-the-banding-technique">Analysis of the Banding Technique</h3>
+<p>Suppose we use b bands of r rows each, and suppose that a particular pair of documents have Jaccard similarity s. Recall that the probability the minhash signatures for these documents agree in any one particular row of the signature matrix is s. We can calculate the probability that these documents (or rather their signatures) become a candidate pair as follows:</p>
+<ul>
+<li>The probability that the signatures agree in all rows of one particular band is <em>s</em><sup><em>r</em></sup>.</li>
+<li>The probability that the signatures disagree in at least one row of a particular band is 1- <em>s</em><sup><em>r</em></sup>.</li>
+<li>The probability that the signatures disagree in at least one row of each of the bands is (1- <em>s</em><sup><em>r</em></sup>)<sup><em>b</em></sup> (also the probability of false negatives for s &gt; threshold).</li>
+<li>The probability that the signatures agree in all the rows of at least one band, and therefore become a candidate pair, is 1- (1- <em>s</em><sup><em>r</em></sup>)<sup><em>b</em></sup>. (also the probability of false positives for s &lt; threshold).</li>
+</ul>
+<p>It may not be obvious, but regardless of the chosen constants b and r, this function has the form of an S-curve, as suggested in the figure bellow and an approximation for the threshold is (<em>1/b</em>)<sup><em>1/r</em></sup>. If you want a high recall value, it is better to have high <em>r</em> and low <em>b</em>.</p>
+<p><img src="/lshrb.PNG" alt="LSH r and b"></p>
 
   </div>
 </section>
@@ -250,11 +304,11 @@ computation executes as follows:</p>
 <section id="menu-pane" class="menu text-center">
   
   
-  <span><a class="menu-item" href="https://copuronur.github.io/courses/neuranets/">&lt; prev | </a></span>
-  
   
   <span><a class="menu-item" href="/courses">courses</a></span>
   
+  
+  <span><a class="menu-item" href="https://copuronur.github.io/courses/neuranets/"> | next &gt;</a></span>
   
   
   <h4 class="text-center"><a class="menu-item" href="https://copuronur.github.io/">home</a></h4>
@@ -267,11 +321,7 @@ computation executes as follows:</p>
   
   <h6 class="text-center copyright"></h6>
   
-  <h6 class="text-center powered">Powered by <a href="https://gohugo.io/">Hugo  v0.80.0</a> &amp; <a href="https://github.com/shenoybr/hugo-goa">Goa</a>.</h6>
-  
       
-      <h6><a href="" aria-label="RSS Feed"><i class="fas fa-rss" aria-hidden="true"></i></a></h6>
-    
   
 </footer>
 
