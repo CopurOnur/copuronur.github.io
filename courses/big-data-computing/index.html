@@ -112,6 +112,15 @@
         <li><a href="#analysis-of-the-banding-technique">Analysis of the Banding Technique</a></li>
       </ul>
     </li>
+    <li><a href="#the-theory-of-locality-sensitive-functions">The Theory of Locality-Sensitive Functions</a>
+      <ul>
+        <li><a href="#lsh-general-formulation">LSH General Formulation</a></li>
+        <li><a href="#lsh-families-for-jaccard-distance">LSH Families for Jaccard Distance</a></li>
+        <li><a href="#lsh-families-for-hamming-distance">LSH Families for Hamming Distance</a></li>
+        <li><a href="#lsh-families-for-cosine-distance">LSH Families for Cosine Distance</a></li>
+      </ul>
+    </li>
+    <li><a href="#------------mining-data-streams------------">&mdash;&mdash;&mdash;&ndash; MINING DATA STREAMS &mdash;&mdash;&mdash;&ndash;</a></li>
   </ul>
 </nav>
     
@@ -274,8 +283,41 @@ that we can compare the signatures of two sets and estimate the Jaccard similari
 <li>The probability that the signatures disagree in at least one row of each of the bands is (1- <em>s</em><sup><em>r</em></sup>)<sup><em>b</em></sup> (also the probability of false negatives for s &gt; threshold).</li>
 <li>The probability that the signatures agree in all the rows of at least one band, and therefore become a candidate pair, is 1- (1- <em>s</em><sup><em>r</em></sup>)<sup><em>b</em></sup>. (also the probability of false positives for s &lt; threshold).</li>
 </ul>
-<p>It may not be obvious, but regardless of the chosen constants b and r, this function has the form of an S-curve, as suggested in the figure bellow and an approximation for the threshold is (<em>1/b</em>)<sup><em>1/r</em></sup>. If you want a high recall value, it is better to have high <em>r</em> and low <em>b</em>.</p>
+<p>It may not be obvious, but regardless of the chosen constants b and r, this function has the form of an S-curve, as suggested in the figure bellow and an approximation for the threshold is (<em>1/b</em>)<sup><em>1/r</em></sup>. If you want a high recall value, it is better to have high <em>r</em> and low 0</p>
 <p><img src="/lshrb.PNG" alt="LSH r and b"></p>
+<h2 id="the-theory-of-locality-sensitive-functions">The Theory of Locality-Sensitive Functions</h2>
+<p>Now, we shall explore other families of functions, besides the minhash functions, that can serve to produce candidate pairs efficiently. These functions can apply to the space of sets and the Jaccard distance, or to another space and/or another distance measure. There are three conditions that we need for a family of functions:</p>
+<ol>
+<li>They must be more likely to make close pairs be candidate pairs than distant pairs.</li>
+<li>They must be statistically independent, in the sense that it is possible to estimate the probability that two or more functions will all give a certain response by the product rule for independent events.</li>
+<li>They must be efficient, in two ways:
+<ul>
+<li>They must be able to identify candidate pairs in time much less than the time it takes to look at all pairs.</li>
+<li>They must be combinable to build functions that are better at avoiding false positives and negatives, and the combined functions must also take time that is much less than the number of pairs.</li>
+</ul>
+</li>
+</ol>
+<h3 id="lsh-general-formulation">LSH General Formulation</h3>
+<p>A collection of functions of this form will be called a family of functions. For example, the family of minhash functions, each based on one of the possible permutations of rows of a characteristic matrix, form a family.</p>
+<p>Let d1 &lt; d2 be two distances according to some distance measure d. A family F of functions is said to be (d1, d2, p1, p2)-sensitive if for every f in F:</p>
+<ol>
+<li>If d(x, y) ≤ d1, then the probability that f(x) = f(y) is at least p1.</li>
+<li>If d(x, y) ≥ d2, then the probability that f(x) = f(y) is at most p2.</li>
+</ol>
+<h3 id="lsh-families-for-jaccard-distance">LSH Families for Jaccard Distance</h3>
+<p>The family of minhash functions is a (d1, d2, 1−d1, 1−d2)-sensitive family for any d1 and d2, where 0 ≤ d1 &lt; d2 ≤ 1.</p>
+<p>The reason is that if d(x, y) ≤ d1, where d is the Jaccard distance, then SIM(x, y) = 1 − d(x, y) ≥ 1 − d1. But we know that the Jaccard similarity of x and y is equal to the probability that a minhash function will hash x and y to the same value. A similar argument applies to d2 or any distance.</p>
+<h3 id="lsh-families-for-hamming-distance">LSH Families for Hamming Distance</h3>
+<p>Suppose we have a space of d-dimensional vectors, and h(x, y) denotes the Hamming distance between vectors x and y. If we take any one position of the vectors, say the ith position, we can define the function fi(x) to be the ith bit of vector x. Then f<sub><em>i</em></sub>(x) = f<sub><em>i</em></sub>(y) if and only if vectors x and
+y agree in the ith position. Then the probability that f<sub><em>i</em></sub>(x) = f<sub><em>i</em></sub>(y) for a randomly chosen i is exactly 1 − h(x, y)/d; i.e., it is the fraction of positions in which x and y agree.</p>
+<p>This situation is almost exactly like the one we encountered for minhashing. Thus, the family F consisting of the functions {f1, f2, . . . , fd} is a (d1, d2, 1 − d1/d, 1 − d2/d)-sensitive family of hash functions, for any d1 &lt; d2.</p>
+<h3 id="lsh-families-for-cosine-distance">LSH Families for Cosine Distance</h3>
+<p>Recall that the cosine distance between two vectors is the angle between the vectors. Note that these vectors may be in a space of many dimensions, but they always define a plane, and the angle between them is measured in this plane.</p>
+<p>Given two vectors x and y, say f(x) = f(y) if and only if the dot products v<sub><em>f</em></sub> .x and v<sub><em>f</em></sub> .y have the same sign. Then F is a locality-sensitive family for the cosine distance. (d1, d2, (180 − d1)/180, (180 − d2)/180)-sensitive family of hash functions. From this basis, we can amplify the family as we wish, just as for the minhash-based family.</p>
+<h4 id="sketches">Sketches</h4>
+<p>Instead of chosing a random vector from all possible vectors, it turns out to be sufficiently random if we restrict our choice to vectors whose components are +1 and −1. The dot product of any vector x with a vector v of +1’s and −1’s is formed by adding the components of x where v is +1 and then subtracting the other components of x – those where v is −1. If we pick a collection of random vectors, say v1, v2, . . . , v<sub><em>n</em></sub>, then we can apply them to an arbitrary vector x by computing v1.x, v2.x, . . . , v<sub><em>n</em></sub>.x and then replacing any positive value by +1 and any negative value by −1. The result is called the sketch of x.</p>
+<h2 id="------------mining-data-streams------------">&mdash;&mdash;&mdash;&ndash; MINING DATA STREAMS &mdash;&mdash;&mdash;&ndash;</h2>
+<p>Coming tomorrow, stay tuned!</p>
 
   </div>
 </section>
@@ -304,11 +346,11 @@ that we can compare the signatures of two sets and estimate the Jaccard similari
 <section id="menu-pane" class="menu text-center">
   
   
+  <span><a class="menu-item" href="https://copuronur.github.io/courses/neuranets/">&lt; prev | </a></span>
+  
   
   <span><a class="menu-item" href="/courses">courses</a></span>
   
-  
-  <span><a class="menu-item" href="https://copuronur.github.io/courses/neuranets/"> | next &gt;</a></span>
   
   
   <h4 class="text-center"><a class="menu-item" href="https://copuronur.github.io/">home</a></h4>

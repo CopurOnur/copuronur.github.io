@@ -23,26 +23,6 @@
   </url>
   
   <url>
-    <loc>https://copuronur.github.io/tags/course/</loc>
-    <lastmod>2016-10-02T22:55:05-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://copuronur.github.io/categories/course/</loc>
-    <lastmod>2016-10-02T22:55:05-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://copuronur.github.io/courses/</loc>
-    <lastmod>2016-10-02T22:55:05-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://copuronur.github.io/courses/neuranets/</loc>
-    <lastmod>2016-10-02T22:55:05-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://copuronur.github.io/</loc>
     <lastmod>2016-10-02T22:55:05-04:00</lastmod>
   </url>
@@ -74,6 +54,22 @@
   
   <url>
     <loc>https://copuronur.github.io/courses/big-data-computing/</loc>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/tags/course/</loc>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/categories/course/</loc>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/courses/</loc>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/courses/neuranets/</loc>
   </url>
   
 </urlset>
