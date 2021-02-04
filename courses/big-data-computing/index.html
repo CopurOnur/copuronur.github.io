@@ -121,6 +121,12 @@
       </ul>
     </li>
     <li><a href="#------------mining-data-streams------------">&mdash;&mdash;&mdash;&ndash; MINING DATA STREAMS &mdash;&mdash;&mdash;&ndash;</a></li>
+    <li><a href="#filtering-data-streams">Filtering Data Streams</a>
+      <ul>
+        <li><a href="#bloom-filters">Bloom Filters</a></li>
+        <li><a href="#analysis-of-bloom-filters">Analysis of Bloom Filters</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     
@@ -317,7 +323,19 @@ y agree in the ith position. Then the probability that f<sub><em>i</em></sub>(x)
 <h4 id="sketches">Sketches</h4>
 <p>Instead of chosing a random vector from all possible vectors, it turns out to be sufficiently random if we restrict our choice to vectors whose components are +1 and −1. The dot product of any vector x with a vector v of +1’s and −1’s is formed by adding the components of x where v is +1 and then subtracting the other components of x – those where v is −1. If we pick a collection of random vectors, say v1, v2, . . . , v<sub><em>n</em></sub>, then we can apply them to an arbitrary vector x by computing v1.x, v2.x, . . . , v<sub><em>n</em></sub>.x and then replacing any positive value by +1 and any negative value by −1. The result is called the sketch of x.</p>
 <h2 id="------------mining-data-streams------------">&mdash;&mdash;&mdash;&ndash; MINING DATA STREAMS &mdash;&mdash;&mdash;&ndash;</h2>
-<p>Coming tomorrow, stay tuned!</p>
+<h2 id="filtering-data-streams">Filtering Data Streams</h2>
+<h3 id="bloom-filters">Bloom Filters</h3>
+<p>A Bloom filter consists of:</p>
+<ol>
+<li>An array of n bits, initially all 0’s.</li>
+<li>A collection of hash functions h1, h2, . . . , hk. Each hash function maps “key” values to n buckets, corresponding to the n bits of the bit-array.</li>
+<li>A set S of m key values.</li>
+</ol>
+<p>The purpose of the Bloom filter is to allow through all stream elements whose keys are in S, while rejecting most of the stream elements whose keys are not in S.</p>
+<p>To initialize the bit array, begin with all bits 0. Take each key value in S and hash it using each of the k hash functions. Set to 1 each bit that is hi(K) for some hash function hi and some key value K in S. To test a key K that arrives in the stream, check that all of h1(K), h2(K), . . . , hk(K) are 1’s in the bit-array. If all are 1’s, then let the stream element through. If one or more of these bits are 0, then K could not be in S, so reject the stream element.</p>
+<h3 id="analysis-of-bloom-filters">Analysis of Bloom Filters</h3>
+<p>If a key value is in S, then the element will surely pass through the Bloom filter. However, if the key value is not in S, it might still pass. We need to understand how to calculate the probability of a false positive, as a function of n, the bit-array length, m the number of members of S, and k, the number of hash functions.</p>
+<p>The model to use is throwing darts at targets. Suppose we have x targets and y darts. Any dart is equally likely to hit any target. After throwing the darts, how many targets can we expect to be hit at least once?</p>
 
   </div>
 </section>

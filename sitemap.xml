@@ -57,6 +57,10 @@
   </url>
   
   <url>
+    <loc>https://copuronur.github.io/papers-that-i-like/combinatorial-optimization-with-dl/</loc>
+  </url>
+  
+  <url>
     <loc>https://copuronur.github.io/tags/course/</loc>
   </url>
   
@@ -70,6 +74,18 @@
   
   <url>
     <loc>https://copuronur.github.io/courses/neuranets/</loc>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/tags/papers/</loc>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/categories/papers/</loc>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/papers-that-i-like/</loc>
   </url>
   
 </urlset>
