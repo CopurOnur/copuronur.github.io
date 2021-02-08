@@ -127,6 +127,19 @@
         <li><a href="#analysis-of-bloom-filters">Analysis of Bloom Filters</a></li>
       </ul>
     </li>
+    <li><a href="#counting-distinct-elements-in-a-stream">Counting Distinct elements in a Stream</a>
+      <ul>
+        <li><a href="#flajolet---martin-algorithm">Flajolet - Martin Algorithm</a></li>
+        <li><a href="#analysis-of-flajolet---martin-algorithm">Analysis of Flajolet - Martin Algorithm</a></li>
+      </ul>
+    </li>
+    <li><a href="#computing-moments">Computing Moments</a>
+      <ul>
+        <li><a href="#definition-of-moments">Definition of moments</a></li>
+        <li><a href="#ams-method">AMS Method</a></li>
+      </ul>
+    </li>
+    <li><a href="#counting-itemsets">Counting Itemsets</a></li>
   </ul>
 </nav>
     
@@ -321,7 +334,7 @@ y agree in the ith position. Then the probability that f<sub><em>i</em></sub>(x)
 <p>Recall that the cosine distance between two vectors is the angle between the vectors. Note that these vectors may be in a space of many dimensions, but they always define a plane, and the angle between them is measured in this plane.</p>
 <p>Given two vectors x and y, say f(x) = f(y) if and only if the dot products v<sub><em>f</em></sub> .x and v<sub><em>f</em></sub> .y have the same sign. Then F is a locality-sensitive family for the cosine distance. (d1, d2, (180 − d1)/180, (180 − d2)/180)-sensitive family of hash functions. From this basis, we can amplify the family as we wish, just as for the minhash-based family.</p>
 <h4 id="sketches">Sketches</h4>
-<p>Instead of chosing a random vector from all possible vectors, it turns out to be sufficiently random if we restrict our choice to vectors whose components are +1 and −1. The dot product of any vector x with a vector v of +1’s and −1’s is formed by adding the components of x where v is +1 and then subtracting the other components of x – those where v is −1. If we pick a collection of random vectors, say v1, v2, . . . , v<sub><em>n</em></sub>, then we can apply them to an arbitrary vector x by computing v1.x, v2.x, . . . , v<sub><em>n</em></sub>.x and then replacing any positive value by +1 and any negative value by −1. The result is called the sketch of x.</p>
+<p>Instead of choosing a random vector from all possible vectors, it turns out to be sufficiently random if we restrict our choice to vectors whose components are +1 and −1. The dot product of any vector x with a vector v of +1’s and −1’s is formed by adding the components of x where v is +1 and then subtracting the other components of x – those where v is −1. If we pick a collection of random vectors, say v1, v2, . . . , v<sub><em>n</em></sub>, then we can apply them to an arbitrary vector x by computing v1.x, v2.x, . . . , v<sub><em>n</em></sub>.x and then replacing any positive value by +1 and any negative value by −1. The result is called the sketch of x.</p>
 <h2 id="------------mining-data-streams------------">&mdash;&mdash;&mdash;&ndash; MINING DATA STREAMS &mdash;&mdash;&mdash;&ndash;</h2>
 <h2 id="filtering-data-streams">Filtering Data Streams</h2>
 <h3 id="bloom-filters">Bloom Filters</h3>
@@ -336,6 +349,64 @@ y agree in the ith position. Then the probability that f<sub><em>i</em></sub>(x)
 <h3 id="analysis-of-bloom-filters">Analysis of Bloom Filters</h3>
 <p>If a key value is in S, then the element will surely pass through the Bloom filter. However, if the key value is not in S, it might still pass. We need to understand how to calculate the probability of a false positive, as a function of n, the bit-array length, m the number of members of S, and k, the number of hash functions.</p>
 <p>The model to use is throwing darts at targets. Suppose we have x targets and y darts. Any dart is equally likely to hit any target. After throwing the darts, how many targets can we expect to be hit at least once?</p>
+<ul>
+<li>
+<p>The probability that a given dart will not hit a given target is (x − 1)/x.</p>
+</li>
+<li>
+<p>The probability that none of the y darts will hit a target is ((x − 1)/x)<sup><em>y</em></sup>. We can write this expression as,
+(1- 1/x)<sup><em>x(y/x)</em></sup>.</p>
+</li>
+<li>
+<p>using the approximation (1-q)<sup><em>1/q</em></sup> = 1/e, for small q, we conclude that the probability that none of y darts hit a given target is e<sup><em>-y/x</em></sup>.</p>
+</li>
+<li>
+<p>The optimal number of hash functions is (n/m) * ln(2).</p>
+</li>
+</ul>
+<h2 id="counting-distinct-elements-in-a-stream">Counting Distinct elements in a Stream</h2>
+<p>Data stream consists of a universe of elements chosen from a set of size N. The problem is maintaining a count of the number of distinct elements seen so far. Unfortunately, we do not have the space to keep the set of elements seen so far. So we need an unbiased estimator for this count. Here we introduce the Flajolet- Martin Algorithm.</p>
+<h3 id="flajolet---martin-algorithm">Flajolet - Martin Algorithm</h3>
+<ul>
+<li>Pick a has function h, that maps each of N elements to at least log<sub><em>2</em></sub>N bits.</li>
+<li>For each stream element a, let r(a) be the number of trailing zeros in h(a). And R = max<sub><em>a</em></sub>r(a), over all items a seen so far.</li>
+<li>Estimated number of distinct element is = 2<sup><em>R</em></sup>.</li>
+</ul>
+<h3 id="analysis-of-flajolet---martin-algorithm">Analysis of Flajolet - Martin Algorithm</h3>
+<p>This estimate makes intuitive sense. The probability that a given stream element a has h(a) ending in at least r 0’s is 2<sup><em>-r</em></sup>. Suppose there are m distinct elements in the stream. Then the probability that none of them has tail length at least r is (1-2<sup><em>-r</em></sup>)<sup><em>m</em></sup>. This probability is approximately, e<sup><em>-m2<sup>-r</sup></em></sup>.</p>
+<ol>
+<li>if m &laquo; 2<sup>r</sup>, then the probability that we shall find a tail of length at least r approaches 0.</li>
+<li>if m &raquo; 2<sup>r</sup>, then the probability that we shall find a tail of length at least r approaches 1.</li>
+<li>thus 2<sup>R</sup> will be always around m.</li>
+</ol>
+<p>The problem is that the probability halves when we increase R to R+1, but value doubles. We can use many hash functions h<sub>i</sub>. and get many samples of R<sub>i</sub> by first sorting all 2<sup>R</sup> values. After that;</p>
+<ul>
+<li>Partition your samples into small groups.</li>
+<li>Take the median of groups.</li>
+<li>Then take the average of the medians.</li>
+</ul>
+<h2 id="computing-moments">Computing Moments</h2>
+<p>In this section we consider a generalization of the problem of counting distinct elements in a stream. The problem, called computing “moments,” involves the distribution of frequencies of different elements in the stream. We shall define moments of all orders and concentrate on computing second moments, from which the general algorithm for all moments is a simple extension.</p>
+<h3 id="definition-of-moments">Definition of moments</h3>
+<p>Suppose a stream consists of elements chosen from a universal set and assume the universal set is ordered. Let m<sub>i</sub> be the number of occurrences of the ith element for any i. Then kth moment of the stream is the sum over all i of (m<sub>i</sub>)<sup>k</sup>.</p>
+<ul>
+<li><strong><strong>0th moment</strong></strong> : number of distinct elements.</li>
+<li><strong><strong>1st moment</strong></strong> : length of the stream.</li>
+<li><strong><strong>2nd moment</strong></strong> : a measure of how uneven the distribution is.</li>
+</ul>
+<h3 id="ams-method">AMS Method</h3>
+<p>Suppose we do not have enough space to count all the mi’s for all the elements of the stream. We can still estimate the second moment of the stream using a limited amount of space; the more space we use, the more accurate the estimate will be. We compute some number of <em>variables</em>. For each variable X, we store:</p>
+<ol>
+<li>A particular element of the universal set, which we refer to as <strong><strong>X.element</strong></strong>.</li>
+<li>An integer <strong><strong>X.value</strong></strong>, which is the value of the variable. To determine the value of a variable X, we choose a position in the stream between 1 and n, uniformly and at random. Set <strong><strong>X.element</strong></strong> to be the element found there, and initialize  <strong><strong>X.value</strong></strong> to 1. As we read the stream, add 1 to  <strong><strong>X.value</strong></strong> each time we encounter another occurrence of <strong><strong>X.element</strong></strong> .</li>
+</ol>
+<h4 id="example">example:</h4>
+<p>Suppose the stream is a, b, c, b, d, a, c, d, a, b, d, c, a, a, b. The length of the stream is n = 15. Since a appears 5 times, b appears 4 times, and c and d appear three times each, the second moment for the stream is 5<sup>2</sup>+4<sup>2</sup>+3<sup>2</sup>+3<sup>2</sup> = 59. Suppose we keep three variables, X1, X2, and X3. Also, assume that at “random” we pick the 3rd, 8th, and 13th positions to define these three variables.</p>
+<p>When we reach position 3, we find element c, so we set <strong><strong>X1.element</strong></strong> = c and <strong><strong>X1.value</strong></strong>. Position 4 holds b, so we do not change X1. Likewise, nothing happens at positions 5 or 6. At position 7, we see c again, so we set <strong><strong>X1.value</strong></strong> = 2.</p>
+<p>At position 8 we find d, and so set <strong><strong>X2.element</strong></strong> = d and <strong><strong>X2.value</strong></strong> = 1. Positions 9 and 10 hold a and b, so they do not affect X1 or X2. Position 11 holds d so we set <strong><strong>X2.value</strong></strong> = 2, and position 12 holds c so we set <strong><strong>X1.value</strong></strong> = 3.</p>
+<p>At position 13, we find element a, and so set <strong><strong>X3.element</strong></strong> = a and <strong><strong>X3.value</strong></strong> = 1. Then, at position 14 we see another a and so set <strong><strong>X3.value</strong></strong> = 2. Position 15, with element b does not affect any of the variables, so we are done, with final values <strong><strong>X1.value</strong></strong> = 3 and <strong><strong>X2.value</strong></strong> = <strong><strong>X3.value</strong></strong> = 2.</p>
+<p>We can derive an estimate of the second moment from any variable X. This estimate is <strong><strong>n(2X.value − 1)</strong></strong>.</p>
+<h2 id="counting-itemsets">Counting Itemsets</h2>
 
   </div>
 </section>
