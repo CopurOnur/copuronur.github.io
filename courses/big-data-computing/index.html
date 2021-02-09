@@ -139,7 +139,20 @@
         <li><a href="#ams-method">AMS Method</a></li>
       </ul>
     </li>
-    <li><a href="#counting-itemsets">Counting Itemsets</a></li>
+    <li><a href="#------dimensionality-reduction------">&mdash;&ndash; DIMENSIONALITY REDUCTION &mdash;&ndash;</a></li>
+    <li><a href="#eigenvalues-and-eigenvectors-of-symmetric-matrixes">Eigenvalues and Eigenvectors of Symmetric Matrixes</a>
+      <ul>
+        <li><a href="#some-properties-of-symmetric-matrices">Some properties of Symmetric Matrices</a></li>
+        <li><a href="#using-eigenvectors-for-dimensionality-reduction">Using Eigenvectors for Dimensionality Reduction</a></li>
+      </ul>
+    </li>
+    <li><a href="#singular-value-decomposition-svd">Singular Value Decomposition (SVD)</a>
+      <ul>
+        <li><a href="#definition-of-svd">Definition of SVD</a></li>
+        <li><a href="#dimensionality-reduction-using-svd">Dimensionality Reduction Using SVD</a></li>
+        <li><a href="#singular-values-and-explained-variance">Singular Values and Explained Variance</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     
@@ -406,7 +419,33 @@ y agree in the ith position. Then the probability that f<sub><em>i</em></sub>(x)
 <p>At position 8 we find d, and so set <strong><strong>X2.element</strong></strong> = d and <strong><strong>X2.value</strong></strong> = 1. Positions 9 and 10 hold a and b, so they do not affect X1 or X2. Position 11 holds d so we set <strong><strong>X2.value</strong></strong> = 2, and position 12 holds c so we set <strong><strong>X1.value</strong></strong> = 3.</p>
 <p>At position 13, we find element a, and so set <strong><strong>X3.element</strong></strong> = a and <strong><strong>X3.value</strong></strong> = 1. Then, at position 14 we see another a and so set <strong><strong>X3.value</strong></strong> = 2. Position 15, with element b does not affect any of the variables, so we are done, with final values <strong><strong>X1.value</strong></strong> = 3 and <strong><strong>X2.value</strong></strong> = <strong><strong>X3.value</strong></strong> = 2.</p>
 <p>We can derive an estimate of the second moment from any variable X. This estimate is <strong><strong>n(2X.value − 1)</strong></strong>.</p>
-<h2 id="counting-itemsets">Counting Itemsets</h2>
+<h2 id="------dimensionality-reduction------">&mdash;&ndash; DIMENSIONALITY REDUCTION &mdash;&ndash;</h2>
+<h2 id="eigenvalues-and-eigenvectors-of-symmetric-matrixes">Eigenvalues and Eigenvectors of Symmetric Matrixes</h2>
+<p>Let <strong><strong>M</strong></strong> be a square matrix. Let <strong><strong>λ</strong></strong> be a constant and e a nonzero column vector with the same number of rows as <strong><strong>M</strong></strong>. Then <strong><strong>λ</strong></strong> is an eigenvalue of <strong><strong>M</strong></strong> and <strong><strong>e</strong></strong> is the corresponding eigenvector of <strong><strong>M</strong></strong> if <strong><strong>Me = λe</strong></strong>.</p>
+<h3 id="some-properties-of-symmetric-matrices">Some properties of Symmetric Matrices</h3>
+<ol>
+<li>All eigenvalues of a symmetric matrix are real.</li>
+<li>If x is a right eigenvector of M wit eigen value λ, x is also a left eigenvector for the same eigenvalue.</li>
+<li>If M is symmetric, eigenvectors associated to different eigenvalues are mutually orthogonal.</li>
+<li>Assume V is an orthonormal eigenvector basis for a symmetric matrix M. Then, V<sup>T</sup>V=VV<sup>T</sup>=I. This also implies V is invertible and its inver is V<sup>T</sup>.</li>
+</ol>
+<h3 id="using-eigenvectors-for-dimensionality-reduction">Using Eigenvectors for Dimensionality Reduction</h3>
+<p>From the example we have just worked out, we can see a general principle. If M is a matrix whose rows each represent a point in a Euclidean space with any number of dimensions, we can compute M<sup>T</sup>M and compute its eigenpairs. Let E be the matrix whose columns are the eigenvectors, ordered as largest eigenvalue first. Define the matrix L to have the eigenvalues of M<sup>T</sup>M along the diagonal, largest first, and 0’s in all other entries. Then, since M<sup>T</sup>Me = λe = eλ for each eigenvector e and its corresponding eigenvalue λ, it follows that M<sup>T</sup>M = EL.</p>
+<p>We observed that ME is the points of M transformed into a new coordinate space. In this space, the first axis (the one corresponding to the largest eigenvalue) is the most significant; formally, the variance of points along that axis is the greatest. The second axis, corresponding to the second eigenpair, is next most significant in the same sense, and the pattern continues for each of the eigenpairs. If we want to transform M to a space with fewer dimensions, then the choice that preserves the most significance is the one that uses the eigenvectors associated with the largest eigenvalues and ignores the other eigenvalues.</p>
+<h2 id="singular-value-decomposition-svd">Singular Value Decomposition (SVD)</h2>
+<p>We now take up a second form of matrix analysis that leads to a low-dimensional representation of a high-dimensional matrix. This approach, called singular- value decomposition (SVD), allows an exact representation of any matrix, and also makes it easy to eliminate the less important parts of that representation to produce an approximate representation with any desired number of dimensions.</p>
+<h3 id="definition-of-svd">Definition of SVD</h3>
+<p>Let M be an m × n matrix, and let the rank of M be r. Recall that the rank of a matrix is the largest number of rows (or equivalently columns) we can choose for which no nonzero linear combination of the rows is the all-zero vector 0 (we say a set of such rows or columns is independent). Then we can find matrices U, Sigma, and V with the following properties:</p>
+<ol>
+<li>U is an m × r column-orthonormal matrix ; that is, each of its columns is a unit vector and the dot product of any two columns is 0.</li>
+<li>V is an n × r column-orthonormal matrix.</li>
+<li>Sigma is a diagonal matrix; that is, all elements not on the main diagonal are 0. The elements of Sigma are called the singular values of M.</li>
+</ol>
+<p><img src="/SVD.PNG" alt="SVD"></p>
+<h3 id="dimensionality-reduction-using-svd">Dimensionality Reduction Using SVD</h3>
+<p>Suppose we want to represent a very large matrix M by its SVD components U, Sigma, and V, but these matrices are also too large to store conveniently. The best way to reduce the dimensionality of the three matrices is to set the smallest of the singular values to zero. If we set the s smallest singular values to 0, then we can also eliminate the corresponding s columns of U and V.</p>
+<p>The choice of the lowest singular values to drop when we reduce the number of dimensions can be shown to minimize the root-mean-square error between the original matrix M and its approximation. Since the number of entries is fixed, and the square root is a monotone operation, we can simplify and compare the Frobenius norms of the matrices involved.</p>
+<h3 id="singular-values-and-explained-variance">Singular Values and Explained Variance</h3>
 
   </div>
 </section>
