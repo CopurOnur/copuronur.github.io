@@ -150,7 +150,6 @@
       <ul>
         <li><a href="#definition-of-svd">Definition of SVD</a></li>
         <li><a href="#dimensionality-reduction-using-svd">Dimensionality Reduction Using SVD</a></li>
-        <li><a href="#singular-values-and-explained-variance">Singular Values and Explained Variance</a></li>
       </ul>
     </li>
   </ul>
@@ -445,7 +444,6 @@ y agree in the ith position. Then the probability that f<sub><em>i</em></sub>(x)
 <h3 id="dimensionality-reduction-using-svd">Dimensionality Reduction Using SVD</h3>
 <p>Suppose we want to represent a very large matrix M by its SVD components U, Sigma, and V, but these matrices are also too large to store conveniently. The best way to reduce the dimensionality of the three matrices is to set the smallest of the singular values to zero. If we set the s smallest singular values to 0, then we can also eliminate the corresponding s columns of U and V.</p>
 <p>The choice of the lowest singular values to drop when we reduce the number of dimensions can be shown to minimize the root-mean-square error between the original matrix M and its approximation. Since the number of entries is fixed, and the square root is a monotone operation, we can simplify and compare the Frobenius norms of the matrices involved.</p>
-<h3 id="singular-values-and-explained-variance">Singular Values and Explained Variance</h3>
 
   </div>
 </section>
