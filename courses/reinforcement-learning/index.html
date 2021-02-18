@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="description" content="Simple minimalist theme">
+<meta name="keywords" content="minimalist,blog,goa,hugo,developer">
+
+<title>
+  Onur Copur - Deep Reinforcement Learning 
+</title>
+
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400&family=Roboto+Slab:400,700&family=Roboto:300,300i,400,400i,500,500i,700,700i">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<link rel="stylesheet" href="https://copuronur.github.io/css/main.css">
+<link rel="stylesheet" href="https://copuronur.github.io/css/custom.css">
+
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+<body lang="en-US">
+<div class="container">
+
+
+<header class="text-left title">
+  <h1 class="title">Deep Reinforcement Learning</h1>
+</header>
+<section id="category-pane" class="meta">
+  
+  <div class="col-md-12">
+    <h6 class="text-left meta">
+       
+      
+      
+      
+      —
+      
+      
+      <a class="meta" href="/categories/course">COURSE</a>
+      
+      
+      
+    </h6>
+  </div>
+  
+</section>
+<section id="content-pane" class="">
+  <div class="col-md-12 text-justify content">
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#lecture-1introduction-to-rl">LECTURE 1(Introduction to RL)</a></li>
+    <li><a href="#characteristic-of-reinforcement-learning">Characteristic of Reinforcement Learning</a>
+      <ul>
+        <li><a href="#rewards">Rewards</a></li>
+        <li><a href="#sequential-decision-making">Sequential Decision Making</a></li>
+        <li><a href="#agent-and-environment">Agent and Environment</a></li>
+        <li><a href="#information-state-aka-markov-state">Information State (a.k.a Markov state)</a></li>
+        <li><a href="#fully-observable-environments">Fully Observable Environments</a></li>
+        <li><a href="#partially-observable-environments">Partially Observable Environments</a></li>
+      </ul>
+    </li>
+    <li><a href="#major-components-of-an-rl-agent">Major Components of an RL Agent</a>
+      <ul>
+        <li><a href="#policy">Policy</a></li>
+        <li><a href="#value-function">Value Function</a></li>
+        <li><a href="#model">Model</a></li>
+      </ul>
+    </li>
+    <li><a href="#categorizing-rl-agents">Categorizing RL agents</a>
+      <ul>
+        <li><a href="#learning-and-planning">Learning and Planning</a></li>
+      </ul>
+    </li>
+    <li><a href="#lecture-2mdp">LECTURE 2(MDP)</a></li>
+  </ul>
+</nav>
+    
+    <p>This is a blog post about the UCL course on Reinforcement Learning by <a href="https://www.davidsilver.uk/teaching/">David Silver</a>. The course is divided into 10 Lectures and I will share  my notes on every lecture in this post.</p>
+<h2 id="lecture-1introduction-to-rl">LECTURE 1(Introduction to RL)</h2>
+<h2 id="characteristic-of-reinforcement-learning">Characteristic of Reinforcement Learning</h2>
+<ul>
+<li>There is no supervisor, only a <em>reward</em> signal.</li>
+<li>Feedback is delayed, not instantaneous.</li>
+<li>Time matters, (sequential, not i.i.d).</li>
+<li>Agent&rsquo;s actions affects the subsequent data it receives.</li>
+</ul>
+<h3 id="rewards">Rewards</h3>
+<p>A reward R<sub><em>t</em></sub> is a scaler feedback signal indicates how well the agent is doing at step <em>t</em>. The agents job is to maximize the cumulative reward. Reinforcement learning is based on <strong><strong>Reward Hypothesis</strong></strong>.</p>
+<h3 id="sequential-decision-making">Sequential Decision Making</h3>
+<p>In RL, the actions should be selected to maximize total feature reward. Actions may have long term consequences and rewards maybe delayed. It maybe better to sacrifice immediate reward to gain more long-term reward.</p>
+<h3 id="agent-and-environment">Agent and Environment</h3>
+<p><img src="/RLagentenv.PNG" alt="Agent-Environment Interaction"></p>
+<p>At each time step <em>t</em> the agent:</p>
+<ul>
+<li>Executes Action A<sub><em>t</em></sub>.</li>
+<li>Receives observation O<sub><em>t</em></sub>.</li>
+<li>Receives scaler reward R<sub><em>t</em></sub>.</li>
+</ul>
+<p>At each time step <em>t</em> the environment:</p>
+<ul>
+<li>Receives action A<sub><em>t</em></sub>.</li>
+<li>Emits observation O<sub><em>t+1</em></sub>.</li>
+<li>Emits scaler reward R<sub><em>t+1</em></sub></li>
+</ul>
+<h3 id="information-state-aka-markov-state">Information State (a.k.a Markov state)</h3>
+<p>An <strong><strong>information state</strong></strong> contains all the useful information from history.</p>
+<h4 id="definition">Definition</h4>
+<p>A state S<sub><em>t</em></sub> is a <strong><strong>Markov</strong></strong> if and only if:</p>
+<p>P[S<sub><em>t+1</em></sub>|S<sub><em>t</em></sub>] = P[S<sub><em>t+1</em></sub>|S<sub><em>1</em></sub>,&hellip;,S<sub><em>t</em></sub>]</p>
+<p>This means the future is independent of the past given the present.</p>
+<h3 id="fully-observable-environments">Fully Observable Environments</h3>
+<p>The observation at time <em>t</em> is equal to Agent state at time <em>t</em> and the environment state at time <em>t</em>.</p>
+<p>O<sub><em>t</em></sub> = S<sub><em>t</em></sub><sup><em>a</em></sup> = S<sub><em>t</em></sub><sup><em>e</em></sup>.</p>
+<p>This is a Markov decision process (<strong><strong>MDP</strong></strong>).</p>
+<h3 id="partially-observable-environments">Partially Observable Environments</h3>
+<p>The agent <strong><strong>indirectly</strong></strong> observes the environment.</p>
+<ul>
+<li>A robot with camera vision isn’t told its absolute location.</li>
+<li>A trading agent only observes current prices.</li>
+<li>A poker playing agent only observes public cards.</li>
+</ul>
+<p>Now, the agent state is not equal to the environment state.  Formally, this is a Partially observable Markov decision process (<strong><strong>POMDP</strong></strong>).</p>
+<p>Agent must construct its own state representation S<sub><em>t</em></sub><sup><em>a</em></sup>, e.g.</p>
+<ul>
+<li>Complete history, S<sub><em>t</em></sub><sup><em>a</em></sup> = HS<sub><em>t</em></sub></li>
+<li>Beliefs of environment state.</li>
+<li>Recurrent neural networks.</li>
+</ul>
+<h2 id="major-components-of-an-rl-agent">Major Components of an RL Agent</h2>
+<p>A RL agent may include one or more of these components.</p>
+<ul>
+<li>Policy: agent&rsquo;s behaviour function.</li>
+<li>Value function: how good is each state and/or action.</li>
+<li>Model: agent’s representation of the environment.</li>
+</ul>
+<h3 id="policy">Policy</h3>
+<ul>
+<li>It is a map from state to action, e.g.
+<ul>
+<li>Deterministic Policy</li>
+<li>Stochastic Policy</li>
+</ul>
+</li>
+</ul>
+<h3 id="value-function">Value Function</h3>
+<ul>
+<li><strong><strong>Value function</strong></strong> is a prediction of future reward.</li>
+<li>Used to evaluate the goodness of states.</li>
+<li>And therefore to select between actions.</li>
+</ul>
+<h3 id="model">Model</h3>
+<p><strong><strong>A model</strong></strong> predicts what the environment will do next.</p>
+<ul>
+<li>Transitions model: predicts the next state.</li>
+<li>Reward model : predicts the next reward.</li>
+</ul>
+<h2 id="categorizing-rl-agents">Categorizing RL agents</h2>
+<ul>
+<li>Value Based.</li>
+<li>Policy Based.</li>
+<li>Actor Critic.</li>
+<li>Model Free.</li>
+<li>Model Based.</li>
+</ul>
+<h3 id="learning-and-planning">Learning and Planning</h3>
+<p>Two fundamental problems in sequential decision making:</p>
+<ul>
+<li>
+<p>Reinforcement Learning:</p>
+<ul>
+<li>The environment is initially unknown.</li>
+<li>The agent interacts with the environment.</li>
+<li>The agent improves its policy.</li>
+</ul>
+</li>
+<li>
+<p>Planning:</p>
+<ul>
+<li>A model of the environment is known.</li>
+<li>The agent performs computations with its model (without any external interaction)</li>
+<li>The agent improves its policy</li>
+</ul>
+</li>
+</ul>
+<p>Here you can see my <a href="https://github.com/CopurOnur/Connec4-AI-bot">Connect4</a> bot working with a Planning manner and finds the optimal policy with a tree search.</p>
+<h2 id="lecture-2mdp">LECTURE 2(MDP)</h2>
+
+  </div>
+</section>
+<section id="tag-pane" class="meta">
+  
+  <div class="col-md-12">
+    <h6 class="text-right meta">
+      
+      
+      
+      TAGS:
+      
+      
+      <a class="meta" href="/tags/course">COURSE</a>
+      
+      
+      
+    </h6>
+  </div>
+  
+</section>
+
+
+
+
+<section id="menu-pane" class="menu text-center">
+  
+  
+  
+  <span><a class="menu-item" href="/courses">courses</a></span>
+  
+  
+  <span><a class="menu-item" href="https://copuronur.github.io/courses/big-data-computing/"> | next &gt;</a></span>
+  
+  
+  <h4 class="text-center"><a class="menu-item" href="https://copuronur.github.io/">home</a></h4>
+</section>
+
+
+
+<footer class="text-center footer">
+  <hr />
+  
+  <h6 class="text-center copyright"></h6>
+  
+      
+  
+</footer>
+
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+
+<script type="text/javascript">
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="js/main.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+
+</html>
+
+

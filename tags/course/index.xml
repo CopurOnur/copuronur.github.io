@@ -16,12 +16,13 @@
     </item>
     
     <item>
-      <title>Neural Nets</title>
-      <link>https://copuronur.github.io/courses/neuranets/</link>
+      <title>Deep Reinforcement Learning</title>
+      <link>https://copuronur.github.io/courses/reinforcement-learning/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://copuronur.github.io/courses/neuranets/</guid>
-      <description>Reinforcement Learning </description>
+      <guid>https://copuronur.github.io/courses/reinforcement-learning/</guid>
+      <description>This is a blog post about the UCL course on Reinforcement Learning by David Silver. The course is divided into 10 Lectures and I will share my notes on every lecture in this post.
+LECTURE 1(Introduction to RL) Characteristic of Reinforcement Learning  There is no supervisor, only a reward signal. Feedback is delayed, not instantaneous. Time matters, (sequential, not i.i.d). Agent&amp;rsquo;s actions affects the subsequent data it receives.  Rewards A reward Rt is a scaler feedback signal indicates how well the agent is doing at step t.</description>
     </item>
     
   </channel>
