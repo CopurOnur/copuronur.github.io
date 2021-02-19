@@ -91,6 +91,32 @@
       </ul>
     </li>
     <li><a href="#lecture-2mdp">LECTURE 2(MDP)</a></li>
+    <li><a href="#markov-process">Markov Process</a>
+      <ul>
+        <li><a href="#state-transition-matrix">State Transition Matrix</a></li>
+        <li><a href="#markov-process-1">Markov Process</a></li>
+        <li><a href="#example-student-markov-chain">Example :Student Markov Chain</a></li>
+      </ul>
+    </li>
+    <li><a href="#markov-reward-process">Markov Reward Process</a>
+      <ul>
+        <li><a href="#return">Return</a></li>
+        <li><a href="#value-functions">Value Functions</a></li>
+        <li><a href="#bellman-equation-for-mrps">Bellman Equation for MRPs</a></li>
+        <li><a href="#bellman-equation-in-matrix-form">Bellman Equation in Matrix Form</a></li>
+        <li><a href="#solving-the-bellman-equation">Solving the Bellman Equation</a></li>
+      </ul>
+    </li>
+    <li><a href="#markov-decision-process">Markov Decision Process</a>
+      <ul>
+        <li><a href="#policies">Policies</a></li>
+        <li><a href="#value-function-1">Value Function</a></li>
+        <li><a href="#optimal-value-function">Optimal Value Function</a></li>
+        <li><a href="#finding-an-optimal-policy">Finding an Optimal Policy</a></li>
+        <li><a href="#solving-the-bellamn-optimality-equation">Solving the Bellamn Optimality Equation</a></li>
+      </ul>
+    </li>
+    <li><a href="#lecture-3planning-by-dp">LECTURE 3(Planning by DP)</a></li>
   </ul>
 </nav>
     
@@ -203,6 +229,97 @@
 </ul>
 <p>Here you can see my <a href="https://github.com/CopurOnur/Connec4-AI-bot">Connect4</a> bot working with a Planning manner and finds the optimal policy with a tree search.</p>
 <h2 id="lecture-2mdp">LECTURE 2(MDP)</h2>
+<h2 id="markov-process">Markov Process</h2>
+<h3 id="state-transition-matrix">State Transition Matrix</h3>
+<p>For a Markov state s and successor state s<sup><em>'</em></sup>, the state transition probability is defined by,</p>
+<p><strong><em><strong>P</strong></em></strong><sub><em>ss<sup></em>'<em></sup></em></sub> =  P[S<sub><em>t+1</em></sub> = s<sup><em>'</em></sup> |S<sub><em>t</em></sub> = s]</p>
+<p>The state transition matrix <strong><em><strong>P</strong></em></strong> defines transition probabilities from all state s to all successor states s<sup><em>'</em></sup>.</p>
+<p><img src="/transitionmatrix.PNG" alt="Transition Matrix"></p>
+<h3 id="markov-process-1">Markov Process</h3>
+<p>A Markov process is a memoryless random process i.e. a sequence of random states S<sub>1</sub>,S<sub>2</sub>&hellip;S<sub>n</sub> with Markov property.</p>
+<h3 id="example-student-markov-chain">Example :Student Markov Chain</h3>
+<p>In the figure bellow, you can see the illustration of a student Markov chain :)</p>
+<p><img src="/studentmc.PNG" alt="Student Markov Chain"></p>
+<h2 id="markov-reward-process">Markov Reward Process</h2>
+<p>A Markov reward process is a Markov chain with values.</p>
+<p><strong><em><strong>P</strong></em></strong><sub><em>ss<sup></em>'<em></sup></em></sub> =  P[S<sub><em>t+1</em></sub> = s<sup><em>'</em></sup> |S<sub><em>t</em></sub> = s]</p>
+<p><strong><em><strong>R</strong></em></strong> is a reward function, <strong><em><strong>R</strong></em></strong><sub><em>s</em></sub> =  E[R<sub><em>t+1</em></sub> |S<sub><em>t</em></sub> = s]</p>
+<h3 id="return">Return</h3>
+<p>The <em>return</em> G<sub><em>t</em></sub> is the total discounted reward from time-step <em>t</em> where gamma is the discount factor takes values between 0 and 1. This values immediate reward above delayed reward. Gamma close to 0 leads to ”myopic” evaluation. On the other hand Gamma close to 1 leads to ”far-sighted” evaluation.</p>
+<p><img src="/return.PNG" alt="return"></p>
+<h3 id="value-functions">Value Functions</h3>
+<p>The value function <strong><em><strong>v(s)</strong></em></strong> gives the long term value of state <em>s</em>. The sate value function <strong><em><strong>v(s)</strong></em></strong> of an MRP is the expected return starting from state <em>s</em>.</p>
+<p><strong><em><strong>v(s)</strong></em></strong> = E[G<sub><em>t</em></sub> |S<sub><em>t</em></sub> = s]</p>
+<h3 id="bellman-equation-for-mrps">Bellman Equation for MRPs</h3>
+<p>The value function can be decomposed into two parts:</p>
+<ul>
+<li>immediate reward R<sub><em>t+1</em></sub></li>
+<li>discounted value of successor state gamma * v(S<sub><em>t+1</em></sub>)</li>
+</ul>
+<p><img src="/bellman.PNG" alt="Bellman equation"></p>
+<h3 id="bellman-equation-in-matrix-form">Bellman Equation in Matrix Form</h3>
+<p>The Bellman equation can be expressed concisely using matrices,</p>
+<p><img src="/bellmanmatrix1.PNG" alt="Bellman matrix 1"></p>
+<p>where v is a column vector with one entry per state</p>
+<p><img src="/bellmanmatrix2.PNG" alt="Bellman matrix 2"></p>
+<h3 id="solving-the-bellman-equation">Solving the Bellman Equation</h3>
+<p>Belllman equation is a linear equation so it can be solved directly. However the computational complexity for is O(n<sup>3</sup>) for n states so direct solution is only possible for small MRPs. For large MRPs, the iterative methods are:</p>
+<ul>
+<li>Dynamic programming</li>
+<li>Monte - Carlo evaluation</li>
+<li>Temporal Difference learning</li>
+</ul>
+<h2 id="markov-decision-process">Markov Decision Process</h2>
+<p>A Markov decision process is a  Markov reward process with decisions. It is an environment in which all states are Markov. In the figure bellow, you can see the Student MDP. This time there is no transition probabilities but decisions and rewards. Except going to pub&hellip; Once you go to a pub, you can&rsquo;t make further decisions :)</p>
+<p><img src="/studentmdp.PNG" alt="studentmdp"></p>
+<p>To make decisions, we need policies.</p>
+<h3 id="policies">Policies</h3>
+<p>A policy π is a distribution over actions given states.</p>
+<p>π(a|s) = P [A<sub>t</sub> = a | S<sub>t</sub>  = s]</p>
+<ul>
+<li>A policy fully defines the behaviour of an agent.</li>
+<li>MDP policies depend on the current state.</li>
+<li>Policies are stationary, (time independent).</li>
+</ul>
+<p>Given an MDP M = &lt;S, A,P, R, γ&gt; and a policy π,</p>
+<ul>
+<li>The state sequence S<sub>1</sub>, S<sub>2</sub>, &hellip; is a Markov process &lt;S,P<sup>π</sup>&gt;.</li>
+<li>The state and reward sequence S<sub>1</sub>, R<sub>1</sub>, S<sub>2</sub>, &hellip; ,s a Markov reward process &lt;S,P<sup>π</sup>,R<sup>π</sup>,γ&gt;.</li>
+</ul>
+<p><img src="/mdppolicy.PNG" alt="mdppolicy"></p>
+<h3 id="value-function-1">Value Function</h3>
+<h4 id="state---value-function">State - Value Function</h4>
+<p>The state-value function v<sup>π</sup>(s) of an MDP is the expected return starting from state s, and then following policy π.</p>
+<p>v<sub>π</sub>(s) = E<sub>π</sub> [G<sub>t</sub> | S<sub>t</sub> = s]</p>
+<p>The state-value function can again be decomposed into immediate reward plus discounted value of successor state.</p>
+<p>v<sub>π</sub>(s) = E<sub>π</sub> [R<sub>t+1</sub> + γv<sub>π</sub>(S<sub>t+1</sub>) | S<sub>t</sub> = s]</p>
+<h4 id="action---value-function">Action - Value Function</h4>
+<p>The action-value function q<sup>π</sup>(s, a) is the expected return starting from state s, taking action a, and then following policy π.</p>
+<p>q<sub>π</sub>(s, a) = E<sub>π</sub> [G<sub>t</sub> | S<sub>t</sub> = s, A<sub>t</sub> = a]</p>
+<p>The action-value function can similarly be decomposed,</p>
+<p>q<sub>π</sub>(s) = E<sub>π</sub> [R<sub>t+1</sub> + γq<sub>π</sub>(S<sub>t+1</sub>,A<sub>t+1</sub>) | S<sub>t</sub> = s, A<sub>t</sub> = a]</p>
+<h3 id="optimal-value-function">Optimal Value Function</h3>
+<ul>
+<li>The optimal state-value function v<sub>∗</sub>(s) is the maximum value function over all policies.</li>
+<li>The optimal action-value function q<sub>∗</sub>(s, a) is the maximum action-value function over all policies</li>
+</ul>
+<h3 id="finding-an-optimal-policy">Finding an Optimal Policy</h3>
+<p>An optimal policy can be found by maximizing over  q<sub>∗</sub>(s, a),</p>
+<p><img src="/optimalpolicy.PNG" alt="optimalpolicy"></p>
+<ul>
+<li>There is always a deterministic optimal policy for any MDP.</li>
+</ul>
+<p>In the figure bellow, the red arcs shows the optimal policy for the student MDP.</p>
+<p><img src="/optimalpolicystudent.PNG" alt="optimalpolicystudent"></p>
+<h3 id="solving-the-bellamn-optimality-equation">Solving the Bellamn Optimality Equation</h3>
+<p>Bellman optimality equation is non-linear so we introduce some iterative methods such as,</p>
+<ul>
+<li>Value Iteration</li>
+<li>Policy Iteration</li>
+<li>Q-learning</li>
+<li>Sarsa</li>
+</ul>
+<h2 id="lecture-3planning-by-dp">LECTURE 3(Planning by DP)</h2>
 
   </div>
 </section>
