@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Onur Copur</title>
+    <link>https://copuronur.github.io/blog/</link>
+    <description>Recent content in Blogs on Onur Copur</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language><atom:link href="https://copuronur.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Paper Summaries</title>
+      <link>https://copuronur.github.io/blog/temporal-segment-networks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://copuronur.github.io/blog/temporal-segment-networks/</guid>
+      <description> User Engagement in E-Learning  </description>
+    </item>
+    
+    <item>
+      <title>Papers that I like</title>
+      <link>https://copuronur.github.io/blog/papers-that-i-like/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://copuronur.github.io/blog/papers-that-i-like/</guid>
+      <description>Combinatorial Optimization with DL Routing Problems  Pointer Networks Neural Combinatorial Optimization with deep learning Attention, Learn to Solve Routing Problems  Computer Vision Emotion Recognition  Emotion Understanding in Videos Through Body, Context, and Visual-Semantic Embedding Loss  Action Recognition  Temporal Segment Networks: Towards Good Practices for Deep Action Recognition  </description>
+    </item>
+    
+  </channel>
+</rss>

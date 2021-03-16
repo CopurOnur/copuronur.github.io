@@ -116,7 +116,12 @@
         <li><a href="#solving-the-bellamn-optimality-equation">Solving the Bellamn Optimality Equation</a></li>
       </ul>
     </li>
-    <li><a href="#lecture-3planning-by-dp">LECTURE 3(Planning by DP)</a></li>
+    <li><a href="#lecture-3planning-by-dp">LECTURE 3(Planning by DP)</a>
+      <ul>
+        <li><a href="#policy-evaluation">Policy Evaluation</a></li>
+        <li><a href="#policy-iteration">Policy Iteration</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     
@@ -320,6 +325,25 @@
 <li>Sarsa</li>
 </ul>
 <h2 id="lecture-3planning-by-dp">LECTURE 3(Planning by DP)</h2>
+<h3 id="policy-evaluation">Policy Evaluation</h3>
+<ul>
+<li>Problem : evaluate a given policy π.</li>
+<li>Solution : iterative application of Bellman expectation backup.</li>
+</ul>
+<p>v<sub>1</sub> → v<sub>2</sub> → &hellip; → v<sub>π</sub></p>
+<p>Using synchronous backups,</p>
+<ul>
+<li>At each iteration k + 1.</li>
+<li>For all states s ∈ S.</li>
+<li>Update v<sub>k+1</sub>(s) from v<sub>k</sub> (s<sup>'</sup>).</li>
+<li>where s<sup>'</sup> is the successor state of s.</li>
+</ul>
+<h3 id="policy-iteration">Policy Iteration</h3>
+<p>Given a policy π,</p>
+<p><strong><strong>Evaluate</strong></strong> the policy π,</p>
+<p>v<sub>π</sub>(s) = E[R<sub>t+1</sub> + R<sub>t+2</sub> + &hellip;  | S<sub>t</sub> = s]</p>
+<p><strong><strong>Improve</strong></strong> the policy by acting greedily with respect to v<sub>π</sub>.</p>
+<p>this process of <strong><strong>policy iteration</strong></strong> always converges to π∗</p>
 
   </div>
 </section>

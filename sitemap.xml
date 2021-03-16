@@ -3,21 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://copuronur.github.io/about/</loc>
-    <lastmod>2016-10-02T22:55:05-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://copuronur.github.io/tags/about/</loc>
-    <lastmod>2016-10-02T22:55:05-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://copuronur.github.io/categories/about/</loc>
-    <lastmod>2016-10-02T22:55:05-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://copuronur.github.io/categories/</loc>
     <lastmod>2016-10-02T22:55:05-04:00</lastmod>
   </url>
@@ -53,7 +38,23 @@
   </url>
   
   <url>
+    <loc>https://copuronur.github.io/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/tags/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/categories/about/</loc>
+  </url>
+  
+  <url>
     <loc>https://copuronur.github.io/courses/big-data-computing/</loc>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/blog/</loc>
   </url>
   
   <url>
@@ -77,11 +78,27 @@
   </url>
   
   <url>
+    <loc>https://copuronur.github.io/blog/temporal-segment-networks/</loc>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/tags/paper-summary/</loc>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/categories/paper-summary/</loc>
+  </url>
+  
+  <url>
     <loc>https://copuronur.github.io/tags/papers/</loc>
   </url>
   
   <url>
     <loc>https://copuronur.github.io/categories/papers/</loc>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/blog/papers-that-i-like/</loc>
   </url>
   
   <url>
