@@ -28,12 +28,12 @@
   </url>
   
   <url>
-    <loc>https://copuronur.github.io/tags/</loc>
+    <loc>https://copuronur.github.io/python/first/</loc>
     <lastmod>2016-10-02T22:55:05-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://copuronur.github.io/python/first/</loc>
+    <loc>https://copuronur.github.io/tags/</loc>
     <lastmod>2016-10-02T22:55:05-04:00</lastmod>
   </url>
   
@@ -78,7 +78,7 @@
   </url>
   
   <url>
-    <loc>https://copuronur.github.io/blog/temporal-segment-networks/</loc>
+    <loc>https://copuronur.github.io/blog/paper-summaries/</loc>
   </url>
   
   <url>
@@ -103,6 +103,18 @@
   
   <url>
     <loc>https://copuronur.github.io/papers-that-i-like/</loc>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/tags/tutorials/</loc>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/categories/tutorials/</loc>
+  </url>
+  
+  <url>
+    <loc>https://copuronur.github.io/blog/tutorials/</loc>
   </url>
   
 </urlset>

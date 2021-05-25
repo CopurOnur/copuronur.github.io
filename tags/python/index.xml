@@ -8,12 +8,12 @@
     <language>en-US</language>
     <lastBuildDate>Sun, 02 Oct 2016 22:55:05 -0400</lastBuildDate><atom:link href="https://copuronur.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Tensorflow basics</title>
+      <title>Pytorch Lightning</title>
       <link>https://copuronur.github.io/python/first/</link>
       <pubDate>Sun, 02 Oct 2016 22:55:05 -0400</pubDate>
       
       <guid>https://copuronur.github.io/python/first/</guid>
-      <description></description>
+      <description>Tutorial 1  MNIST GAN  </description>
     </item>
     
   </channel>

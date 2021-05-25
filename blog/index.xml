@@ -8,10 +8,10 @@
     <language>en-US</language><atom:link href="https://copuronur.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Paper Summaries</title>
-      <link>https://copuronur.github.io/blog/temporal-segment-networks/</link>
+      <link>https://copuronur.github.io/blog/paper-summaries/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://copuronur.github.io/blog/temporal-segment-networks/</guid>
+      <guid>https://copuronur.github.io/blog/paper-summaries/</guid>
       <description> User Engagement in E-Learning  </description>
     </item>
     
@@ -21,7 +21,18 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://copuronur.github.io/blog/papers-that-i-like/</guid>
-      <description>Combinatorial Optimization with DL Routing Problems  Pointer Networks Neural Combinatorial Optimization with deep learning Attention, Learn to Solve Routing Problems  Computer Vision Emotion Recognition  Emotion Understanding in Videos Through Body, Context, and Visual-Semantic Embedding Loss  Action Recognition  Temporal Segment Networks: Towards Good Practices for Deep Action Recognition  </description>
+      <description>Combinatorial Optimization with DL Routing Problems  Pointer Networks Neural Combinatorial Optimization with deep learning Attention, Learn to Solve Routing Problems Machine Learning for Combinatorial Optimization: a Methodological Tour d’Horizon  Computer Vision Emotion Recognition  Emotion Understanding in Videos Through Body, Context, and Visual-Semantic Embedding Loss  Action Recognition  Temporal Segment Networks: Towards Good Practices for Deep Action Recognition  </description>
+    </item>
+    
+    <item>
+      <title>Tutorials</title>
+      <link>https://copuronur.github.io/blog/tutorials/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://copuronur.github.io/blog/tutorials/</guid>
+      <description> Neural Combinatorial Optimization with Reinforcement Learning
+ PyTorch Tutorial to Image Captioning
+  </description>
     </item>
     
   </channel>
