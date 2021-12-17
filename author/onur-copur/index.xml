@@ -21,98 +21,18 @@
     </item>
     
     <item>
-      <title>Welcome to Wowchemy, the website builder for Hugo</title>
+      <title>Big Data computing</title>
       <link>https://copuronur.github.io/post/getting-started/</link>
       <pubDate>Sun, 13 Dec 2020 00:00:00 +0000</pubDate>
       <guid>https://copuronur.github.io/post/getting-started/</guid>
-      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;The Wowchemy website builder for Hugo, along with its starter templates, is designed for professional creators, educators, and teams/organizations - although it can be used to create any kind of site&lt;/li&gt;
-&lt;li&gt;The template can be modified and customised to suit your needs. It&amp;rsquo;s a good platform for anyone looking to take control of their data and online identity whilst having the convenience to start off with a &lt;strong&gt;no-code solution (write in Markdown and customize with YAML parameters)&lt;/strong&gt; and having &lt;strong&gt;flexibility to later add even deeper personalization with HTML and CSS&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;You can work with all your favourite tools and apps with hundreds of plugins and integrations to speed up your workflows, interact with your readers, and much more&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  id=&#34;figure-the-template-is-mobile-first-with-a-responsive-design-to-ensure-that-your-site-looks-stunning-on-every-device&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://raw.githubusercontent.com/wowchemy/wowchemy-hugo-modules/master/academic.png&#34; alt=&#34;The template is mobile first with a responsive design to ensure that your site looks stunning on every device.&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;figcaption&gt;
-      The template is mobile first with a responsive design to ensure that your site looks stunning on every device.
-    &lt;/figcaption&gt;&lt;/figure&gt;
-&lt;h2 id=&#34;get-started&#34;&gt;Get Started&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;-------------------map-reduce-------------------&#34;&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; MAP REDUCE &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&lt;/h2&gt;
+&lt;h2 id=&#34;distributed-file-system-dfs&#34;&gt;Distributed File System (DFS)&lt;/h2&gt;
+&lt;p&gt;Modern data-mining applications, often called “big-data” analysis, require us to manage immense amounts of data quickly. The key factor of making fast computation is parallelization and this is done via computer clusters. To exploit cluster computing, files must look and behave somewhat differently from the conventional file systems found on single computers. This new file system is called Distributed File System (DFS).&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;👉 &lt;a href=&#34;https://wowchemy.com/templates/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Create a new site&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;📚 &lt;a href=&#34;https://wowchemy.com/docs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Personalize your site&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;💬 &lt;a href=&#34;https://discord.gg/z8wNYzb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chat with the &lt;strong&gt;Wowchemy community&lt;/strong&gt;&lt;/a&gt; or &lt;a href=&#34;https://discourse.gohugo.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Hugo community&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;🐦 Twitter: &lt;a href=&#34;https://twitter.com/wowchemy&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@wowchemy&lt;/a&gt; &lt;a href=&#34;https://twitter.com/GeorgeCushen&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@GeorgeCushen&lt;/a&gt; &lt;a href=&#34;https://twitter.com/search?q=%28%23MadeWithWowchemy%20OR%20%23MadeWithAcademic%29&amp;amp;src=typed_query&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#MadeWithWowchemy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;💡 &lt;a href=&#34;https://github.com/wowchemy/wowchemy-hugo-modules/issues&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Request a &lt;strong&gt;feature&lt;/strong&gt; or report a &lt;strong&gt;bug&lt;/strong&gt; for &lt;em&gt;Wowchemy&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;⬆️ &lt;strong&gt;Updating Wowchemy?&lt;/strong&gt; View the &lt;a href=&#34;https://wowchemy.com/docs/guide/update/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Update Guide&lt;/a&gt; and &lt;a href=&#34;https://wowchemy.com/updates/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Release Notes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;DFS is suitable for enormous, possibly a terabyte in size. If you have only small files, there is no point using a DFS for them.&lt;/li&gt;
+&lt;li&gt;Files are rarely updated. Rather, they are read as data for some calculation, and possibly additional data is appended to files from time to time.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;crowd-funded-open-source-software&#34;&gt;Crowd-funded open-source software&lt;/h2&gt;
-&lt;p&gt;To help us develop this template and software sustainably under the MIT license, we ask all individuals and businesses that use it to help support its ongoing maintenance and development via sponsorship.&lt;/p&gt;
-&lt;h3 id=&#34;-click-here-to-become-a-sponsor-and-help-support-wowchemys-future-httpswowchemycomplans&#34;&gt;&lt;a href=&#34;https://wowchemy.com/plans/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;❤️ Click here to become a sponsor and help support Wowchemy&amp;rsquo;s future ❤️&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;As a token of appreciation for sponsoring, you can &lt;strong&gt;unlock &lt;a href=&#34;https://wowchemy.com/plans/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;these&lt;/a&gt; awesome rewards and extra features 🦄✨&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;ecosystem&#34;&gt;Ecosystem&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/wowchemy/hugo-academic-cli&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hugo Academic CLI&lt;/a&gt;:&lt;/strong&gt; Automatically import publications from BibTeX&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;inspiration&#34;&gt;Inspiration&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://academic-demo.netlify.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Check out the latest &lt;strong&gt;demo&lt;/strong&gt;&lt;/a&gt; of what you&amp;rsquo;ll get in less than 10 minutes, or &lt;a href=&#34;https://wowchemy.com/user-stories/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;view the &lt;strong&gt;showcase&lt;/strong&gt;&lt;/a&gt; of personal, project, and business sites.&lt;/p&gt;
-&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Page builder&lt;/strong&gt; - Create &lt;em&gt;anything&lt;/em&gt; with &lt;a href=&#34;https://wowchemy.com/docs/page-builder/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;widgets&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;elements&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Edit any type of content&lt;/strong&gt; - Blog posts, publications, talks, slides, projects, and more!&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Create content&lt;/strong&gt; in &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Markdown&lt;/strong&gt;&lt;/a&gt;, &lt;a href=&#34;https://wowchemy.com/docs/import/jupyter/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Jupyter&lt;/strong&gt;&lt;/a&gt;, or &lt;a href=&#34;https://wowchemy.com/docs/install-locally/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;RStudio&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Plugin System&lt;/strong&gt; - Fully customizable &lt;a href=&#34;https://wowchemy.com/docs/customization/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;color&lt;/strong&gt; and &lt;strong&gt;font themes&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Display Code and Math&lt;/strong&gt; - Code highlighting and &lt;a href=&#34;https://en.wikibooks.org/wiki/LaTeX/Mathematics&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;LaTeX math&lt;/a&gt; supported&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Integrations&lt;/strong&gt; - &lt;a href=&#34;https://analytics.google.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Google Analytics&lt;/a&gt;, &lt;a href=&#34;https://disqus.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Disqus commenting&lt;/a&gt;, Maps, Contact Forms, and more!&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Beautiful Site&lt;/strong&gt; - Simple and refreshing one page design&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Industry-Leading SEO&lt;/strong&gt; - Help get your website found on search engines and social media&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Media Galleries&lt;/strong&gt; - Display your images and videos with captions in a customizable gallery&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Mobile Friendly&lt;/strong&gt; - Look amazing on every screen with a mobile friendly version of your site&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Multi-language&lt;/strong&gt; - 34+ language packs including English, 中文, and Português&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Multi-user&lt;/strong&gt; - Each author gets their own profile page&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Privacy Pack&lt;/strong&gt; - Assists with GDPR&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Stand Out&lt;/strong&gt; - Bring your site to life with animation, parallax backgrounds, and scroll effects&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;One-Click Deployment&lt;/strong&gt; - No servers. No databases. Only files.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
-&lt;p&gt;Wowchemy and its templates come with &lt;strong&gt;automatic day (light) and night (dark) mode&lt;/strong&gt; built-in. Alternatively, visitors can choose their preferred mode - click the moon icon in the top right of the &lt;a href=&#34;https://academic-demo.netlify.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Demo&lt;/a&gt; to see it in action! Day/night mode can also be disabled by the site admin in &lt;code&gt;params.toml&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://wowchemy.com/docs/customization&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Choose a stunning &lt;strong&gt;theme&lt;/strong&gt; and &lt;strong&gt;font&lt;/strong&gt;&lt;/a&gt; for your site. Themes are fully customizable.&lt;/p&gt;
-&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
-&lt;p&gt;Copyright 2016-present &lt;a href=&#34;https://georgecushen.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;George Cushen&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Released under the &lt;a href=&#34;https://github.com/wowchemy/wowchemy-hugo-modules/blob/master/LICENSE.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MIT&lt;/a&gt; license.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Periodic Route Optimization for FMCG Distributors</title>
-      <link>https://copuronur.github.io/publication/conference-paper1/</link>
-      <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>https://copuronur.github.io/publication/conference-paper1/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Display Jupyter Notebooks with Academic</title>
-      <link>https://copuronur.github.io/post/jupyter/</link>
-      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>https://copuronur.github.io/post/jupyter/</guid>
-      <description>&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from IPython.core.display import Image
-Image(&#39;https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png&#39;)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;One problem in parallel computing is the machine failures. If you have a large computing clusters, you are likely to observe frequent machine failures. To overcome this challenge, Files are dived into &lt;em&gt;chunks&lt;/em&gt; and each &lt;em&gt;chunk&lt;/em&gt; is replicated in different nodes (&lt;em&gt;chunk servers&lt;/em&gt;) of the cluster. Moreover, the nodes holding copies of one chunk should be located on different racks, so we don’t lose all copies due to a rack failure. In the figure bellow, you can see the diagram of a distributed file system. Note that the chunk servers also serve as compute servers.&lt;/p&gt;
 &lt;p&gt;
 
 
@@ -131,42 +51,458 @@ Image(&#39;https://www.python.org/static/community_logos/python-logo-master-v3-T
 
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./index_1_0.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/dfsfigure.PNG&#34; alt=&#34;DFS structure(chunks and chunk servers)&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(&amp;quot;Welcome to Academic!&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;Welcome to Academic!
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;install-python-and-jupyterlab&#34;&gt;Install Python and JupyterLab&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.anaconda.com/distribution/#download-section&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Install Anaconda&lt;/a&gt; which includes Python 3 and JupyterLab.&lt;/p&gt;
-&lt;p&gt;Alternatively, install JupyterLab with &lt;code&gt;pip3 install jupyterlab&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;create-or-upload-a-jupyter-notebook&#34;&gt;Create or upload a Jupyter notebook&lt;/h2&gt;
-&lt;p&gt;Run the following commands in your Terminal, substituting &lt;code&gt;&amp;lt;MY-WEBSITE-FOLDER&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;SHORT-POST-TITLE&amp;gt;&lt;/code&gt; with the file path to your Academic website folder and a short title for your blog post (use hyphens instead of spaces), respectively:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir -p &amp;lt;MY-WEBSITE-FOLDER&amp;gt;/content/post/&amp;lt;SHORT-POST-TITLE&amp;gt;/
-cd &amp;lt;MY-WEBSITE-FOLDER&amp;gt;/content/post/&amp;lt;SHORT-POST-TITLE&amp;gt;/
-jupyter lab index.ipynb
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;jupyter&lt;/code&gt; command above will launch the JupyterLab editor, allowing us to add Academic metadata and write the content.&lt;/p&gt;
-&lt;h2 id=&#34;edit-your-post-metadata&#34;&gt;Edit your post metadata&lt;/h2&gt;
-&lt;p&gt;The first cell of your Jupter notebook will contain your post metadata (&lt;a href=&#34;https://sourcethemes.com/academic/docs/front-matter/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;front matter&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;In Jupter, choose &lt;em&gt;Markdown&lt;/em&gt; as the type of the first cell and wrap your Academic metadata in three dashes, indicating that it is YAML front matter:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;---
-title: My post&#39;s title
-date: 2019-09-01
+&lt;p&gt;The two other components of DFS (which are not shown in figure) are &lt;em&gt;Master Node&lt;/em&gt; and &lt;em&gt;Client library&lt;/em&gt;. Master node stores meta data about where files are stored and Client library talks to master to find chunk servers. The other problem in big data computing is moving data around for different computations is computationally expensive. The way to handle this problem is bring	computation close	to the	data. &lt;strong&gt;MapReduce&lt;/strong&gt; is the programming model introduced to handle these problems and &lt;strong&gt;DFS&lt;/strong&gt; is the Storage Infrastructure - File system associated with this programming model.&lt;/p&gt;
+&lt;h2 id=&#34;mapreduce-implementation-centralized&#34;&gt;MapReduce Implementation (centralized)&lt;/h2&gt;
+&lt;p&gt;Implementation of MapReduce requires the programmer to write two functions, called &lt;em&gt;Map&lt;/em&gt; and &lt;em&gt;Reduce&lt;/em&gt;. In brief, a MapReduce
+computation executes as follows:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Some number of Map tasks each are given one or more chunks from a DFS. These Map tasks turn the chunk into a sequence of &lt;em&gt;key-value&lt;/em&gt; pairs.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The key-value pairs from each Map task are collected by a &lt;em&gt;master controller&lt;/em&gt; and sorted by key. The keys are divided among all the Reduce tasks, so all key-value pairs with the same key wind up at the same Reduce task.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The Reduce tasks work on one key at a time, and combine all the values associated with that key in some way.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In the diagram bellow, you can see a MapReduce implementation for the word count task. Note that this scheme shows how MapReduce works in a centralized system.&lt;/p&gt;
+&lt;p&gt;
 
-# Put any other Academic metadata here...
----
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Edit the metadata of your post, using the &lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;documentation&lt;/a&gt; as a guide to the available options.&lt;/p&gt;
-&lt;p&gt;To set a &lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#featured-image&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;featured image&lt;/a&gt;, place an image named &lt;code&gt;featured&lt;/code&gt; into your post&amp;rsquo;s folder.&lt;/p&gt;
-&lt;p&gt;For other tips, such as using math, see the guide on &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;writing content with Academic&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;convert-notebook-to-markdown&#34;&gt;Convert notebook to Markdown&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;jupyter nbconvert index.ipynb --to markdown --NbConvertApp.output_files_dir=.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
-&lt;p&gt;This post was created with Jupyter. The orginal files can be found at &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&lt;/a&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Capture.PNG&#34; alt=&#34;Map reduce diagram centralized&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;mapreduce-implementation-parallel&#34;&gt;MapReduce Implementation (Parallel)&lt;/h2&gt;
+&lt;p&gt;However we are more interested in MapReduce in a computer cluster. In a computer cluster Map and Reduce tasks are running in parallel on multiple nodes. As we mentioned before, same data chunks can appear in different nodes and different Map tasks maybe processing same data chunks. But for the reduce tasks, we want put all key-value pairs with same key to the same reduce task. Here we introduce the &lt;em&gt;Partitioning Function&lt;/em&gt; which is just a hash function responsible from this operation. In the figure bellow, you can see the MapReduce reduce diagram in parallel.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/mapreduceparallel.PNG&#34; alt=&#34;Map reduce diagram in computer cluster&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;mapreduce-environment-duties&#34;&gt;MapReduce environment duties:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Partitioning the input data.&lt;/li&gt;
+&lt;li&gt;Scheduling the program&amp;rsquo;s execution across a set of machines.&lt;/li&gt;
+&lt;li&gt;Performing the &lt;em&gt;group by key&lt;/em&gt; step.&lt;/li&gt;
+&lt;li&gt;Handling machine failures.&lt;/li&gt;
+&lt;li&gt;Managing required intermachine communication.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;data-flow&#34;&gt;Data Flow&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Input and final output are stored on the  DFS.
+&lt;ul&gt;
+&lt;li&gt;Scheduler tries to schedule map tasks to each chunk server which contains corresponding data chunk.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Intermediate results are stored on local file system of Map and Reduce workers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;details-of-mapreduce-execution&#34;&gt;Details of MapReduce Execution&lt;/h3&gt;
+&lt;p&gt;The figure bellow offers an outline of how process, tasks and files interact. Taking advantage of a client library provided by a MapReduce system, the user program forks a &lt;em&gt;Master Controller&lt;/em&gt; process and some number of &lt;em&gt;Map workers&lt;/em&gt; and &lt;em&gt;Reduce workers&lt;/em&gt;. Note that a worker handles either Map tasks or Reduce tasks.&lt;/p&gt;
+&lt;p&gt;The Master has many responsibilities. One is to create some number of Map tasks and some number of Reduce tasks, these numbers being selected by the user program. These tasks will be assigned to Worker processes by the Master. It is reasonable to create one Map task for every chunk of the input file(s), but we may wish to create fewer Reduce tasks. The reason for limiting the number of Reduce tasks is that it is necessary for each Map task to create an intermediate file for each Reduce task, and if there are too many Reduce tasks the number of intermediate files explodes. The Master keeps track of the status of each Map and Reduce task (idle, executing at a particular Worker, or completed). A Worker process reports to the Master when it finishes a task, and a new task is scheduled by the Master for that Worker process.&lt;/p&gt;
+&lt;p&gt;Each Map task is assigned one or more chunks of the input file(s) and executes on it the code written by the user. The Map task creates a file for each Reduce task on the local disk of the Worker that executes the Map task. The Master is informed of the location and sizes of each of these files, and the Reduce task for which each is destined. When a Reduce task is assigned by the Master to a Worker process, that task is given all the files that form its input. The Reduce task executes code written by the user and writes its output to a file that is part of the surrounding distributed file system.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/mapreducedetailed.PNG&#34; alt=&#34;Map reduce execution&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;dealing-with-failures&#34;&gt;Dealing With Failures&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Map worker failure.
+&lt;ul&gt;
+&lt;li&gt;Map tasks completed or in-progress at worker are rest to idle.&lt;/li&gt;
+&lt;li&gt;Reduce workers are notified when task is rescheduled on another worker.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reduce worker failure.
+&lt;ul&gt;
+&lt;li&gt;Only in-progress tasks are reset to idle.&lt;/li&gt;
+&lt;li&gt;Idle Reduce tasks restarted on other worker(s).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Master failure.
+&lt;ul&gt;
+&lt;li&gt;Map reduce task is aborted and client notified.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;refinements&#34;&gt;Refinements&lt;/h3&gt;
+&lt;h4 id=&#34;combiners&#34;&gt;Combiners&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Often a Map task will produce many key-value pairs with same key. We can save time by pre-aggregating values with same key in the mapper.
+&lt;ul&gt;
+&lt;li&gt;combine(k, list(v1)) -&amp;gt; v2.&lt;/li&gt;
+&lt;li&gt;Combiner	is	usually	same as	the	reduce	function.&lt;/li&gt;
+&lt;li&gt;Works	only	if	reduce function	is	commutative	and	associative.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;partition-function&#34;&gt;Partition Function&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Want to control how keys get partitioned.&lt;/li&gt;
+&lt;li&gt;System uses a default Partition function:
+&lt;ul&gt;
+&lt;li&gt;hash(key) mod R.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Sometimes useful to override the hash function.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;algorithms-using-mapreduce&#34;&gt;Algorithms Using MapReduce&lt;/h2&gt;
+&lt;p&gt;The original purpose for which the Google implementation of MapReduce was created was to execute very large matrix-vector multiplications as are needed in the calculation of PageRank.&lt;/p&gt;
+&lt;h3 id=&#34;matrix-vector-multiplication-by-mapreduce&#34;&gt;Matrix-Vector Multiplication by MapReduce&lt;/h3&gt;
+&lt;p&gt;Suppose we have an n x n matrix M, whose element in row i and column j will be denoted m&lt;sub&gt;ij&lt;/sub&gt; . Suppose we also have a vector v of length n, whose jth element is v&lt;sub&gt;j&lt;/sub&gt; .&lt;/p&gt;
+&lt;h4 id=&#34;the-map-function&#34;&gt;The Map function&lt;/h4&gt;
+&lt;p&gt;Each Map task will operate on a chunk of the matrix M. From each matrix element m&lt;sub&gt;ij&lt;/sub&gt; it produces the key-value pair (i,m&lt;sub&gt;ij&lt;/sub&gt;v&lt;sub&gt;j&lt;/sub&gt;). Thus, all terms of the sum that make up the component x&lt;sub&gt;i&lt;/sub&gt; of the matrix-vector product will get the same key, i.&lt;/p&gt;
+&lt;h4 id=&#34;the-reduce-function&#34;&gt;The Reduce function&lt;/h4&gt;
+&lt;p&gt;The Reduce function simply sums all the values associated with a given key i. The result will be a pair (i, x&lt;sub&gt;i&lt;/sub&gt;).&lt;/p&gt;
+&lt;p&gt;Note that parallelization of matrix multiplication is very crucial at neural net computations.&lt;/p&gt;
+&lt;h3 id=&#34;natural-join-by-mapreduce&#34;&gt;Natural Join by MapReduce&lt;/h3&gt;
+&lt;p&gt;Natural join is a frequently used operation in relational database system and parallelization of this operation saves enormous computing time. In the figure bellow yo can see the illustration of Natural Join.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/join.PNG&#34; alt=&#34;Natural Join&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use a hash function h from B-values to 1..k&lt;/li&gt;
+&lt;li&gt;A map process turns:
+&lt;ul&gt;
+&lt;li&gt;each input tuple R(a,b) into key-value pair (b, (a,R)).&lt;/li&gt;
+&lt;li&gt;each input tuple S(b,c) into key-value pair (b, (c,S)).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Map process send each key-value pair with key b to Reduce process h(b).&lt;/li&gt;
+&lt;li&gt;Each reduce process matches all the pairs (b, (a,R)) with all (b, (c,S)) and outputs (a,b,c)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;cost-measures-for-mapreduce-algorithms&#34;&gt;Cost Measures for MapReduce Algorithms&lt;/h2&gt;
+&lt;h3 id=&#34;communication-cost&#34;&gt;Communication Cost&lt;/h3&gt;
+&lt;p&gt;input file size + 2x(sum of the sizes of all files passed from Map process to Reduce process) + the sum of the output sizes of the reduce process.&lt;/p&gt;
+&lt;h3 id=&#34;elapsed-communication-cost&#34;&gt;Elapsed Communication Cost&lt;/h3&gt;
+&lt;p&gt;sum of the largest input  + output for any map process + output for any map process&lt;/p&gt;
+&lt;h3 id=&#34;references&#34;&gt;References&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://web.stanford.edu/class/cs246/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://web.stanford.edu/class/cs246/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.mmds.org/#ver21&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://www.mmds.org/#ver21&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;-----finding-simmilar-documnets-----&#34;&gt;&amp;mdash;- FINDING SIMMILAR DOCUMNETS &amp;mdash;-&lt;/h2&gt;
+&lt;h2 id=&#34;shingling-of-documents&#34;&gt;Shingling of Documents&lt;/h2&gt;
+&lt;p&gt;The most effective way to represent documents as sets, for the purpose of identifying lexically similar documents is to construct from the document the set of short strings that appear within it.&lt;/p&gt;
+&lt;h3 id=&#34;k-shingles-or-k-gram&#34;&gt;k-Shingles or k-gram&lt;/h3&gt;
+&lt;p&gt;A document is a string of characters. Define a k-shingle for a document to be any substring of length k found within the document. Then, we may associate with each document the set of k-shingles that appear one or more times within that document. Instead of using substrings directly as shingles, we can pick a hash function that maps strings of length k to some number of buckets and treat the resulting bucket number as the shingle. The set representing a document is then the set of integers that are bucket numbers of one or more k-shingles that appear in the document. The result of hashing shingles also called &lt;em&gt;tokens&lt;/em&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;similarity-preserving-summaries-of-sets&#34;&gt;Similarity-Preserving Summaries of Sets&lt;/h2&gt;
+&lt;h3 id=&#34;signatures&#34;&gt;Signatures&lt;/h3&gt;
+&lt;p&gt;Sets of shingles are large. Even if we hash them to four bytes each, the space needed to store a set is still roughly four times the space taken by the document. If we have millions of documents, it may well not be possible to store all the shingle-sets in main memory.&lt;/p&gt;
+&lt;p&gt;Our goal in this section is to replace large sets by much smaller representations called “signatures.” The important property we need for signatures is
+that we can compare the signatures of two sets and estimate the Jaccard similarity of the underlying sets from the signatures alone.&lt;/p&gt;
+&lt;h3 id=&#34;minhashing&#34;&gt;Minhashing&lt;/h3&gt;
+&lt;p&gt;The signatures we desire to construct for sets are composed of the results of a large number of calculations, say several hundred, each of which is a “minhash” of the characteristic matrix. In this section, we shall learn how a minhash is computed in principle, and in later sections we shall see how a good approximation to the minhash is computed in practice.&lt;/p&gt;
+&lt;p&gt;To minhash a set represented by a column of the characteristic matrix, pick a permutation of the rows. The minhash value of any column is the number of the first row, in the permuted order, in which the column has a 1. In the table bellow, you can see an example of minhash table with size 3. The input matrix is a matrix with binary input which has documents in the columns and shingles (tokens) in the rows and this input matrix I, has I&lt;sub&gt;ij&lt;/sub&gt; =1, if document j contains token i. To calculate the minhash matrix, first we generate 3 different permutation of rows. Lets check the blue permutation. the first row in the blue permutation refers to the sixth row in the input matrix. In the sixth row we see that columns 1 and 3 has inputs 1, so we put the permutation row number (1 in this case) to the first and third columns of the signature vector. the second row in the blue permutation  refers to the fourth row in the input matrix. In the fourth row we see that columns 2 and 4 has inputs 1, so we put the permutation row number (2 in this case) to the second and fourth columns of the signature vector. As we filled all columns for the blue permutation, we can proceed to other permutations and fill the column values in the same manner.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/minhash.PNG&#34; alt=&#34;Example of Minhashing&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;minhashing-and-jaccard-similarity&#34;&gt;Minhashing and Jaccard Similarity&lt;/h3&gt;
+&lt;p&gt;There is a remarkable connection between minhashing and Jaccard similarity of the sets that are minhashed.&lt;/p&gt;
+&lt;p&gt;The probability that the minhash function for a random permutation of rows produces the same value for two sets equals the Jaccard similarity of those sets.&lt;/p&gt;
+&lt;h3 id=&#34;computation-of-minhas-permutations&#34;&gt;Computation of Minhas Permutations&lt;/h3&gt;
+&lt;p&gt;It is not feasible to permute a large characteristic matrix explicitly. Even picking a random permutation of millions or billions of rows is time-consuming, and the necessary sorting of the rows would take even more time.&lt;/p&gt;
+&lt;p&gt;Fortunately, it is possible to simulate the effect of a random permutation by a random hash function that maps row numbers to as many buckets as there are rows. A hash function that maps integers 0, 1, . . . , k −1 to bucket numbers 0 through k−1 typically will map some pairs of integers to the same bucket and leave other buckets unfilled. However, the difference is unimportant as long as k is large and there are not too many collisions. We can maintain the fiction that our hash function h “permutes” row r to position h(r) in the permuted order. Thus, instead of picking n random permutations of rows, we pick n randomly chosen hash functions h1, h2, . . . , hn on the rows. We construct the signature matrix by considering each row in their given order.&lt;/p&gt;
+&lt;h2 id=&#34;locality-sensitive-hashing-lsh&#34;&gt;Locality Sensitive Hashing (LSH)&lt;/h2&gt;
+&lt;p&gt;The general Idea of LSH is generating a small list of candidate pairs (pairs of elements whose similarity must be evaluated) from the collection of all elements. This is done via “hashing” items several times, in such a way that similar items are more likely to be hashed to the same bucket than dissimilar items are. We then consider any pair that hashed to the same bucket for any of the hashings to be a candidate pair. We check only the candidate pairs for similarity.&lt;/p&gt;
+&lt;h3 id=&#34;lsh-for-minhash-signatures&#34;&gt;LSH for Minhash Signatures&lt;/h3&gt;
+&lt;p&gt;Even though we can use minhashing to compress large documents into small signatures and preserve the expected similarity of any pair of documents, it still may be impossible to find the pairs with greatest similarity efficiently. The reason is that the number of pairs of documents may be too large, even if there are not too many documents. So we refer to the idea of LSH we mentioned above.&lt;/p&gt;
+&lt;p&gt;If we have minhash signatures for the items, an effective way to choose the hashings is to divide the signature matrix into b bands consisting of r rows each. For each band, there is a hash function that takes vectors of r integers (the portion of one column within that band) and hashes them to some large number of buckets. We can use the same hash function for all the bands, but we use a separate bucket array for each band, so columns with the same vector in different bands will not hash to the same bucket. In the figure bellow, you can see hash table for a single band in a signature matrix.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/lsh.PNG&#34; alt=&#34;Example of LSH for minhash&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;analysis-of-the-banding-technique&#34;&gt;Analysis of the Banding Technique&lt;/h3&gt;
+&lt;p&gt;Suppose we use b bands of r rows each, and suppose that a particular pair of documents have Jaccard similarity s. Recall that the probability the minhash signatures for these documents agree in any one particular row of the signature matrix is s. We can calculate the probability that these documents (or rather their signatures) become a candidate pair as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The probability that the signatures agree in all rows of one particular band is &lt;em&gt;s&lt;/em&gt;&lt;sup&gt;&lt;em&gt;r&lt;/em&gt;&lt;/sup&gt;.&lt;/li&gt;
+&lt;li&gt;The probability that the signatures disagree in at least one row of a particular band is 1- &lt;em&gt;s&lt;/em&gt;&lt;sup&gt;&lt;em&gt;r&lt;/em&gt;&lt;/sup&gt;.&lt;/li&gt;
+&lt;li&gt;The probability that the signatures disagree in at least one row of each of the bands is (1- &lt;em&gt;s&lt;/em&gt;&lt;sup&gt;&lt;em&gt;r&lt;/em&gt;&lt;/sup&gt;)&lt;sup&gt;&lt;em&gt;b&lt;/em&gt;&lt;/sup&gt; (also the probability of false negatives for s &amp;gt; threshold).&lt;/li&gt;
+&lt;li&gt;The probability that the signatures agree in all the rows of at least one band, and therefore become a candidate pair, is 1- (1- &lt;em&gt;s&lt;/em&gt;&lt;sup&gt;&lt;em&gt;r&lt;/em&gt;&lt;/sup&gt;)&lt;sup&gt;&lt;em&gt;b&lt;/em&gt;&lt;/sup&gt;. (also the probability of false positives for s &amp;lt; threshold).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It may not be obvious, but regardless of the chosen constants b and r, this function has the form of an S-curve, as suggested in the figure bellow and an approximation for the threshold is (&lt;em&gt;1/b&lt;/em&gt;)&lt;sup&gt;&lt;em&gt;1/r&lt;/em&gt;&lt;/sup&gt;. If you want a high recall value, it is better to have high &lt;em&gt;r&lt;/em&gt; and low 0&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/lshrb.PNG&#34; alt=&#34;LSH r and b&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;the-theory-of-locality-sensitive-functions&#34;&gt;The Theory of Locality-Sensitive Functions&lt;/h2&gt;
+&lt;p&gt;Now, we shall explore other families of functions, besides the minhash functions, that can serve to produce candidate pairs efficiently. These functions can apply to the space of sets and the Jaccard distance, or to another space and/or another distance measure. There are three conditions that we need for a family of functions:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;They must be more likely to make close pairs be candidate pairs than distant pairs.&lt;/li&gt;
+&lt;li&gt;They must be statistically independent, in the sense that it is possible to estimate the probability that two or more functions will all give a certain response by the product rule for independent events.&lt;/li&gt;
+&lt;li&gt;They must be efficient, in two ways:
+&lt;ul&gt;
+&lt;li&gt;They must be able to identify candidate pairs in time much less than the time it takes to look at all pairs.&lt;/li&gt;
+&lt;li&gt;They must be combinable to build functions that are better at avoiding false positives and negatives, and the combined functions must also take time that is much less than the number of pairs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;lsh-general-formulation&#34;&gt;LSH General Formulation&lt;/h3&gt;
+&lt;p&gt;A collection of functions of this form will be called a family of functions. For example, the family of minhash functions, each based on one of the possible permutations of rows of a characteristic matrix, form a family.&lt;/p&gt;
+&lt;p&gt;Let d1 &amp;lt; d2 be two distances according to some distance measure d. A family F of functions is said to be (d1, d2, p1, p2)-sensitive if for every f in F:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;If d(x, y) ≤ d1, then the probability that f(x) = f(y) is at least p1.&lt;/li&gt;
+&lt;li&gt;If d(x, y) ≥ d2, then the probability that f(x) = f(y) is at most p2.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;lsh-families-for-jaccard-distance&#34;&gt;LSH Families for Jaccard Distance&lt;/h3&gt;
+&lt;p&gt;The family of minhash functions is a (d1, d2, 1−d1, 1−d2)-sensitive family for any d1 and d2, where 0 ≤ d1 &amp;lt; d2 ≤ 1.&lt;/p&gt;
+&lt;p&gt;The reason is that if d(x, y) ≤ d1, where d is the Jaccard distance, then SIM(x, y) = 1 − d(x, y) ≥ 1 − d1. But we know that the Jaccard similarity of x and y is equal to the probability that a minhash function will hash x and y to the same value. A similar argument applies to d2 or any distance.&lt;/p&gt;
+&lt;h3 id=&#34;lsh-families-for-hamming-distance&#34;&gt;LSH Families for Hamming Distance&lt;/h3&gt;
+&lt;p&gt;Suppose we have a space of d-dimensional vectors, and h(x, y) denotes the Hamming distance between vectors x and y. If we take any one position of the vectors, say the ith position, we can define the function fi(x) to be the ith bit of vector x. Then f&lt;sub&gt;&lt;em&gt;i&lt;/em&gt;&lt;/sub&gt;(x) = f&lt;sub&gt;&lt;em&gt;i&lt;/em&gt;&lt;/sub&gt;(y) if and only if vectors x and
+y agree in the ith position. Then the probability that f&lt;sub&gt;&lt;em&gt;i&lt;/em&gt;&lt;/sub&gt;(x) = f&lt;sub&gt;&lt;em&gt;i&lt;/em&gt;&lt;/sub&gt;(y) for a randomly chosen i is exactly 1 − h(x, y)/d; i.e., it is the fraction of positions in which x and y agree.&lt;/p&gt;
+&lt;p&gt;This situation is almost exactly like the one we encountered for minhashing. Thus, the family F consisting of the functions {f1, f2, . . . , fd} is a (d1, d2, 1 − d1/d, 1 − d2/d)-sensitive family of hash functions, for any d1 &amp;lt; d2.&lt;/p&gt;
+&lt;h3 id=&#34;lsh-families-for-cosine-distance&#34;&gt;LSH Families for Cosine Distance&lt;/h3&gt;
+&lt;p&gt;Recall that the cosine distance between two vectors is the angle between the vectors. Note that these vectors may be in a space of many dimensions, but they always define a plane, and the angle between them is measured in this plane.&lt;/p&gt;
+&lt;p&gt;Given two vectors x and y, say f(x) = f(y) if and only if the dot products v&lt;sub&gt;&lt;em&gt;f&lt;/em&gt;&lt;/sub&gt; .x and v&lt;sub&gt;&lt;em&gt;f&lt;/em&gt;&lt;/sub&gt; .y have the same sign. Then F is a locality-sensitive family for the cosine distance. (d1, d2, (180 − d1)/180, (180 − d2)/180)-sensitive family of hash functions. From this basis, we can amplify the family as we wish, just as for the minhash-based family.&lt;/p&gt;
+&lt;h4 id=&#34;sketches&#34;&gt;Sketches&lt;/h4&gt;
+&lt;p&gt;Instead of choosing a random vector from all possible vectors, it turns out to be sufficiently random if we restrict our choice to vectors whose components are +1 and −1. The dot product of any vector x with a vector v of +1’s and −1’s is formed by adding the components of x where v is +1 and then subtracting the other components of x – those where v is −1. If we pick a collection of random vectors, say v1, v2, . . . , v&lt;sub&gt;&lt;em&gt;n&lt;/em&gt;&lt;/sub&gt;, then we can apply them to an arbitrary vector x by computing v1.x, v2.x, . . . , v&lt;sub&gt;&lt;em&gt;n&lt;/em&gt;&lt;/sub&gt;.x and then replacing any positive value by +1 and any negative value by −1. The result is called the sketch of x.&lt;/p&gt;
+&lt;h2 id=&#34;------------mining-data-streams------------&#34;&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash; MINING DATA STREAMS &amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&lt;/h2&gt;
+&lt;h2 id=&#34;filtering-data-streams&#34;&gt;Filtering Data Streams&lt;/h2&gt;
+&lt;h3 id=&#34;bloom-filters&#34;&gt;Bloom Filters&lt;/h3&gt;
+&lt;p&gt;A Bloom filter consists of:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;An array of n bits, initially all 0’s.&lt;/li&gt;
+&lt;li&gt;A collection of hash functions h1, h2, . . . , hk. Each hash function maps “key” values to n buckets, corresponding to the n bits of the bit-array.&lt;/li&gt;
+&lt;li&gt;A set S of m key values.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The purpose of the Bloom filter is to allow through all stream elements whose keys are in S, while rejecting most of the stream elements whose keys are not in S.&lt;/p&gt;
+&lt;p&gt;To initialize the bit array, begin with all bits 0. Take each key value in S and hash it using each of the k hash functions. Set to 1 each bit that is hi(K) for some hash function hi and some key value K in S. To test a key K that arrives in the stream, check that all of h1(K), h2(K), . . . , hk(K) are 1’s in the bit-array. If all are 1’s, then let the stream element through. If one or more of these bits are 0, then K could not be in S, so reject the stream element.&lt;/p&gt;
+&lt;h3 id=&#34;analysis-of-bloom-filters&#34;&gt;Analysis of Bloom Filters&lt;/h3&gt;
+&lt;p&gt;If a key value is in S, then the element will surely pass through the Bloom filter. However, if the key value is not in S, it might still pass. We need to understand how to calculate the probability of a false positive, as a function of n, the bit-array length, m the number of members of S, and k, the number of hash functions.&lt;/p&gt;
+&lt;p&gt;The model to use is throwing darts at targets. Suppose we have x targets and y darts. Any dart is equally likely to hit any target. After throwing the darts, how many targets can we expect to be hit at least once?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The probability that a given dart will not hit a given target is (x − 1)/x.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The probability that none of the y darts will hit a target is ((x − 1)/x)&lt;sup&gt;&lt;em&gt;y&lt;/em&gt;&lt;/sup&gt;. We can write this expression as,
+(1- 1/x)&lt;sup&gt;&lt;em&gt;x(y/x)&lt;/em&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;using the approximation (1-q)&lt;sup&gt;&lt;em&gt;1/q&lt;/em&gt;&lt;/sup&gt; = 1/e, for small q, we conclude that the probability that none of y darts hit a given target is e&lt;sup&gt;&lt;em&gt;-y/x&lt;/em&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The optimal number of hash functions is (n/m) * ln(2).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;counting-distinct-elements-in-a-stream&#34;&gt;Counting Distinct elements in a Stream&lt;/h2&gt;
+&lt;p&gt;Data stream consists of a universe of elements chosen from a set of size N. The problem is maintaining a count of the number of distinct elements seen so far. Unfortunately, we do not have the space to keep the set of elements seen so far. So we need an unbiased estimator for this count. Here we introduce the Flajolet- Martin Algorithm.&lt;/p&gt;
+&lt;h3 id=&#34;flajolet---martin-algorithm&#34;&gt;Flajolet - Martin Algorithm&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Pick a has function h, that maps each of N elements to at least log&lt;sub&gt;&lt;em&gt;2&lt;/em&gt;&lt;/sub&gt;N bits.&lt;/li&gt;
+&lt;li&gt;For each stream element a, let r(a) be the number of trailing zeros in h(a). And R = max&lt;sub&gt;&lt;em&gt;a&lt;/em&gt;&lt;/sub&gt;r(a), over all items a seen so far.&lt;/li&gt;
+&lt;li&gt;Estimated number of distinct element is = 2&lt;sup&gt;&lt;em&gt;R&lt;/em&gt;&lt;/sup&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;analysis-of-flajolet---martin-algorithm&#34;&gt;Analysis of Flajolet - Martin Algorithm&lt;/h3&gt;
+&lt;p&gt;This estimate makes intuitive sense. The probability that a given stream element a has h(a) ending in at least r 0’s is 2&lt;sup&gt;&lt;em&gt;-r&lt;/em&gt;&lt;/sup&gt;. Suppose there are m distinct elements in the stream. Then the probability that none of them has tail length at least r is (1-2&lt;sup&gt;&lt;em&gt;-r&lt;/em&gt;&lt;/sup&gt;)&lt;sup&gt;&lt;em&gt;m&lt;/em&gt;&lt;/sup&gt;. This probability is approximately, e&lt;sup&gt;&lt;em&gt;-m2&lt;sup&gt;-r&lt;/sup&gt;&lt;/em&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;if m &amp;laquo; 2&lt;sup&gt;r&lt;/sup&gt;, then the probability that we shall find a tail of length at least r approaches 0.&lt;/li&gt;
+&lt;li&gt;if m &amp;raquo; 2&lt;sup&gt;r&lt;/sup&gt;, then the probability that we shall find a tail of length at least r approaches 1.&lt;/li&gt;
+&lt;li&gt;thus 2&lt;sup&gt;R&lt;/sup&gt; will be always around m.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The problem is that the probability halves when we increase R to R+1, but value doubles. We can use many hash functions h&lt;sub&gt;i&lt;/sub&gt;. and get many samples of R&lt;sub&gt;i&lt;/sub&gt; by first sorting all 2&lt;sup&gt;R&lt;/sup&gt; values. After that;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Partition your samples into small groups.&lt;/li&gt;
+&lt;li&gt;Take the median of groups.&lt;/li&gt;
+&lt;li&gt;Then take the average of the medians.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;computing-moments&#34;&gt;Computing Moments&lt;/h2&gt;
+&lt;p&gt;In this section we consider a generalization of the problem of counting distinct elements in a stream. The problem, called computing “moments,” involves the distribution of frequencies of different elements in the stream. We shall define moments of all orders and concentrate on computing second moments, from which the general algorithm for all moments is a simple extension.&lt;/p&gt;
+&lt;h3 id=&#34;definition-of-moments&#34;&gt;Definition of moments&lt;/h3&gt;
+&lt;p&gt;Suppose a stream consists of elements chosen from a universal set and assume the universal set is ordered. Let m&lt;sub&gt;i&lt;/sub&gt; be the number of occurrences of the ith element for any i. Then kth moment of the stream is the sum over all i of (m&lt;sub&gt;i&lt;/sub&gt;)&lt;sup&gt;k&lt;/sup&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;strong&gt;0th moment&lt;/strong&gt;&lt;/strong&gt; : number of distinct elements.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;strong&gt;1st moment&lt;/strong&gt;&lt;/strong&gt; : length of the stream.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;strong&gt;2nd moment&lt;/strong&gt;&lt;/strong&gt; : a measure of how uneven the distribution is.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ams-method&#34;&gt;AMS Method&lt;/h3&gt;
+&lt;p&gt;Suppose we do not have enough space to count all the mi’s for all the elements of the stream. We can still estimate the second moment of the stream using a limited amount of space; the more space we use, the more accurate the estimate will be. We compute some number of &lt;em&gt;variables&lt;/em&gt;. For each variable X, we store:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A particular element of the universal set, which we refer to as &lt;strong&gt;&lt;strong&gt;X.element&lt;/strong&gt;&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;An integer &lt;strong&gt;&lt;strong&gt;X.value&lt;/strong&gt;&lt;/strong&gt;, which is the value of the variable. To determine the value of a variable X, we choose a position in the stream between 1 and n, uniformly and at random. Set &lt;strong&gt;&lt;strong&gt;X.element&lt;/strong&gt;&lt;/strong&gt; to be the element found there, and initialize  &lt;strong&gt;&lt;strong&gt;X.value&lt;/strong&gt;&lt;/strong&gt; to 1. As we read the stream, add 1 to  &lt;strong&gt;&lt;strong&gt;X.value&lt;/strong&gt;&lt;/strong&gt; each time we encounter another occurrence of &lt;strong&gt;&lt;strong&gt;X.element&lt;/strong&gt;&lt;/strong&gt; .&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;example&#34;&gt;example:&lt;/h4&gt;
+&lt;p&gt;Suppose the stream is a, b, c, b, d, a, c, d, a, b, d, c, a, a, b. The length of the stream is n = 15. Since a appears 5 times, b appears 4 times, and c and d appear three times each, the second moment for the stream is 5&lt;sup&gt;2&lt;/sup&gt;+4&lt;sup&gt;2&lt;/sup&gt;+3&lt;sup&gt;2&lt;/sup&gt;+3&lt;sup&gt;2&lt;/sup&gt; = 59. Suppose we keep three variables, X1, X2, and X3. Also, assume that at “random” we pick the 3rd, 8th, and 13th positions to define these three variables.&lt;/p&gt;
+&lt;p&gt;When we reach position 3, we find element c, so we set &lt;strong&gt;&lt;strong&gt;X1.element&lt;/strong&gt;&lt;/strong&gt; = c and &lt;strong&gt;&lt;strong&gt;X1.value&lt;/strong&gt;&lt;/strong&gt;. Position 4 holds b, so we do not change X1. Likewise, nothing happens at positions 5 or 6. At position 7, we see c again, so we set &lt;strong&gt;&lt;strong&gt;X1.value&lt;/strong&gt;&lt;/strong&gt; = 2.&lt;/p&gt;
+&lt;p&gt;At position 8 we find d, and so set &lt;strong&gt;&lt;strong&gt;X2.element&lt;/strong&gt;&lt;/strong&gt; = d and &lt;strong&gt;&lt;strong&gt;X2.value&lt;/strong&gt;&lt;/strong&gt; = 1. Positions 9 and 10 hold a and b, so they do not affect X1 or X2. Position 11 holds d so we set &lt;strong&gt;&lt;strong&gt;X2.value&lt;/strong&gt;&lt;/strong&gt; = 2, and position 12 holds c so we set &lt;strong&gt;&lt;strong&gt;X1.value&lt;/strong&gt;&lt;/strong&gt; = 3.&lt;/p&gt;
+&lt;p&gt;At position 13, we find element a, and so set &lt;strong&gt;&lt;strong&gt;X3.element&lt;/strong&gt;&lt;/strong&gt; = a and &lt;strong&gt;&lt;strong&gt;X3.value&lt;/strong&gt;&lt;/strong&gt; = 1. Then, at position 14 we see another a and so set &lt;strong&gt;&lt;strong&gt;X3.value&lt;/strong&gt;&lt;/strong&gt; = 2. Position 15, with element b does not affect any of the variables, so we are done, with final values &lt;strong&gt;&lt;strong&gt;X1.value&lt;/strong&gt;&lt;/strong&gt; = 3 and &lt;strong&gt;&lt;strong&gt;X2.value&lt;/strong&gt;&lt;/strong&gt; = &lt;strong&gt;&lt;strong&gt;X3.value&lt;/strong&gt;&lt;/strong&gt; = 2.&lt;/p&gt;
+&lt;p&gt;We can derive an estimate of the second moment from any variable X. This estimate is &lt;strong&gt;&lt;strong&gt;n(2X.value − 1)&lt;/strong&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;------dimensionality-reduction------&#34;&gt;&amp;mdash;&amp;ndash; DIMENSIONALITY REDUCTION &amp;mdash;&amp;ndash;&lt;/h2&gt;
+&lt;h2 id=&#34;eigenvalues-and-eigenvectors-of-symmetric-matrixes&#34;&gt;Eigenvalues and Eigenvectors of Symmetric Matrixes&lt;/h2&gt;
+&lt;p&gt;Let &lt;strong&gt;&lt;strong&gt;M&lt;/strong&gt;&lt;/strong&gt; be a square matrix. Let &lt;strong&gt;&lt;strong&gt;λ&lt;/strong&gt;&lt;/strong&gt; be a constant and e a nonzero column vector with the same number of rows as &lt;strong&gt;&lt;strong&gt;M&lt;/strong&gt;&lt;/strong&gt;. Then &lt;strong&gt;&lt;strong&gt;λ&lt;/strong&gt;&lt;/strong&gt; is an eigenvalue of &lt;strong&gt;&lt;strong&gt;M&lt;/strong&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;strong&gt;e&lt;/strong&gt;&lt;/strong&gt; is the corresponding eigenvector of &lt;strong&gt;&lt;strong&gt;M&lt;/strong&gt;&lt;/strong&gt; if &lt;strong&gt;&lt;strong&gt;Me = λe&lt;/strong&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;some-properties-of-symmetric-matrices&#34;&gt;Some properties of Symmetric Matrices&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;All eigenvalues of a symmetric matrix are real.&lt;/li&gt;
+&lt;li&gt;If x is a right eigenvector of M wit eigen value λ, x is also a left eigenvector for the same eigenvalue.&lt;/li&gt;
+&lt;li&gt;If M is symmetric, eigenvectors associated to different eigenvalues are mutually orthogonal.&lt;/li&gt;
+&lt;li&gt;Assume V is an orthonormal eigenvector basis for a symmetric matrix M. Then, V&lt;sup&gt;T&lt;/sup&gt;V=VV&lt;sup&gt;T&lt;/sup&gt;=I. This also implies V is invertible and its inver is V&lt;sup&gt;T&lt;/sup&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;using-eigenvectors-for-dimensionality-reduction&#34;&gt;Using Eigenvectors for Dimensionality Reduction&lt;/h3&gt;
+&lt;p&gt;From the example we have just worked out, we can see a general principle. If M is a matrix whose rows each represent a point in a Euclidean space with any number of dimensions, we can compute M&lt;sup&gt;T&lt;/sup&gt;M and compute its eigenpairs. Let E be the matrix whose columns are the eigenvectors, ordered as largest eigenvalue first. Define the matrix L to have the eigenvalues of M&lt;sup&gt;T&lt;/sup&gt;M along the diagonal, largest first, and 0’s in all other entries. Then, since M&lt;sup&gt;T&lt;/sup&gt;Me = λe = eλ for each eigenvector e and its corresponding eigenvalue λ, it follows that M&lt;sup&gt;T&lt;/sup&gt;M = EL.&lt;/p&gt;
+&lt;p&gt;We observed that ME is the points of M transformed into a new coordinate space. In this space, the first axis (the one corresponding to the largest eigenvalue) is the most significant; formally, the variance of points along that axis is the greatest. The second axis, corresponding to the second eigenpair, is next most significant in the same sense, and the pattern continues for each of the eigenpairs. If we want to transform M to a space with fewer dimensions, then the choice that preserves the most significance is the one that uses the eigenvectors associated with the largest eigenvalues and ignores the other eigenvalues.&lt;/p&gt;
+&lt;h2 id=&#34;singular-value-decomposition-svd&#34;&gt;Singular Value Decomposition (SVD)&lt;/h2&gt;
+&lt;p&gt;We now take up a second form of matrix analysis that leads to a low-dimensional representation of a high-dimensional matrix. This approach, called singular- value decomposition (SVD), allows an exact representation of any matrix, and also makes it easy to eliminate the less important parts of that representation to produce an approximate representation with any desired number of dimensions.&lt;/p&gt;
+&lt;h3 id=&#34;definition-of-svd&#34;&gt;Definition of SVD&lt;/h3&gt;
+&lt;p&gt;Let M be an m × n matrix, and let the rank of M be r. Recall that the rank of a matrix is the largest number of rows (or equivalently columns) we can choose for which no nonzero linear combination of the rows is the all-zero vector 0 (we say a set of such rows or columns is independent). Then we can find matrices U, Sigma, and V with the following properties:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;U is an m × r column-orthonormal matrix ; that is, each of its columns is a unit vector and the dot product of any two columns is 0.&lt;/li&gt;
+&lt;li&gt;V is an n × r column-orthonormal matrix.&lt;/li&gt;
+&lt;li&gt;Sigma is a diagonal matrix; that is, all elements not on the main diagonal are 0. The elements of Sigma are called the singular values of M.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/SVD.PNG&#34; alt=&#34;SVD&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;dimensionality-reduction-using-svd&#34;&gt;Dimensionality Reduction Using SVD&lt;/h3&gt;
+&lt;p&gt;Suppose we want to represent a very large matrix M by its SVD components U, Sigma, and V, but these matrices are also too large to store conveniently. The best way to reduce the dimensionality of the three matrices is to set the smallest of the singular values to zero. If we set the s smallest singular values to 0, then we can also eliminate the corresponding s columns of U and V.&lt;/p&gt;
+&lt;p&gt;The choice of the lowest singular values to drop when we reduce the number of dimensions can be shown to minimize the root-mean-square error between the original matrix M and its approximation. Since the number of entries is fixed, and the square root is a monotone operation, we can simplify and compare the Frobenius norms of the matrices involved.&lt;/p&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>Periodic Route Optimization for FMCG Distributors</title>
+      <link>https://copuronur.github.io/publication/conference-paper1/</link>
+      <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://copuronur.github.io/publication/conference-paper1/</guid>
+      <description></description>
     </item>
     
   </channel>
