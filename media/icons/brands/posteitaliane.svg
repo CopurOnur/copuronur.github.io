@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2816"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   width="1096.236"
+   height="1059.422"
+   sodipodi:docname="Poste.svg">
+  <metadata
+     id="metadata2822">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs2820">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       id="perspective2824" />
+    <inkscape:perspective
+       id="perspective3626"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3648"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1600"
+     inkscape:window-height="838"
+     id="namedview2818"
+     showgrid="false"
+     inkscape:zoom="0.17286846"
+     inkscape:cx="-992.01711"
+     inkscape:cy="-58.775982"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2816" />
+  <path
+     sodipodi:type="arc"
+     style="fill:#edf601;fill-opacity:1;stroke:none"
+     id="path2828"
+     sodipodi:cx="1431.6514"
+     sodipodi:cy="1021.6494"
+     sodipodi:rx="548.11798"
+     sodipodi:ry="529.711"
+     d="m 1979.7693,1021.6494 a 548.11798,529.711 0 1 1 -1096.23591,0 548.11798,529.711 0 1 1 1096.23591,0 z"
+     transform="translate(-883.53339,-491.93842)" />
+  <g
+     transform="matrix(1.0836766,0.0027096,6.5919053e-4,0.9227862,-805.81517,-508.30015)"
+     style="font-size:613.50372314px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#3130ce;fill-opacity:1;stroke:none;font-family:Transport Heavy;-inkscape-font-specification:'Transport Heavy,'"
+     id="text2830">
+    <path
+       d="m 896.69174,1343.4888 0,-439.15846 142.29216,0 c 53.9209,4.4e-4 89.0696,2.19723 105.4459,6.59037 25.1629,6.5908 46.2321,20.91985 63.2077,42.9872 16.9748,22.06813 25.4624,50.57649 25.4628,85.52509 -4e-4,26.9609 -4.8933,49.6277 -14.6786,68.0006 -9.786,18.3734 -22.2179,32.8023 -37.2955,43.2868 -15.0783,10.4849 -30.4059,17.4247 -45.9828,20.8196 -21.1694,4.194 -51.8245,6.2909 -91.9657,6.2908 l -57.8155,0 0,165.658 z m 88.67046,-364.86699 0,124.61799 48.5291,0 c 34.9487,2e-4 58.3146,-2.2964 70.0976,-6.89 11.7825,-4.593 21.019,-11.7825 27.7095,-21.5685 6.69,-9.7854 10.0351,-21.1688 10.0354,-34.1501 -3e-4,-15.9763 -4.6935,-29.1571 -14.0795,-39.5422 -9.3865,-10.38449 -21.2692,-16.875 -35.6479,-19.47157 -10.5848,-1.99672 -31.8537,-2.99526 -63.8068,-2.99562 z"
+       style="font-weight:bold;fill:#3130ce;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       id="path3767" />
+    <path
+       d="m 1405.3486,1343.4888 0,-364.86699 -130.3096,0 0,-74.29147 348.9901,0 0,74.29147 -130.01,0 0,364.86699 z"
+       style="font-weight:bold;fill:#3130ce;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       id="path3769" />
+  </g>
+</svg>
