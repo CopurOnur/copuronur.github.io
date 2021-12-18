@@ -518,6 +518,452 @@ y agree in the ith position. Then the probability that f&lt;sub&gt;&lt;em&gt;i&l
     </item>
     
     <item>
+      <title>Deep Reinforcement Learning</title>
+      <link>https://copuronur.github.io/post/reinforcement/</link>
+      <pubDate>Sun, 13 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>https://copuronur.github.io/post/reinforcement/</guid>
+      <description>&lt;h2 id=&#34;lecture-1introduction-to-rl&#34;&gt;LECTURE 1(Introduction to RL)&lt;/h2&gt;
+&lt;h2 id=&#34;characteristic-of-reinforcement-learning&#34;&gt;Characteristic of Reinforcement Learning&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;There is no supervisor, only a &lt;em&gt;reward&lt;/em&gt; signal.&lt;/li&gt;
+&lt;li&gt;Feedback is delayed, not instantaneous.&lt;/li&gt;
+&lt;li&gt;Time matters, (sequential, not i.i.d).&lt;/li&gt;
+&lt;li&gt;Agent&amp;rsquo;s actions affects the subsequent data it receives.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;rewards&#34;&gt;Rewards&lt;/h3&gt;
+&lt;p&gt;A reward R&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt; is a scaler feedback signal indicates how well the agent is doing at step &lt;em&gt;t&lt;/em&gt;. The agents job is to maximize the cumulative reward. Reinforcement learning is based on &lt;strong&gt;&lt;strong&gt;Reward Hypothesis&lt;/strong&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;sequential-decision-making&#34;&gt;Sequential Decision Making&lt;/h3&gt;
+&lt;p&gt;In RL, the actions should be selected to maximize total feature reward. Actions may have long term consequences and rewards maybe delayed. It maybe better to sacrifice immediate reward to gain more long-term reward.&lt;/p&gt;
+&lt;h3 id=&#34;agent-and-environment&#34;&gt;Agent and Environment&lt;/h3&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/RLagentenv.PNG&#34; alt=&#34;Agent-Environment Interaction&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;At each time step &lt;em&gt;t&lt;/em&gt; the agent:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Executes Action A&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt;.&lt;/li&gt;
+&lt;li&gt;Receives observation O&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt;.&lt;/li&gt;
+&lt;li&gt;Receives scaler reward R&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;At each time step &lt;em&gt;t&lt;/em&gt; the environment:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Receives action A&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt;.&lt;/li&gt;
+&lt;li&gt;Emits observation O&lt;sub&gt;&lt;em&gt;t+1&lt;/em&gt;&lt;/sub&gt;.&lt;/li&gt;
+&lt;li&gt;Emits scaler reward R&lt;sub&gt;&lt;em&gt;t+1&lt;/em&gt;&lt;/sub&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;information-state-aka-markov-state&#34;&gt;Information State (a.k.a Markov state)&lt;/h3&gt;
+&lt;p&gt;An &lt;strong&gt;&lt;strong&gt;information state&lt;/strong&gt;&lt;/strong&gt; contains all the useful information from history.&lt;/p&gt;
+&lt;h4 id=&#34;definition&#34;&gt;Definition&lt;/h4&gt;
+&lt;p&gt;A state S&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt; is a &lt;strong&gt;&lt;strong&gt;Markov&lt;/strong&gt;&lt;/strong&gt; if and only if:&lt;/p&gt;
+&lt;p&gt;P[S&lt;sub&gt;&lt;em&gt;t+1&lt;/em&gt;&lt;/sub&gt;|S&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt;] = P[S&lt;sub&gt;&lt;em&gt;t+1&lt;/em&gt;&lt;/sub&gt;|S&lt;sub&gt;&lt;em&gt;1&lt;/em&gt;&lt;/sub&gt;,&amp;hellip;,S&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt;]&lt;/p&gt;
+&lt;p&gt;This means the future is independent of the past given the present.&lt;/p&gt;
+&lt;h3 id=&#34;fully-observable-environments&#34;&gt;Fully Observable Environments&lt;/h3&gt;
+&lt;p&gt;The observation at time &lt;em&gt;t&lt;/em&gt; is equal to Agent state at time &lt;em&gt;t&lt;/em&gt; and the environment state at time &lt;em&gt;t&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;O&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt; = S&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt;&lt;sup&gt;&lt;em&gt;a&lt;/em&gt;&lt;/sup&gt; = S&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt;&lt;sup&gt;&lt;em&gt;e&lt;/em&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;This is a Markov decision process (&lt;strong&gt;&lt;strong&gt;MDP&lt;/strong&gt;&lt;/strong&gt;).&lt;/p&gt;
+&lt;h3 id=&#34;partially-observable-environments&#34;&gt;Partially Observable Environments&lt;/h3&gt;
+&lt;p&gt;The agent &lt;strong&gt;&lt;strong&gt;indirectly&lt;/strong&gt;&lt;/strong&gt; observes the environment.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A robot with camera vision isn’t told its absolute location.&lt;/li&gt;
+&lt;li&gt;A trading agent only observes current prices.&lt;/li&gt;
+&lt;li&gt;A poker playing agent only observes public cards.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now, the agent state is not equal to the environment state.  Formally, this is a Partially observable Markov decision process (&lt;strong&gt;&lt;strong&gt;POMDP&lt;/strong&gt;&lt;/strong&gt;).&lt;/p&gt;
+&lt;p&gt;Agent must construct its own state representation S&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt;&lt;sup&gt;&lt;em&gt;a&lt;/em&gt;&lt;/sup&gt;, e.g.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Complete history, S&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt;&lt;sup&gt;&lt;em&gt;a&lt;/em&gt;&lt;/sup&gt; = HS&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt;&lt;/li&gt;
+&lt;li&gt;Beliefs of environment state.&lt;/li&gt;
+&lt;li&gt;Recurrent neural networks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;major-components-of-an-rl-agent&#34;&gt;Major Components of an RL Agent&lt;/h2&gt;
+&lt;p&gt;A RL agent may include one or more of these components.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Policy: agent&amp;rsquo;s behaviour function.&lt;/li&gt;
+&lt;li&gt;Value function: how good is each state and/or action.&lt;/li&gt;
+&lt;li&gt;Model: agent’s representation of the environment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;policy&#34;&gt;Policy&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;It is a map from state to action, e.g.
+&lt;ul&gt;
+&lt;li&gt;Deterministic Policy&lt;/li&gt;
+&lt;li&gt;Stochastic Policy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;value-function&#34;&gt;Value Function&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;strong&gt;Value function&lt;/strong&gt;&lt;/strong&gt; is a prediction of future reward.&lt;/li&gt;
+&lt;li&gt;Used to evaluate the goodness of states.&lt;/li&gt;
+&lt;li&gt;And therefore to select between actions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;model&#34;&gt;Model&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;&lt;strong&gt;A model&lt;/strong&gt;&lt;/strong&gt; predicts what the environment will do next.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Transitions model: predicts the next state.&lt;/li&gt;
+&lt;li&gt;Reward model : predicts the next reward.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;categorizing-rl-agents&#34;&gt;Categorizing RL agents&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Value Based.&lt;/li&gt;
+&lt;li&gt;Policy Based.&lt;/li&gt;
+&lt;li&gt;Actor Critic.&lt;/li&gt;
+&lt;li&gt;Model Free.&lt;/li&gt;
+&lt;li&gt;Model Based.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;learning-and-planning&#34;&gt;Learning and Planning&lt;/h3&gt;
+&lt;p&gt;Two fundamental problems in sequential decision making:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Reinforcement Learning:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The environment is initially unknown.&lt;/li&gt;
+&lt;li&gt;The agent interacts with the environment.&lt;/li&gt;
+&lt;li&gt;The agent improves its policy.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Planning:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A model of the environment is known.&lt;/li&gt;
+&lt;li&gt;The agent performs computations with its model (without any external interaction)&lt;/li&gt;
+&lt;li&gt;The agent improves its policy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here you can see my &lt;a href=&#34;https://github.com/CopurOnur/Connec4-AI-bot&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Connect4&lt;/a&gt; bot working with a Planning manner and finds the optimal policy with a tree search.&lt;/p&gt;
+&lt;h2 id=&#34;lecture-2mdp&#34;&gt;LECTURE 2(MDP)&lt;/h2&gt;
+&lt;h2 id=&#34;markov-process&#34;&gt;Markov Process&lt;/h2&gt;
+&lt;h3 id=&#34;state-transition-matrix&#34;&gt;State Transition Matrix&lt;/h3&gt;
+&lt;p&gt;For a Markov state s and successor state s&lt;sup&gt;&lt;em&gt;&#39;&lt;/em&gt;&lt;/sup&gt;, the state transition probability is defined by,&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;&lt;strong&gt;P&lt;/strong&gt;&lt;/em&gt;&lt;/strong&gt;&lt;sub&gt;&lt;em&gt;ss&lt;sup&gt;&lt;/em&gt;&#39;&lt;em&gt;&lt;/sup&gt;&lt;/em&gt;&lt;/sub&gt; =  P[S&lt;sub&gt;&lt;em&gt;t+1&lt;/em&gt;&lt;/sub&gt; = s&lt;sup&gt;&lt;em&gt;&#39;&lt;/em&gt;&lt;/sup&gt; |S&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt; = s]&lt;/p&gt;
+&lt;p&gt;The state transition matrix &lt;strong&gt;&lt;em&gt;&lt;strong&gt;P&lt;/strong&gt;&lt;/em&gt;&lt;/strong&gt; defines transition probabilities from all state s to all successor states s&lt;sup&gt;&lt;em&gt;&#39;&lt;/em&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/transitionmatrix.PNG&#34; alt=&#34;Transition Matrix&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;markov-process-1&#34;&gt;Markov Process&lt;/h3&gt;
+&lt;p&gt;A Markov process is a memoryless random process i.e. a sequence of random states S&lt;sub&gt;1&lt;/sub&gt;,S&lt;sub&gt;2&lt;/sub&gt;&amp;hellip;S&lt;sub&gt;n&lt;/sub&gt; with Markov property.&lt;/p&gt;
+&lt;h3 id=&#34;example-student-markov-chain&#34;&gt;Example :Student Markov Chain&lt;/h3&gt;
+&lt;p&gt;In the figure bellow, you can see the illustration of a student Markov chain :)&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/studentmc.PNG&#34; alt=&#34;Student Markov Chain&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;markov-reward-process&#34;&gt;Markov Reward Process&lt;/h2&gt;
+&lt;p&gt;A Markov reward process is a Markov chain with values.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;&lt;strong&gt;P&lt;/strong&gt;&lt;/em&gt;&lt;/strong&gt;&lt;sub&gt;&lt;em&gt;ss&lt;sup&gt;&lt;/em&gt;&#39;&lt;em&gt;&lt;/sup&gt;&lt;/em&gt;&lt;/sub&gt; =  P[S&lt;sub&gt;&lt;em&gt;t+1&lt;/em&gt;&lt;/sub&gt; = s&lt;sup&gt;&lt;em&gt;&#39;&lt;/em&gt;&lt;/sup&gt; |S&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt; = s]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;&lt;strong&gt;R&lt;/strong&gt;&lt;/em&gt;&lt;/strong&gt; is a reward function, &lt;strong&gt;&lt;em&gt;&lt;strong&gt;R&lt;/strong&gt;&lt;/em&gt;&lt;/strong&gt;&lt;sub&gt;&lt;em&gt;s&lt;/em&gt;&lt;/sub&gt; =  E[R&lt;sub&gt;&lt;em&gt;t+1&lt;/em&gt;&lt;/sub&gt; |S&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt; = s]&lt;/p&gt;
+&lt;h3 id=&#34;return&#34;&gt;Return&lt;/h3&gt;
+&lt;p&gt;The &lt;em&gt;return&lt;/em&gt; G&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt; is the total discounted reward from time-step &lt;em&gt;t&lt;/em&gt; where gamma is the discount factor takes values between 0 and 1. This values immediate reward above delayed reward. Gamma close to 0 leads to ”myopic” evaluation. On the other hand Gamma close to 1 leads to ”far-sighted” evaluation.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/return.PNG&#34; alt=&#34;return&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;value-functions&#34;&gt;Value Functions&lt;/h3&gt;
+&lt;p&gt;The value function &lt;strong&gt;&lt;em&gt;&lt;strong&gt;v(s)&lt;/strong&gt;&lt;/em&gt;&lt;/strong&gt; gives the long term value of state &lt;em&gt;s&lt;/em&gt;. The sate value function &lt;strong&gt;&lt;em&gt;&lt;strong&gt;v(s)&lt;/strong&gt;&lt;/em&gt;&lt;/strong&gt; of an MRP is the expected return starting from state &lt;em&gt;s&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;&lt;strong&gt;v(s)&lt;/strong&gt;&lt;/em&gt;&lt;/strong&gt; = E[G&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt; |S&lt;sub&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sub&gt; = s]&lt;/p&gt;
+&lt;h3 id=&#34;bellman-equation-for-mrps&#34;&gt;Bellman Equation for MRPs&lt;/h3&gt;
+&lt;p&gt;The value function can be decomposed into two parts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;immediate reward R&lt;sub&gt;&lt;em&gt;t+1&lt;/em&gt;&lt;/sub&gt;&lt;/li&gt;
+&lt;li&gt;discounted value of successor state gamma * v(S&lt;sub&gt;&lt;em&gt;t+1&lt;/em&gt;&lt;/sub&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/bellman.PNG&#34; alt=&#34;Bellman equation&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;bellman-equation-in-matrix-form&#34;&gt;Bellman Equation in Matrix Form&lt;/h3&gt;
+&lt;p&gt;The Bellman equation can be expressed concisely using matrices,&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/bellmanmatrix1.PNG&#34; alt=&#34;Bellman matrix 1&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;where v is a column vector with one entry per state&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/bellmanmatrix2.PNG&#34; alt=&#34;Bellman matrix 2&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;solving-the-bellman-equation&#34;&gt;Solving the Bellman Equation&lt;/h3&gt;
+&lt;p&gt;Belllman equation is a linear equation so it can be solved directly. However the computational complexity for is O(n&lt;sup&gt;3&lt;/sup&gt;) for n states so direct solution is only possible for small MRPs. For large MRPs, the iterative methods are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dynamic programming&lt;/li&gt;
+&lt;li&gt;Monte - Carlo evaluation&lt;/li&gt;
+&lt;li&gt;Temporal Difference learning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;markov-decision-process&#34;&gt;Markov Decision Process&lt;/h2&gt;
+&lt;p&gt;A Markov decision process is a  Markov reward process with decisions. It is an environment in which all states are Markov. In the figure bellow, you can see the Student MDP. This time there is no transition probabilities but decisions and rewards. Except going to pub&amp;hellip; Once you go to a pub, you can&amp;rsquo;t make further decisions :)&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/studentmdp.PNG&#34; alt=&#34;studentmdp&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;To make decisions, we need policies.&lt;/p&gt;
+&lt;h3 id=&#34;policies&#34;&gt;Policies&lt;/h3&gt;
+&lt;p&gt;A policy π is a distribution over actions given states.&lt;/p&gt;
+&lt;p&gt;π(a|s) = P [A&lt;sub&gt;t&lt;/sub&gt; = a | S&lt;sub&gt;t&lt;/sub&gt;  = s]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A policy fully defines the behaviour of an agent.&lt;/li&gt;
+&lt;li&gt;MDP policies depend on the current state.&lt;/li&gt;
+&lt;li&gt;Policies are stationary, (time independent).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Given an MDP M = &amp;lt;S, A,P, R, γ&amp;gt; and a policy π,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The state sequence S&lt;sub&gt;1&lt;/sub&gt;, S&lt;sub&gt;2&lt;/sub&gt;, &amp;hellip; is a Markov process &amp;lt;S,P&lt;sup&gt;π&lt;/sup&gt;&amp;gt;.&lt;/li&gt;
+&lt;li&gt;The state and reward sequence S&lt;sub&gt;1&lt;/sub&gt;, R&lt;sub&gt;1&lt;/sub&gt;, S&lt;sub&gt;2&lt;/sub&gt;, &amp;hellip; ,s a Markov reward process &amp;lt;S,P&lt;sup&gt;π&lt;/sup&gt;,R&lt;sup&gt;π&lt;/sup&gt;,γ&amp;gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/mdppolicy.PNG&#34; alt=&#34;mdppolicy&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;value-function-1&#34;&gt;Value Function&lt;/h3&gt;
+&lt;h4 id=&#34;state---value-function&#34;&gt;State - Value Function&lt;/h4&gt;
+&lt;p&gt;The state-value function v&lt;sup&gt;π&lt;/sup&gt;(s) of an MDP is the expected return starting from state s, and then following policy π.&lt;/p&gt;
+&lt;p&gt;v&lt;sub&gt;π&lt;/sub&gt;(s) = E&lt;sub&gt;π&lt;/sub&gt; [G&lt;sub&gt;t&lt;/sub&gt; | S&lt;sub&gt;t&lt;/sub&gt; = s]&lt;/p&gt;
+&lt;p&gt;The state-value function can again be decomposed into immediate reward plus discounted value of successor state.&lt;/p&gt;
+&lt;p&gt;v&lt;sub&gt;π&lt;/sub&gt;(s) = E&lt;sub&gt;π&lt;/sub&gt; [R&lt;sub&gt;t+1&lt;/sub&gt; + γv&lt;sub&gt;π&lt;/sub&gt;(S&lt;sub&gt;t+1&lt;/sub&gt;) | S&lt;sub&gt;t&lt;/sub&gt; = s]&lt;/p&gt;
+&lt;h4 id=&#34;action---value-function&#34;&gt;Action - Value Function&lt;/h4&gt;
+&lt;p&gt;The action-value function q&lt;sup&gt;π&lt;/sup&gt;(s, a) is the expected return starting from state s, taking action a, and then following policy π.&lt;/p&gt;
+&lt;p&gt;q&lt;sub&gt;π&lt;/sub&gt;(s, a) = E&lt;sub&gt;π&lt;/sub&gt; [G&lt;sub&gt;t&lt;/sub&gt; | S&lt;sub&gt;t&lt;/sub&gt; = s, A&lt;sub&gt;t&lt;/sub&gt; = a]&lt;/p&gt;
+&lt;p&gt;The action-value function can similarly be decomposed,&lt;/p&gt;
+&lt;p&gt;q&lt;sub&gt;π&lt;/sub&gt;(s) = E&lt;sub&gt;π&lt;/sub&gt; [R&lt;sub&gt;t+1&lt;/sub&gt; + γq&lt;sub&gt;π&lt;/sub&gt;(S&lt;sub&gt;t+1&lt;/sub&gt;,A&lt;sub&gt;t+1&lt;/sub&gt;) | S&lt;sub&gt;t&lt;/sub&gt; = s, A&lt;sub&gt;t&lt;/sub&gt; = a]&lt;/p&gt;
+&lt;h3 id=&#34;optimal-value-function&#34;&gt;Optimal Value Function&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The optimal state-value function v&lt;sub&gt;∗&lt;/sub&gt;(s) is the maximum value function over all policies.&lt;/li&gt;
+&lt;li&gt;The optimal action-value function q&lt;sub&gt;∗&lt;/sub&gt;(s, a) is the maximum action-value function over all policies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;finding-an-optimal-policy&#34;&gt;Finding an Optimal Policy&lt;/h3&gt;
+&lt;p&gt;An optimal policy can be found by maximizing over  q&lt;sub&gt;∗&lt;/sub&gt;(s, a),&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/optimalpolicy.PNG&#34; alt=&#34;optimalpolicy&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;There is always a deterministic optimal policy for any MDP.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the figure bellow, the red arcs shows the optimal policy for the student MDP.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/optimalpolicystudent.PNG&#34; alt=&#34;optimalpolicystudent&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;solving-the-bellamn-optimality-equation&#34;&gt;Solving the Bellamn Optimality Equation&lt;/h3&gt;
+&lt;p&gt;Bellman optimality equation is non-linear so we introduce some iterative methods such as,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Value Iteration&lt;/li&gt;
+&lt;li&gt;Policy Iteration&lt;/li&gt;
+&lt;li&gt;Q-learning&lt;/li&gt;
+&lt;li&gt;Sarsa&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;lecture-3planning-by-dp&#34;&gt;LECTURE 3(Planning by DP)&lt;/h2&gt;
+&lt;h3 id=&#34;policy-evaluation&#34;&gt;Policy Evaluation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Problem : evaluate a given policy π.&lt;/li&gt;
+&lt;li&gt;Solution : iterative application of Bellman expectation backup.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;v&lt;sub&gt;1&lt;/sub&gt; → v&lt;sub&gt;2&lt;/sub&gt; → &amp;hellip; → v&lt;sub&gt;π&lt;/sub&gt;&lt;/p&gt;
+&lt;p&gt;Using synchronous backups,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;At each iteration k + 1.&lt;/li&gt;
+&lt;li&gt;For all states s ∈ S.&lt;/li&gt;
+&lt;li&gt;Update v&lt;sub&gt;k+1&lt;/sub&gt;(s) from v&lt;sub&gt;k&lt;/sub&gt; (s&lt;sup&gt;&#39;&lt;/sup&gt;).&lt;/li&gt;
+&lt;li&gt;where s&lt;sup&gt;&#39;&lt;/sup&gt; is the successor state of s.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;policy-iteration&#34;&gt;Policy Iteration&lt;/h3&gt;
+&lt;p&gt;Given a policy π,&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;strong&gt;Evaluate&lt;/strong&gt;&lt;/strong&gt; the policy π,&lt;/p&gt;
+&lt;p&gt;v&lt;sub&gt;π&lt;/sub&gt;(s) = E[R&lt;sub&gt;t+1&lt;/sub&gt; + R&lt;sub&gt;t+2&lt;/sub&gt; + &amp;hellip;  | S&lt;sub&gt;t&lt;/sub&gt; = s]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;strong&gt;Improve&lt;/strong&gt;&lt;/strong&gt; the policy by acting greedily with respect to v&lt;sub&gt;π&lt;/sub&gt;.&lt;/p&gt;
+&lt;p&gt;this process of &lt;strong&gt;&lt;strong&gt;policy iteration&lt;/strong&gt;&lt;/strong&gt; always converges to π∗&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Periodic Route Optimization for FMCG Distributors</title>
       <link>https://copuronur.github.io/publication/conference-paper1/</link>
       <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>

@@ -1,0 +1,1686 @@
+<!DOCTYPE html><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Onur Copur" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="This is a blog post about the UCL course on Reinforcement Learning by [David Silver](&lt;https://www.davidsilver.uk/teaching/&gt;). The course is divided into 10 Lectures and I will share  my notes on every lecture in this post." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://copuronur.github.io/post/reinforcement/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.css" integrity="" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.e9dfd0d72348b3575652bf8384f1cedc.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu977448f5f7d0285f18cfefcfd5153e92_24079_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu977448f5f7d0285f18cfefcfd5153e92_24079_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://copuronur.github.io/post/reinforcement/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+  <meta property="og:site_name" content="Me" />
+  <meta property="og:url" content="https://copuronur.github.io/post/reinforcement/" />
+  <meta property="og:title" content="Deep Reinforcement Learning | Me" />
+  <meta property="og:description" content="This is a blog post about the UCL course on Reinforcement Learning by [David Silver](&lt;https://www.davidsilver.uk/teaching/&gt;). The course is divided into 10 Lectures and I will share  my notes on every lecture in this post." /><meta property="og:image" content="https://copuronur.github.io/post/reinforcement/featured.jpg" />
+    <meta property="twitter:image" content="https://copuronur.github.io/post/reinforcement/featured.jpg" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2020-12-13T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2020-12-13T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://copuronur.github.io/post/reinforcement/"
+  },
+  "headline": "Deep Reinforcement Learning",
+  
+  "image": [
+    "https://copuronur.github.io/post/reinforcement/featured.jpg"
+  ],
+  
+  "datePublished": "2020-12-13T00:00:00Z",
+  "dateModified": "2020-12-13T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Onur Copur"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Me",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://copuronur.github.io/media/icon_hu977448f5f7d0285f18cfefcfd5153e92_24079_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "This is a blog post about the UCL course on Reinforcement Learning by [David Silver](\u003chttps://www.davidsilver.uk/teaching/\u003e). The course is divided into 10 Lectures and I will share  my notes on every lecture in this post."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Deep Reinforcement Learning | Me</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="9ad8b4592642b80ffd33d8d9cad0fbd4" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.2da3b1fa37e894630bf6de39b1b694b3.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Me</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Me</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>About</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Blog</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="https://twitter.com/copuro_onur" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="article-container pt-3">
+  <h1>Deep Reinforcement Learning</h1>
+
+  
+  <p class="page-subtitle">Notes from my big data computing class.</p>
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  <span class="author-highlighted">
+      <a href="/author/onur-copur/">Onur Copur</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Dec 13, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    6 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+</div>
+
+
+<div class="article-header container featured-image-wrapper mt-4 mb-4" style="max-width: 824px; max-height: 522px;">
+  <div style="position: relative">
+    <img src="/post/reinforcement/featured.jpg" width="824" height="522" alt="" class="featured-image">
+    <span class="article-header-caption">Image credit: <a href="https://unsplash.com/photos/CpkOjOcXdUY"><strong>Unsplash</strong></a></span>
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h2 id="lecture-1introduction-to-rl">LECTURE 1(Introduction to RL)</h2>
+<h2 id="characteristic-of-reinforcement-learning">Characteristic of Reinforcement Learning</h2>
+<ul>
+<li>There is no supervisor, only a <em>reward</em> signal.</li>
+<li>Feedback is delayed, not instantaneous.</li>
+<li>Time matters, (sequential, not i.i.d).</li>
+<li>Agent&rsquo;s actions affects the subsequent data it receives.</li>
+</ul>
+<h3 id="rewards">Rewards</h3>
+<p>A reward R<sub><em>t</em></sub> is a scaler feedback signal indicates how well the agent is doing at step <em>t</em>. The agents job is to maximize the cumulative reward. Reinforcement learning is based on <strong><strong>Reward Hypothesis</strong></strong>.</p>
+<h3 id="sequential-decision-making">Sequential Decision Making</h3>
+<p>In RL, the actions should be selected to maximize total feature reward. Actions may have long term consequences and rewards maybe delayed. It maybe better to sacrifice immediate reward to gain more long-term reward.</p>
+<h3 id="agent-and-environment">Agent and Environment</h3>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/RLagentenv.PNG" alt="Agent-Environment Interaction" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>At each time step <em>t</em> the agent:</p>
+<ul>
+<li>Executes Action A<sub><em>t</em></sub>.</li>
+<li>Receives observation O<sub><em>t</em></sub>.</li>
+<li>Receives scaler reward R<sub><em>t</em></sub>.</li>
+</ul>
+<p>At each time step <em>t</em> the environment:</p>
+<ul>
+<li>Receives action A<sub><em>t</em></sub>.</li>
+<li>Emits observation O<sub><em>t+1</em></sub>.</li>
+<li>Emits scaler reward R<sub><em>t+1</em></sub></li>
+</ul>
+<h3 id="information-state-aka-markov-state">Information State (a.k.a Markov state)</h3>
+<p>An <strong><strong>information state</strong></strong> contains all the useful information from history.</p>
+<h4 id="definition">Definition</h4>
+<p>A state S<sub><em>t</em></sub> is a <strong><strong>Markov</strong></strong> if and only if:</p>
+<p>P[S<sub><em>t+1</em></sub>|S<sub><em>t</em></sub>] = P[S<sub><em>t+1</em></sub>|S<sub><em>1</em></sub>,&hellip;,S<sub><em>t</em></sub>]</p>
+<p>This means the future is independent of the past given the present.</p>
+<h3 id="fully-observable-environments">Fully Observable Environments</h3>
+<p>The observation at time <em>t</em> is equal to Agent state at time <em>t</em> and the environment state at time <em>t</em>.</p>
+<p>O<sub><em>t</em></sub> = S<sub><em>t</em></sub><sup><em>a</em></sup> = S<sub><em>t</em></sub><sup><em>e</em></sup>.</p>
+<p>This is a Markov decision process (<strong><strong>MDP</strong></strong>).</p>
+<h3 id="partially-observable-environments">Partially Observable Environments</h3>
+<p>The agent <strong><strong>indirectly</strong></strong> observes the environment.</p>
+<ul>
+<li>A robot with camera vision isn’t told its absolute location.</li>
+<li>A trading agent only observes current prices.</li>
+<li>A poker playing agent only observes public cards.</li>
+</ul>
+<p>Now, the agent state is not equal to the environment state.  Formally, this is a Partially observable Markov decision process (<strong><strong>POMDP</strong></strong>).</p>
+<p>Agent must construct its own state representation S<sub><em>t</em></sub><sup><em>a</em></sup>, e.g.</p>
+<ul>
+<li>Complete history, S<sub><em>t</em></sub><sup><em>a</em></sup> = HS<sub><em>t</em></sub></li>
+<li>Beliefs of environment state.</li>
+<li>Recurrent neural networks.</li>
+</ul>
+<h2 id="major-components-of-an-rl-agent">Major Components of an RL Agent</h2>
+<p>A RL agent may include one or more of these components.</p>
+<ul>
+<li>Policy: agent&rsquo;s behaviour function.</li>
+<li>Value function: how good is each state and/or action.</li>
+<li>Model: agent’s representation of the environment.</li>
+</ul>
+<h3 id="policy">Policy</h3>
+<ul>
+<li>It is a map from state to action, e.g.
+<ul>
+<li>Deterministic Policy</li>
+<li>Stochastic Policy</li>
+</ul>
+</li>
+</ul>
+<h3 id="value-function">Value Function</h3>
+<ul>
+<li><strong><strong>Value function</strong></strong> is a prediction of future reward.</li>
+<li>Used to evaluate the goodness of states.</li>
+<li>And therefore to select between actions.</li>
+</ul>
+<h3 id="model">Model</h3>
+<p><strong><strong>A model</strong></strong> predicts what the environment will do next.</p>
+<ul>
+<li>Transitions model: predicts the next state.</li>
+<li>Reward model : predicts the next reward.</li>
+</ul>
+<h2 id="categorizing-rl-agents">Categorizing RL agents</h2>
+<ul>
+<li>Value Based.</li>
+<li>Policy Based.</li>
+<li>Actor Critic.</li>
+<li>Model Free.</li>
+<li>Model Based.</li>
+</ul>
+<h3 id="learning-and-planning">Learning and Planning</h3>
+<p>Two fundamental problems in sequential decision making:</p>
+<ul>
+<li>
+<p>Reinforcement Learning:</p>
+<ul>
+<li>The environment is initially unknown.</li>
+<li>The agent interacts with the environment.</li>
+<li>The agent improves its policy.</li>
+</ul>
+</li>
+<li>
+<p>Planning:</p>
+<ul>
+<li>A model of the environment is known.</li>
+<li>The agent performs computations with its model (without any external interaction)</li>
+<li>The agent improves its policy</li>
+</ul>
+</li>
+</ul>
+<p>Here you can see my <a href="https://github.com/CopurOnur/Connec4-AI-bot" target="_blank" rel="noopener">Connect4</a> bot working with a Planning manner and finds the optimal policy with a tree search.</p>
+<h2 id="lecture-2mdp">LECTURE 2(MDP)</h2>
+<h2 id="markov-process">Markov Process</h2>
+<h3 id="state-transition-matrix">State Transition Matrix</h3>
+<p>For a Markov state s and successor state s<sup><em>'</em></sup>, the state transition probability is defined by,</p>
+<p><strong><em><strong>P</strong></em></strong><sub><em>ss<sup></em>'<em></sup></em></sub> =  P[S<sub><em>t+1</em></sub> = s<sup><em>'</em></sup> |S<sub><em>t</em></sub> = s]</p>
+<p>The state transition matrix <strong><em><strong>P</strong></em></strong> defines transition probabilities from all state s to all successor states s<sup><em>'</em></sup>.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/transitionmatrix.PNG" alt="Transition Matrix" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h3 id="markov-process-1">Markov Process</h3>
+<p>A Markov process is a memoryless random process i.e. a sequence of random states S<sub>1</sub>,S<sub>2</sub>&hellip;S<sub>n</sub> with Markov property.</p>
+<h3 id="example-student-markov-chain">Example :Student Markov Chain</h3>
+<p>In the figure bellow, you can see the illustration of a student Markov chain :)</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/studentmc.PNG" alt="Student Markov Chain" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h2 id="markov-reward-process">Markov Reward Process</h2>
+<p>A Markov reward process is a Markov chain with values.</p>
+<p><strong><em><strong>P</strong></em></strong><sub><em>ss<sup></em>'<em></sup></em></sub> =  P[S<sub><em>t+1</em></sub> = s<sup><em>'</em></sup> |S<sub><em>t</em></sub> = s]</p>
+<p><strong><em><strong>R</strong></em></strong> is a reward function, <strong><em><strong>R</strong></em></strong><sub><em>s</em></sub> =  E[R<sub><em>t+1</em></sub> |S<sub><em>t</em></sub> = s]</p>
+<h3 id="return">Return</h3>
+<p>The <em>return</em> G<sub><em>t</em></sub> is the total discounted reward from time-step <em>t</em> where gamma is the discount factor takes values between 0 and 1. This values immediate reward above delayed reward. Gamma close to 0 leads to ”myopic” evaluation. On the other hand Gamma close to 1 leads to ”far-sighted” evaluation.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/return.PNG" alt="return" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h3 id="value-functions">Value Functions</h3>
+<p>The value function <strong><em><strong>v(s)</strong></em></strong> gives the long term value of state <em>s</em>. The sate value function <strong><em><strong>v(s)</strong></em></strong> of an MRP is the expected return starting from state <em>s</em>.</p>
+<p><strong><em><strong>v(s)</strong></em></strong> = E[G<sub><em>t</em></sub> |S<sub><em>t</em></sub> = s]</p>
+<h3 id="bellman-equation-for-mrps">Bellman Equation for MRPs</h3>
+<p>The value function can be decomposed into two parts:</p>
+<ul>
+<li>immediate reward R<sub><em>t+1</em></sub></li>
+<li>discounted value of successor state gamma * v(S<sub><em>t+1</em></sub>)</li>
+</ul>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/bellman.PNG" alt="Bellman equation" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h3 id="bellman-equation-in-matrix-form">Bellman Equation in Matrix Form</h3>
+<p>The Bellman equation can be expressed concisely using matrices,</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/bellmanmatrix1.PNG" alt="Bellman matrix 1" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>where v is a column vector with one entry per state</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/bellmanmatrix2.PNG" alt="Bellman matrix 2" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h3 id="solving-the-bellman-equation">Solving the Bellman Equation</h3>
+<p>Belllman equation is a linear equation so it can be solved directly. However the computational complexity for is O(n<sup>3</sup>) for n states so direct solution is only possible for small MRPs. For large MRPs, the iterative methods are:</p>
+<ul>
+<li>Dynamic programming</li>
+<li>Monte - Carlo evaluation</li>
+<li>Temporal Difference learning</li>
+</ul>
+<h2 id="markov-decision-process">Markov Decision Process</h2>
+<p>A Markov decision process is a  Markov reward process with decisions. It is an environment in which all states are Markov. In the figure bellow, you can see the Student MDP. This time there is no transition probabilities but decisions and rewards. Except going to pub&hellip; Once you go to a pub, you can&rsquo;t make further decisions :)</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/studentmdp.PNG" alt="studentmdp" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>To make decisions, we need policies.</p>
+<h3 id="policies">Policies</h3>
+<p>A policy π is a distribution over actions given states.</p>
+<p>π(a|s) = P [A<sub>t</sub> = a | S<sub>t</sub>  = s]</p>
+<ul>
+<li>A policy fully defines the behaviour of an agent.</li>
+<li>MDP policies depend on the current state.</li>
+<li>Policies are stationary, (time independent).</li>
+</ul>
+<p>Given an MDP M = &lt;S, A,P, R, γ&gt; and a policy π,</p>
+<ul>
+<li>The state sequence S<sub>1</sub>, S<sub>2</sub>, &hellip; is a Markov process &lt;S,P<sup>π</sup>&gt;.</li>
+<li>The state and reward sequence S<sub>1</sub>, R<sub>1</sub>, S<sub>2</sub>, &hellip; ,s a Markov reward process &lt;S,P<sup>π</sup>,R<sup>π</sup>,γ&gt;.</li>
+</ul>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/mdppolicy.PNG" alt="mdppolicy" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h3 id="value-function-1">Value Function</h3>
+<h4 id="state---value-function">State - Value Function</h4>
+<p>The state-value function v<sup>π</sup>(s) of an MDP is the expected return starting from state s, and then following policy π.</p>
+<p>v<sub>π</sub>(s) = E<sub>π</sub> [G<sub>t</sub> | S<sub>t</sub> = s]</p>
+<p>The state-value function can again be decomposed into immediate reward plus discounted value of successor state.</p>
+<p>v<sub>π</sub>(s) = E<sub>π</sub> [R<sub>t+1</sub> + γv<sub>π</sub>(S<sub>t+1</sub>) | S<sub>t</sub> = s]</p>
+<h4 id="action---value-function">Action - Value Function</h4>
+<p>The action-value function q<sup>π</sup>(s, a) is the expected return starting from state s, taking action a, and then following policy π.</p>
+<p>q<sub>π</sub>(s, a) = E<sub>π</sub> [G<sub>t</sub> | S<sub>t</sub> = s, A<sub>t</sub> = a]</p>
+<p>The action-value function can similarly be decomposed,</p>
+<p>q<sub>π</sub>(s) = E<sub>π</sub> [R<sub>t+1</sub> + γq<sub>π</sub>(S<sub>t+1</sub>,A<sub>t+1</sub>) | S<sub>t</sub> = s, A<sub>t</sub> = a]</p>
+<h3 id="optimal-value-function">Optimal Value Function</h3>
+<ul>
+<li>The optimal state-value function v<sub>∗</sub>(s) is the maximum value function over all policies.</li>
+<li>The optimal action-value function q<sub>∗</sub>(s, a) is the maximum action-value function over all policies</li>
+</ul>
+<h3 id="finding-an-optimal-policy">Finding an Optimal Policy</h3>
+<p>An optimal policy can be found by maximizing over  q<sub>∗</sub>(s, a),</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/optimalpolicy.PNG" alt="optimalpolicy" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<ul>
+<li>There is always a deterministic optimal policy for any MDP.</li>
+</ul>
+<p>In the figure bellow, the red arcs shows the optimal policy for the student MDP.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/optimalpolicystudent.PNG" alt="optimalpolicystudent" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h3 id="solving-the-bellamn-optimality-equation">Solving the Bellamn Optimality Equation</h3>
+<p>Bellman optimality equation is non-linear so we introduce some iterative methods such as,</p>
+<ul>
+<li>Value Iteration</li>
+<li>Policy Iteration</li>
+<li>Q-learning</li>
+<li>Sarsa</li>
+</ul>
+<h2 id="lecture-3planning-by-dp">LECTURE 3(Planning by DP)</h2>
+<h3 id="policy-evaluation">Policy Evaluation</h3>
+<ul>
+<li>Problem : evaluate a given policy π.</li>
+<li>Solution : iterative application of Bellman expectation backup.</li>
+</ul>
+<p>v<sub>1</sub> → v<sub>2</sub> → &hellip; → v<sub>π</sub></p>
+<p>Using synchronous backups,</p>
+<ul>
+<li>At each iteration k + 1.</li>
+<li>For all states s ∈ S.</li>
+<li>Update v<sub>k+1</sub>(s) from v<sub>k</sub> (s<sup>'</sup>).</li>
+<li>where s<sup>'</sup> is the successor state of s.</li>
+</ul>
+<h3 id="policy-iteration">Policy Iteration</h3>
+<p>Given a policy π,</p>
+<p><strong><strong>Evaluate</strong></strong> the policy π,</p>
+<p>v<sub>π</sub>(s) = E[R<sub>t+1</sub> + R<sub>t+2</sub> + &hellip;  | S<sub>t</sub> = s]</p>
+<p><strong><strong>Improve</strong></strong> the policy by acting greedily with respect to v<sub>π</sub>.</p>
+<p>this process of <strong><strong>policy iteration</strong></strong> always converges to π∗</p>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://copuronur.github.io/post/reinforcement/&amp;text=Deep%20Reinforcement%20Learning" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://copuronur.github.io/post/reinforcement/&amp;t=Deep%20Reinforcement%20Learning" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Deep%20Reinforcement%20Learning&amp;body=https://copuronur.github.io/post/reinforcement/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://copuronur.github.io/post/reinforcement/&amp;title=Deep%20Reinforcement%20Learning" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Deep%20Reinforcement%20Learning%20https://copuronur.github.io/post/reinforcement/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://copuronur.github.io/post/reinforcement/&amp;title=Deep%20Reinforcement%20Learning" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://copuronur.github.io/"><img class="avatar mr-3 avatar-circle" src="/author/onur-copur/avatar_huef90ae86c0eb729c12c0a533f7cc8bb2_56889_270x270_fill_q75_lanczos_center.jpg" alt="Onur Copur"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://copuronur.github.io/">Onur Copur</a></h5>
+      <h6 class="card-subtitle">MSc Data Science</h6>
+      <p class="card-text">Data scientist &amp; Industrial Engineer</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/copuro_onur" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=o_SPbYQAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/CopurOnur" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/onurcopur/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdn.jsdelivr.net/gh/desandro/imagesloaded@v4.1.4/imagesloaded.pkgd.min.js" integrity="sha512-S5PZ9GxJZO16tT9r3WJp/Safn31eu8uWrzglMahDT4dsmgqWonRY9grk3j+3tfuPr9WJNsfooOR7Gi7HL5W2jw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/metafizzy/isotope@v3.0.6/dist/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js" integrity="sha512-Ypjm0o7jOxAd4hpdoppSEN0TQOC19UtPAqD+4s5AlXmUvbmmS/YMxYqAqarQYyxTnB6/rqip9qcxlNB/3U9Wdg==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/r.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.js" integrity="" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.7cd6ec29d281a73c92a2958a1584aadc.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>
