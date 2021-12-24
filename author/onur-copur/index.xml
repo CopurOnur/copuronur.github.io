@@ -5,12 +5,318 @@
     <link>https://copuronur.github.io/author/onur-copur/</link>
       <atom:link href="https://copuronur.github.io/author/onur-copur/index.xml" rel="self" type="application/rss+xml" />
     <description>Onur Copur</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 01 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 24 Dec 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://copuronur.github.io/author/onur-copur/avatar_huef90ae86c0eb729c12c0a533f7cc8bb2_56889_270x270_fill_q75_lanczos_center.jpg</url>
       <title>Onur Copur</title>
       <link>https://copuronur.github.io/author/onur-copur/</link>
     </image>
+    
+    <item>
+      <title>Deep Unsupervised Learning</title>
+      <link>https://copuronur.github.io/post/deep_unsupervised/</link>
+      <pubDate>Fri, 24 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>https://copuronur.github.io/post/deep_unsupervised/</guid>
+      <description>&lt;h1 id=&#34;lecture-1-autoregressive-models&#34;&gt;Lecture 1 (Autoregressive Models)&lt;/h1&gt;
+&lt;h2 id=&#34;likelihood-based-models&#34;&gt;Likelihood-based models&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Problems we’d like to solve: Generating data, compressing data, anomaly detection&lt;/li&gt;
+&lt;li&gt;Likelihood-based models estimate the data distribution from some samples from the data distribution&lt;/li&gt;
+&lt;li&gt;the aim is to estimate the distribution of &lt;strong&gt;complex, high-dimensional data&lt;/strong&gt; with computational and statistical efficiency.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;generative-models&#34;&gt;Generative models&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Maximum likelihood: given a dataset x(1), …, x(n), find θ by solving the optimization problem.&lt;/p&gt;
+   &lt;!-- $\arg\min_\theta \ \mathrm{loss}(\theta, \mathbf{x}^{(1)}, \dotsc, \mathbf{x}^{(n)}) = \frac{1}{n}\sum_{i=1}^n -\log p_\theta(\mathbf{x}^{(i)})$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=%5Carg%5Cmin_%5Ctheta%20%5C%20%5Cmathrm%7Bloss%7D(%5Ctheta%2C%20%5Cmathbf%7Bx%7D%5E%7B(1)%7D%2C%20%5Cdotsc%2C%20%5Cmathbf%7Bx%7D%5E%7B(n)%7D)%20%3D%20%5Cfrac%7B1%7D%7Bn%7D%5Csum_%7Bi%3D1%7D%5En%20-%5Clog%20p_%5Ctheta(%5Cmathbf%7Bx%7D%5E%7B(i)%7D)&#34;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It is equivalent to minimizing KL divergence between the empirical distribution and the model.&lt;/p&gt;
+   &lt;!-- $\hat p_\mathrm{data}(\mathbf{x}) = \frac{1}{n} \sum_{i=1}^n \mathbf{1}[\mathbf{x} = \mathbf{x}^{(i)}]$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=%5Chat%20p_%5Cmathrm%7Bdata%7D(%5Cmathbf%7Bx%7D)%20%3D%20%5Cfrac%7B1%7D%7Bn%7D%20%5Csum_%7Bi%3D1%7D%5En%20%5Cmathbf%7B1%7D%5B%5Cmathbf%7Bx%7D%20%3D%20%5Cmathbf%7Bx%7D%5E%7B(i)%7D%5D&#34;&gt;
+   &lt;!-- $\mathrm{KL}(\hat p_\mathrm{data} \,\|\, p_\theta) = \mathbb{E}_{\mathbf{x}\sim \hat p_\mathrm{data}}[-\log p_\theta(\mathbf{x})] - H(\hat p_\mathrm{data})$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=%5Cmathrm%7BKL%7D(%5Chat%20p_%5Cmathrm%7Bdata%7D%20%5C%2C%5C%7C%5C%2C%20p_%5Ctheta)%20%3D%20%5Cmathbb%7BE%7D_%7B%5Cmathbf%7Bx%7D%5Csim%20%5Chat%20p_%5Cmathrm%7Bdata%7D%7D%5B-%5Clog%20p_%5Ctheta(%5Cmathbf%7Bx%7D)%5D%20-%20H(%5Chat%20p_%5Cmathrm%7Bdata%7D)&#34;&gt;
+&lt;p&gt;&lt;strong&gt;How do we solve this optimization problem?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Stochastic Gradient descent
+   &lt;!-- $\arg\min_\theta \mathbb{E}{\mathbf{x} \sim \hat p\mathrm{data}}[-\log p_\theta(\mathbf{x})]$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=%5Carg%5Cmin_%5Ctheta%20%5Cmathbb%7BE%7D%7B%5Cmathbf%7Bx%7D%20%5Csim%20%5Chat%20p%5Cmathrm%7Bdata%7D%7D%5B-%5Clog%20p_%5Ctheta(%5Cmathbf%7Bx%7D)%5D&#34;&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Why maximum likelihood + SGD?&lt;/strong&gt; It works with large datasets and is compatible with neural networks.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;designing-the-model&#34;&gt;Designing The Model&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The key requirement for maximum likelihood + SGD: efficiently compute log p(x) and its gradient.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pθ —&amp;gt; deep neural network&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ &lt;!-- $for\ all\ \theta,\quad \sum_\mathbf{x} p_\theta(\mathbf{x}) = 1 \quad\text{and}\quad p_\theta(\mathbf{x}) \geq 0 \quad\ for\ all\ \mathbf{x}$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=for%5C%20all%5C%20%5Ctheta%2C%5Cquad%20%5Csum_%5Cmathbf%7Bx%7D%20p_%5Ctheta(%5Cmathbf%7Bx%7D)%20%3D%201%20%5Cquad%5Ctext%7Band%7D%5Cquad%20p_%5Ctheta(%5Cmathbf%7Bx%7D)%20%5Cgeq%200%20%5Cquad%5C%20for%5C%20all%5C%20%5Cmathbf%7Bx%7D&#34;&gt;
+&lt;h3 id=&#34;autoregressive-model&#34;&gt;Autoregressive model&lt;/h3&gt;
+&lt;p&gt;An expressive Bayes net structure with neural network conditional distributions yields an expressive model for p(x) with tractable maximum likelihood training.&lt;/p&gt;
+ &lt;!-- $\log p_\theta(\mathbf{x}) = \sum_{i} \log p_\theta(x_i \,|\, \mathrm{parents}(x_i))$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=%5Clog%20p_%5Ctheta(%5Cmathbf%7Bx%7D)%20%3D%20%5Csum_%7Bi%7D%20%5Clog%20p_%5Ctheta(x_i%20%5C%2C%7C%5C%2C%20%5Cmathrm%7Bparents%7D(x_i))&#34;&gt;
+&lt;h3 id=&#34;rnn-autoregressive-models---char-rnn&#34;&gt;RNN autoregressive models - char-rnn&lt;/h3&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;masking-based-autoregressive-models&#34;&gt;Masking-based autoregressive models&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Masked Autoencoder for Distribution Estimation (MADE)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%201.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;masked-temporal-1d-convolution-wavenet&#34;&gt;Masked Temporal (1D) Convolution (WaveNet)&lt;/h3&gt;
+&lt;p&gt;Improved receptive field: dilated convolution, with exponential dilation. Better expressivity: Gated Residual blocks, Skip connections.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://procedural-generation.isaackarth.com/tumblr_files/tumblr_od90sk1vkL1uo5d9jo1_640.gif&#34; alt=&#34;https://procedural-generation.isaackarth.com/tumblr_files/tumblr_od90sk1vkL1uo5d9jo1_640.gif&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://haydensansum.github.io/CS205-Waveforms/imgs/wavenet_gate.png&#34; alt=&#34;https://haydensansum.github.io/CS205-Waveforms/imgs/wavenet_gate.png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;masked-spatial-2d-convolution---pixelcnn&#34;&gt;Masked Spatial (2D) Convolution - PixelCNN&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Images can be flatten into 1D vectors, but they are fundamentally 2D.&lt;/li&gt;
+&lt;li&gt;We can use a masked variant of ConvNet to exploit this knowledge.&lt;/li&gt;
+&lt;li&gt;First, we impose an autoregressive ordering on 2D images:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%202.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PixelCNN&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;PixelCNN-style masking has one problem: blind spot in the receptive field.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%203.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;masked-attention--convolution&#34;&gt;Masked Attention + Convolution&lt;/h3&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%204.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;neural-autoregressive-models-the-good&#34;&gt;Neural autoregressive models: the good&lt;/h2&gt;
+&lt;p&gt;Best in class modeling performance:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;expressivity - autoregressive factorization is general.&lt;/li&gt;
+&lt;li&gt;generalization - meaningful parameter sharing has good inductive bias.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;masked-autoregressive-models-the-bad&#34;&gt;Masked autoregressive models: the bad&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Sampling each pixel (1 forward pass)&lt;/p&gt;
+&lt;h3 id=&#34;speedup-by-breaking-the-autoregressive-pattern&#34;&gt;Speedup by breaking the autoregressive pattern&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;O(d) -&amp;gt; O(log(d)) by parallelizing within groups {2, 3, 4}.&lt;/li&gt;
+&lt;li&gt;Cannot capture dependencies within each group: this is a fine assumption if all pixels in one group are conditionally independent.
+&lt;ul&gt;
+&lt;li&gt;Most often they are not, then you trade expressivity for sampling speed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%205.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;natural-image-manipulation-for-autoregressive-models-using-fisher-scores&#34;&gt;Natural Image Manipulation for Autoregressive Models using Fisher Scores&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Main challenge:
+&lt;ul&gt;
+&lt;li&gt;How to get a latent representation from PixelCNN?&lt;/li&gt;
+&lt;li&gt;Why hard? The random input happens on a per-pixel sample basis.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Proposed solution
+&lt;ul&gt;
+&lt;li&gt;Use Fisher score&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%206.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%207.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Comparative Study of Forecasting Models for COVID-19 Outbreak in Turkey</title>
@@ -22,9 +328,9 @@
     
     <item>
       <title>Big Data computing</title>
-      <link>https://copuronur.github.io/post/getting-started/</link>
+      <link>https://copuronur.github.io/post/big_data_computing/</link>
       <pubDate>Sun, 13 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>https://copuronur.github.io/post/getting-started/</guid>
+      <guid>https://copuronur.github.io/post/big_data_computing/</guid>
       <description>&lt;h2 id=&#34;-------------------map-reduce-------------------&#34;&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; MAP REDUCE &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&lt;/h2&gt;
 &lt;h2 id=&#34;distributed-file-system-dfs&#34;&gt;Distributed File System (DFS)&lt;/h2&gt;
 &lt;p&gt;Modern data-mining applications, often called “big-data” analysis, require us to manage immense amounts of data quickly. The key factor of making fast computation is parallelization and this is done via computer clusters. To exploit cluster computing, files must look and behave somewhat differently from the conventional file systems found on single computers. This new file system is called Distributed File System (DFS).&lt;/p&gt;
