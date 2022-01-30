@@ -335,6 +335,398 @@
     &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%207.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/p&gt;
+&lt;h1 id=&#34;lecture-2-flow-models&#34;&gt;Lecture 2 (Flow Models)&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;How to fit a density $p_Q(x)$ model with continuous $x \in R^n$&lt;/li&gt;
+&lt;li&gt;What do we want from this model?
+&lt;ul&gt;
+&lt;li&gt;Good fit to the training data (really, the underlying distribution!)&lt;/li&gt;
+&lt;li&gt;For new &lt;em&gt;x&lt;/em&gt;, the ability to evaluate $p_\theta (x)$&lt;/li&gt;
+&lt;li&gt;Ability to sample from $p_\theta (x)$&lt;/li&gt;
+&lt;li&gt;And, ideally, a latent representation that’s meaningful&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;how-to-fit-a-density-model&#34;&gt;How to fit a density model?&lt;/h2&gt;
+&lt;h3 id=&#34;option-1-mixture-of-gaussians&#34;&gt;Option 1: Mixture of Gaussians&lt;/h3&gt;
+&lt;p&gt;Parameters: means and variances of components, mixture weights&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%208.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;!-- $p_\theta(x) = \sum_{i=1}^k \pi_i \mathcal{N}(x; \mu_i, \sigma_i^2)$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=p_%5Ctheta(x)%20%3D%20%5Csum_%7Bi%3D1%7D%5Ek%20%5Cpi_i%20%5Cmathcal%7BN%7D(x%3B%20%5Cmu_i%2C%20%5Csigma_i%5E2)&#34;&gt;
+&lt;!-- $\arg\min_\theta \mathbb{E}_x [ -\log p_\theta (x) ]$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=%5Carg%5Cmin_%5Ctheta%20%5Cmathbb%7BE%7D_x%20%5B%20-%5Clog%20p_%5Ctheta%20(x)%20%5D&#34;&gt;
+&lt;h3 id=&#34;option-2-general-density-model&#34;&gt;Option 2: General Density Model&lt;/h3&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%209.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How to ensure proper distribution?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2010.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How to sample?&lt;/li&gt;
+&lt;li&gt;Latent representation?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;flows-main-idea&#34;&gt;Flows: Main Idea&lt;/h2&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2011.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;flows-training&#34;&gt;Flows: Training&lt;/h2&gt;
+&lt;h3 id=&#34;change-of-variable&#34;&gt;Change of Variable&lt;/h3&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2012.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Note: requires&lt;!-- $f_\theta$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=f_%5Ctheta&#34;&gt; invertible &amp;amp; differentiable&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2013.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;assuming we have an expression for  &lt;!-- $pz$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=pz&#34;&gt;, this can be optimized with Stochastic Gradient Descent&lt;/p&gt;
+&lt;h2 id=&#34;flows-sampling&#34;&gt;Flows: Sampling&lt;/h2&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2014.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;2-d-autoregressive-flow&#34;&gt;2-D Autoregressive Flow&lt;/h2&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2015.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;2-d-autoregressive-flow-face&#34;&gt;2-D Autoregressive Flow: Face&lt;/h3&gt;
+&lt;p&gt;Architecture:
+Base distribution: Uniform[0,1]^2
+x1: mixture of 5 Gaussians
+x2: mixture of 5 Gaussians, conditioned on x1&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2016.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;!-- $%x_1 &amp;\sim p_\theta(x_1) \\%x_2 &amp;\sim p_\theta(x_2 | x_1) \\%x_3 &amp;\sim p_\theta(x_3 | x_1, x_2) \\x_1 &amp;= f_\theta^{-1}(z_1) \\x_2 &amp;= f_\theta^{-1}(z_2; x_1) \\x_3 &amp;= f_\theta^{-1}(z_3; x_1, x_2) \\$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=%25x_1%20%26%5Csim%20p_%5Ctheta(x_1)%20%5C%5C%25x_2%20%26%5Csim%20p_%5Ctheta(x_2%20%7C%20x_1)%20%5C%5C%25x_3%20%26%5Csim%20p_%5Ctheta(x_3%20%7C%20x_1%2C%20x_2)%20%5C%5Cx_1%20%26%3D%20f_%5Ctheta%5E%7B-1%7D(z_1)%20%5C%5Cx_2%20%26%3D%20f_%5Ctheta%5E%7B-1%7D(z_2%3B%20x_1)%20%5C%5Cx_3%20%26%3D%20f_%5Ctheta%5E%7B-1%7D(z_3%3B%20x_1%2C%20x_2)%20%5C%5C&#34;&gt;
+&lt;h3 id=&#34;autoregressive-flows&#34;&gt;Autoregressive flows&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;How to fit autoregressive flows?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Map &lt;strong&gt;x&lt;/strong&gt; to &lt;strong&gt;z&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Fully parallelizable&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Notice&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;x → z&lt;/strong&gt; has the same structure as the &lt;strong&gt;log likelihood&lt;/strong&gt; computation of an autoregressive model&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;z → x&lt;/strong&gt; has the same structure as the &lt;strong&gt;sampling&lt;/strong&gt; procedure of an autoregressive model&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2017.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;inverse-autoregressive-flows&#34;&gt;Inverse autoregressive flows&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The inverse of an autoregressive flow is also a flow, called the &lt;strong&gt;inverse autoregressive flow (IAF)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;x → z&lt;/strong&gt; has the same structure as the &lt;strong&gt;sampling&lt;/strong&gt; in an autoregressive model&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;z → x&lt;/strong&gt; has the same structure as &lt;strong&gt;log likelihood&lt;/strong&gt; computation of an autoregressive model. So, &lt;strong&gt;IAF sampling is fast&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2018.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;af-vs-iaf&#34;&gt;AF vs IAF&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Autoregressive flow
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fast&lt;/strong&gt; evaluation of p(x) for arbitrary x&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Slow&lt;/strong&gt; sampling&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Inverse autoregressive flow
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Slow&lt;/strong&gt; evaluation of p(x) for arbitrary x, so training directly by maximum likelihood is slow.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fast&lt;/strong&gt; sampling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fast&lt;/strong&gt; evaluation of p(x) if x is a sample&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;There are models (Parallel WaveNet, IAF-VAE) that exploit IAF’s fast sampling.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;change-of-many-variables&#34;&gt;Change of MANY variables&lt;/h3&gt;
+&lt;p&gt;For &lt;!-- $z \sim p(z)$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=z%20%5Csim%20p(z)&#34;&gt;, the sampling process f-1 linearly transforms a small cube &lt;!-- $dz$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=dz&#34;&gt;  to a small parallelepiped &lt;!-- $dx$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=dx&#34;&gt;. Probability is conserved:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2019.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Intuition&lt;/strong&gt;: x is likely if it maps to a “large” region in z space&lt;/p&gt;
+&lt;h2 id=&#34;high--dimensional-flow-models-training&#34;&gt;High- Dimensional Flow models: training&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Change-of-variables formula&lt;/strong&gt; lets us compute the density over x:&lt;/p&gt;
+&lt;!-- $p_\theta(\mathbf{x}) = p(f_\theta(\mathbf{x})) \left| \frac{\partial f_\theta(\mathbf{x})}{\partial \mathbf{x}} \right|$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=p_%5Ctheta(%5Cmathbf%7Bx%7D)%20%3D%20p(f_%5Ctheta(%5Cmathbf%7Bx%7D))%20%5Cleft%7C%20%5Cfrac%7B%5Cpartial%20f_%5Ctheta(%5Cmathbf%7Bx%7D)%7D%7B%5Cpartial%20%5Cmathbf%7Bx%7D%7D%20%5Cright%7C&#34;&gt;
+&lt;p&gt;Train with maximum likelihood:&lt;/p&gt;
+&lt;!-- $\arg\min_\theta \mathbb{E}_\mathbf{x} \left[ -\log p_\theta(\mathbf{x}) \right] = \mathbb{E}_\mathbf{x} \left[ -\log p(f_\theta(\mathbf{x})) - \log \mathrm{det} \left| \frac{\partial f_\theta(\mathbf{x})}{\partial \mathbf{x}} \right| \right]$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=%5Carg%5Cmin_%5Ctheta%20%5Cmathbb%7BE%7D_%5Cmathbf%7Bx%7D%20%5Cleft%5B%20-%5Clog%20p_%5Ctheta(%5Cmathbf%7Bx%7D)%20%5Cright%5D%20%3D%20%5Cmathbb%7BE%7D_%5Cmathbf%7Bx%7D%20%5Cleft%5B%20-%5Clog%20p(f_%5Ctheta(%5Cmathbf%7Bx%7D))%20-%20%5Clog%20%5Cmathrm%7Bdet%7D%20%5Cleft%7C%20%5Cfrac%7B%5Cpartial%20f_%5Ctheta(%5Cmathbf%7Bx%7D)%7D%7B%5Cpartial%20%5Cmathbf%7Bx%7D%7D%20%5Cright%7C%20%5Cright%5D&#34;&gt;
+&lt;p&gt;&lt;strong&gt;New key requirement&lt;/strong&gt;: the Jacobian determinant must be easy to calculate and differentiate!&lt;/p&gt;
+&lt;h2 id=&#34;nicerealnvp&#34;&gt;NICE/RealNVP&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Split variables in half: &lt;!-- $x_{1:d/2}, x_{d/2+1:d}$ --&gt; &lt;img style=&#34;transform: translateY(0.1em); background: white;&#34; src=&#34;https://render.githubusercontent.com/render/math?math=x_%7B1%3Ad%2F2%7D%2C%20x_%7Bd%2F2%2B1%3Ad%7D&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2020.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Invertible! Note that $sθ$ and $t_θ$ can be arbitrary neural nets with &lt;strong&gt;no restrictions&lt;/strong&gt;.
+&lt;ul&gt;
+&lt;li&gt;Think of them as &lt;strong&gt;data-parameterized elementwise flows&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://copuronur.github.io/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2021.png&#34; alt=&#34;Untitled&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
 </description>
     </item>
     

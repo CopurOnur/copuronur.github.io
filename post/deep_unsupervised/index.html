@@ -789,7 +789,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    2 min read
+    4 min read
   </span>
   
 
@@ -1122,6 +1122,398 @@
 <figure  >
   <div class="d-flex justify-content-center">
     <div class="w-100" ><img src="/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%207.png" alt="Untitled" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h1 id="lecture-2-flow-models">Lecture 2 (Flow Models)</h1>
+<ul>
+<li>How to fit a density $p_Q(x)$ model with continuous $x \in R^n$</li>
+<li>What do we want from this model?
+<ul>
+<li>Good fit to the training data (really, the underlying distribution!)</li>
+<li>For new <em>x</em>, the ability to evaluate $p_\theta (x)$</li>
+<li>Ability to sample from $p_\theta (x)$</li>
+<li>And, ideally, a latent representation that’s meaningful</li>
+</ul>
+</li>
+</ul>
+<h2 id="how-to-fit-a-density-model">How to fit a density model?</h2>
+<h3 id="option-1-mixture-of-gaussians">Option 1: Mixture of Gaussians</h3>
+<p>Parameters: means and variances of components, mixture weights</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%208.png" alt="Untitled" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<!-- $p_\theta(x) = \sum_{i=1}^k \pi_i \mathcal{N}(x; \mu_i, \sigma_i^2)$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=p_%5Ctheta(x)%20%3D%20%5Csum_%7Bi%3D1%7D%5Ek%20%5Cpi_i%20%5Cmathcal%7BN%7D(x%3B%20%5Cmu_i%2C%20%5Csigma_i%5E2)">
+<!-- $\arg\min_\theta \mathbb{E}_x [ -\log p_\theta (x) ]$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=%5Carg%5Cmin_%5Ctheta%20%5Cmathbb%7BE%7D_x%20%5B%20-%5Clog%20p_%5Ctheta%20(x)%20%5D">
+<h3 id="option-2-general-density-model">Option 2: General Density Model</h3>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%209.png" alt="Untitled" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<ul>
+<li>How to ensure proper distribution?</li>
+</ul>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2010.png" alt="Untitled" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<ul>
+<li>How to sample?</li>
+<li>Latent representation?</li>
+</ul>
+<h2 id="flows-main-idea">Flows: Main Idea</h2>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2011.png" alt="Untitled" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h2 id="flows-training">Flows: Training</h2>
+<h3 id="change-of-variable">Change of Variable</h3>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2012.png" alt="Untitled" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>Note: requires<!-- $f_\theta$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f_%5Ctheta"> invertible &amp; differentiable</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2013.png" alt="Untitled" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>assuming we have an expression for  <!-- $pz$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=pz">, this can be optimized with Stochastic Gradient Descent</p>
+<h2 id="flows-sampling">Flows: Sampling</h2>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2014.png" alt="Untitled" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h2 id="2-d-autoregressive-flow">2-D Autoregressive Flow</h2>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2015.png" alt="Untitled" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h3 id="2-d-autoregressive-flow-face">2-D Autoregressive Flow: Face</h3>
+<p>Architecture:
+Base distribution: Uniform[0,1]^2
+x1: mixture of 5 Gaussians
+x2: mixture of 5 Gaussians, conditioned on x1</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2016.png" alt="Untitled" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<!-- $%x_1 &\sim p_\theta(x_1) \\%x_2 &\sim p_\theta(x_2 | x_1) \\%x_3 &\sim p_\theta(x_3 | x_1, x_2) \\x_1 &= f_\theta^{-1}(z_1) \\x_2 &= f_\theta^{-1}(z_2; x_1) \\x_3 &= f_\theta^{-1}(z_3; x_1, x_2) \\$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=%25x_1%20%26%5Csim%20p_%5Ctheta(x_1)%20%5C%5C%25x_2%20%26%5Csim%20p_%5Ctheta(x_2%20%7C%20x_1)%20%5C%5C%25x_3%20%26%5Csim%20p_%5Ctheta(x_3%20%7C%20x_1%2C%20x_2)%20%5C%5Cx_1%20%26%3D%20f_%5Ctheta%5E%7B-1%7D(z_1)%20%5C%5Cx_2%20%26%3D%20f_%5Ctheta%5E%7B-1%7D(z_2%3B%20x_1)%20%5C%5Cx_3%20%26%3D%20f_%5Ctheta%5E%7B-1%7D(z_3%3B%20x_1%2C%20x_2)%20%5C%5C">
+<h3 id="autoregressive-flows">Autoregressive flows</h3>
+<ul>
+<li>
+<p>How to fit autoregressive flows?</p>
+<ul>
+<li>Map <strong>x</strong> to <strong>z</strong></li>
+<li>Fully parallelizable</li>
+</ul>
+</li>
+<li>
+<p>Notice</p>
+<ul>
+<li><strong>x → z</strong> has the same structure as the <strong>log likelihood</strong> computation of an autoregressive model</li>
+<li><strong>z → x</strong> has the same structure as the <strong>sampling</strong> procedure of an autoregressive model</li>
+</ul>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2017.png" alt="Untitled" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+</ul>
+<h3 id="inverse-autoregressive-flows">Inverse autoregressive flows</h3>
+<ul>
+<li>The inverse of an autoregressive flow is also a flow, called the <strong>inverse autoregressive flow (IAF)</strong></li>
+<li><strong>x → z</strong> has the same structure as the <strong>sampling</strong> in an autoregressive model</li>
+<li><strong>z → x</strong> has the same structure as <strong>log likelihood</strong> computation of an autoregressive model. So, <strong>IAF sampling is fast</strong></li>
+</ul>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2018.png" alt="Untitled" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h3 id="af-vs-iaf">AF vs IAF</h3>
+<ul>
+<li>Autoregressive flow
+<ul>
+<li><strong>Fast</strong> evaluation of p(x) for arbitrary x</li>
+<li><strong>Slow</strong> sampling</li>
+</ul>
+</li>
+<li>Inverse autoregressive flow
+<ul>
+<li><strong>Slow</strong> evaluation of p(x) for arbitrary x, so training directly by maximum likelihood is slow.</li>
+<li><strong>Fast</strong> sampling</li>
+<li><strong>Fast</strong> evaluation of p(x) if x is a sample</li>
+</ul>
+</li>
+<li>There are models (Parallel WaveNet, IAF-VAE) that exploit IAF’s fast sampling.</li>
+</ul>
+<h3 id="change-of-many-variables">Change of MANY variables</h3>
+<p>For <!-- $z \sim p(z)$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=z%20%5Csim%20p(z)">, the sampling process f-1 linearly transforms a small cube <!-- $dz$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=dz">  to a small parallelepiped <!-- $dx$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=dx">. Probability is conserved:</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2019.png" alt="Untitled" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p><strong>Intuition</strong>: x is likely if it maps to a “large” region in z space</p>
+<h2 id="high--dimensional-flow-models-training">High- Dimensional Flow models: training</h2>
+<p><strong>Change-of-variables formula</strong> lets us compute the density over x:</p>
+<!-- $p_\theta(\mathbf{x}) = p(f_\theta(\mathbf{x})) \left| \frac{\partial f_\theta(\mathbf{x})}{\partial \mathbf{x}} \right|$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=p_%5Ctheta(%5Cmathbf%7Bx%7D)%20%3D%20p(f_%5Ctheta(%5Cmathbf%7Bx%7D))%20%5Cleft%7C%20%5Cfrac%7B%5Cpartial%20f_%5Ctheta(%5Cmathbf%7Bx%7D)%7D%7B%5Cpartial%20%5Cmathbf%7Bx%7D%7D%20%5Cright%7C">
+<p>Train with maximum likelihood:</p>
+<!-- $\arg\min_\theta \mathbb{E}_\mathbf{x} \left[ -\log p_\theta(\mathbf{x}) \right] = \mathbb{E}_\mathbf{x} \left[ -\log p(f_\theta(\mathbf{x})) - \log \mathrm{det} \left| \frac{\partial f_\theta(\mathbf{x})}{\partial \mathbf{x}} \right| \right]$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=%5Carg%5Cmin_%5Ctheta%20%5Cmathbb%7BE%7D_%5Cmathbf%7Bx%7D%20%5Cleft%5B%20-%5Clog%20p_%5Ctheta(%5Cmathbf%7Bx%7D)%20%5Cright%5D%20%3D%20%5Cmathbb%7BE%7D_%5Cmathbf%7Bx%7D%20%5Cleft%5B%20-%5Clog%20p(f_%5Ctheta(%5Cmathbf%7Bx%7D))%20-%20%5Clog%20%5Cmathrm%7Bdet%7D%20%5Cleft%7C%20%5Cfrac%7B%5Cpartial%20f_%5Ctheta(%5Cmathbf%7Bx%7D)%7D%7B%5Cpartial%20%5Cmathbf%7Bx%7D%7D%20%5Cright%7C%20%5Cright%5D">
+<p><strong>New key requirement</strong>: the Jacobian determinant must be easy to calculate and differentiate!</p>
+<h2 id="nicerealnvp">NICE/RealNVP</h2>
+<ul>
+<li>Split variables in half: <!-- $x_{1:d/2}, x_{d/2+1:d}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_%7B1%3Ad%2F2%7D%2C%20x_%7Bd%2F2%2B1%3Ad%7D"></li>
+</ul>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2020.png" alt="Untitled" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<ul>
+<li>Invertible! Note that $sθ$ and $t_θ$ can be arbitrary neural nets with <strong>no restrictions</strong>.
+<ul>
+<li>Think of them as <strong>data-parameterized elementwise flows</strong>.</li>
+</ul>
+</li>
+</ul>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="/Deep%20Unsupervised%20Learning%208ba1b8b456a243c485efcb0cf0ea9371/Untitled%2021.png" alt="Untitled" loading="lazy" data-zoomable /></div>
   </div></figure>
 </p>
 
